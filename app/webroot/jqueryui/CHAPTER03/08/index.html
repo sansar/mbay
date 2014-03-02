@@ -1,0 +1,102 @@
+<!doctype html> <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="ja">
+	<!--<![endif]-->
+	<!--
+		Last changed: $LastChangedDate: 2012-04-25 21:47:09 +0900 (Wed, 25 Apr 2012) $
+	-->
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>360° View(Reel jQuery plugin Sample)</title>
+		<meta name="description" content="">
+		<meta name="author" content="Toshiya TSURU / SunBusiness, Inc.">
+		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<style>
+			body {
+				padding-top: 60px;
+				padding-bottom: 40px;
+			}
+		</style>
+		<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+	</head>
+	<body>
+		
+		<div class="container">
+			<h1>360° View</h1>
+			<hr/>
+			<!-- Example row of columns -->
+			<div class="row">
+				<div class="span4">
+					<h2>RC formula</h2>
+					<img src='img/01.jpg' width='276' height='126' align="center"/>
+					<br/>
+					<p>
+						<a class="btn" href="#" data-item="reel-item-01">View 360° &raquo;</a>
+					</p>
+				</div>
+				<div class="span4">
+					<h2>Mini Cooper</h2>
+					<img src='img/02.jpg' width='126' height='126'/>
+					<br/>
+					<p>
+						<a class="btn" href="#" data-item="reel-item-02">View 360° &raquo;</a>
+					</p>
+				</div>
+				<div class="span4">
+					<h2>Panorama</h2>
+					<img src='img/03.jpg' width='300' height='126' />
+					<br/>
+					<p>
+						<a class="btn" href="#" data-item="reel-item-03">View 360°&raquo;</a>
+					</p>
+				</div>
+			</div>
+			
+			<div class="hero-unit" id="reel-item-01" >
+				<h2>RC formula</h2>
+				<img class='reel' src='img/01.jpg' width='276' height='126' />
+				<p class="credit">
+					<strong>Photos credits:</strong> by <a class='external' href='mailto:syerik@seznam.cz'>Erik Kluka</a>
+				</p>
+			</div>
+			
+			<div class="hero-unit" id="reel-item-02" style="display:none;">
+				<h2>Mini Cooper</h2>
+				<img class='reel' src='img/02.jpg' width='126' height='126' />
+				<p class="credit">
+					<strong>Photos credits:</strong> by <a class='external' href='http://photospherix.com'>PhotoSpherix</a>
+        </p>
+			</div>
+			
+			<div class="hero-unit" id="reel-item-03" style="display:none;">
+				<h2>Panorama</h2>
+				<img class='reel' src='img/03.jpg' width='550' height='150' />
+				<p class="credit">
+					<strong>Photos credits:</strong> <a class='external' href='http://commons.wikimedia.org/wiki/File:Panorama_360_view_from_Moro_Rock_-_Giant_Sequoia_National_Park_-_California_USA_(2002).jpg'>Moro Rock, Giant Sequoia National Park, California USA</a> by <a class='external' href='http://www.flickr.com/people/59683764@N00'>Henning Leweke</a><a class='external' href='http://creativecommons.org/licenses/by-sa/2.0/'>(cc)</a>
+        </p>
+			</div>
+			
+			<hr>
+			<footer>
+				<p>
+					Powered by <a href="http://jquery.vostrel.cz/reel" target="_blank">Reel</a> <a href="http://jquery.com/" target="_blank">jQuery</a> plugin.<br/>
+					Composed by <a href="http://www.sunbi.co.jp" target="_blank">SunBusiness, Inc.</a>
+				</p>
+			</footer>
+		</div>
+		<!-- /container -->
+		<script src="js/libs/jquery-1.7.2.min.js"></script>
+		<script src="js/libs/jquery.reel-min.js"></script>
+		<script src="js/libs/bootstrap/bootstrap.min.js"></script>
+		<script src="js/script.js"></script>
+	</body>
+</html>

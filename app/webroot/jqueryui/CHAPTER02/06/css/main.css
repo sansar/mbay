@@ -1,0 +1,155 @@
+body {
+	padding: 0;
+	margin: 0;
+	font-size: 15px;
+	font-family: arial;
+	background: paleTurquoise;
+	color: #333;
+}
+
+a {
+	color: #4272db;
+}
+a:link, a:active, a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+#container {
+	width: 860px;
+	margin: 40px auto;
+	padding: 40px;
+	border-radius: 10px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+	background: #fff;
+}
+html*#container { width: auto;  } /* for IE7 */
+
+#header {
+	padding: 20px 0;
+	font-size: 20px;
+}
+
+#banner {
+background-image: linear-gradient(left , rgb(135,206,250) 40%, rgb(30,143,255) 80%);
+background-image: -o-linear-gradient(left , rgb(135,206,250) 40%, rgb(30,143,255) 80%);
+background-image: -moz-linear-gradient(left , rgb(135,206,250) 40%, rgb(30,143,255) 80%);
+background-image: -webkit-linear-gradient(left , rgb(135,206,250) 40%, rgb(30,143,255) 80%);
+background-image: -ms-linear-gradient(left , rgb(135,206,250) 40%, rgb(30,143,255) 80%);
+
+background-image: -webkit-gradient(
+	linear,
+	left top,
+	right top,
+	color-stop(0.4, rgb(135,206,250)),
+	color-stop(0.8, rgb(30,143,255))
+);
+	margin-top: 55px;
+	border-radius: 5px;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+	text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+}
+#banner .inner {
+	padding: 40px 25px;
+	height: 134px;
+	border-radius: 5px;
+	background: url(../img/banner.jpg) no-repeat right;
+}
+
+#banner h1 {
+	color: steelblue;
+	line-height: 1.4;
+}
+
+#maincontent {
+	clear: both;
+}
+
+div.content {
+	padding: 10px 0;
+}
+
+p {
+	margin-bottom: 5px;
+	line-height: 2;
+}
+
+ul {
+	padding : 0;
+	list-style : none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: steelblue;
+}
+h1 {
+	font-size: 18px;
+}
+
+h2 { 
+	font-size: 16px;
+}
+
+h3 {
+	font-size: 15px;
+}
+
+#nav {
+	clear: both;
+	width: 100%;
+	height: 30px;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	font-size: 14px;
+	font-weight: bold;
+	background-color: lightskyblue;
+}
+
+#nav li {
+	display: block;
+	width: 120px;
+	height: 30px;
+	float: left;
+	border-right: 1px solid #fff;
+	background-color: lightskyblue;
+	text-align: center;
+}
+
+#nav li.active {
+	background-color: steelblue;
+}
+
+#nav li.active a {
+	color: #fff;
+}
+
+#nav a {
+	display: block;
+	width: 100%;
+	line-height: 30px;
+	color: steelblue;
+	text-decoration: none;
+}
+
+#nav a:hover {
+	background-color: steelblue;
+	color: #fff;
+}
+
+#footer {
+	border-top: 1px solid steelblue;
+	height: 15px;
+	padding: 40px 0 20px;
+	font-size: 14px;
+	text-align: center;
+}
+#footer a {
+	color: #777;
+}

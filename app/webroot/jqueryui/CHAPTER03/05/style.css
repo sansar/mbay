@@ -1,0 +1,375 @@
+@charset "UTF-8";
+
+/****************************************
+
+          Animation - style.css
+
+*****************************************/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td, figure {
+	margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+}
+
+
+/****************************************
+
+          1.Layout
+
+*****************************************/
+
+body{
+	background: #b63c2f url(images/body-bg.jpg) no-repeat 50% 0;
+	font-size: 14px;
+    line-height: 160%;
+    font-family: 
+    	Verdana, Arial,
+    	'ヒラギノ角ゴ Pro W3',
+    	'Hiragino Kaku Gothic Pro',
+    	Osaka,
+    	'ＭＳ Ｐゴシック', 
+    	sans-serif;
+    color: #fff;	
+}
+#container{
+	width:940px;
+	margin:0 auto;
+	padding: 0 0 20px;
+}
+#main{
+	clear: both;
+	width: 620px;
+	float: right;
+}
+#sidebar{
+	float: left;
+	width: 260px;
+	padding-top: 66px;
+}
+#footer{
+	clear: both;
+}
+
+
+/****************************************
+
+          2. General Setting
+
+*****************************************/
+
+a{
+	color: #3a0517;
+	text-decoration: none;
+}
+	a:hover{
+		color: #750a2f;
+	}
+
+ul{
+	list-style: none;
+}
+
+/****************************************
+
+          3. header
+
+*****************************************/
+
+#logo{
+	font-size: 30px;
+	width: 320px;
+	float: left;
+	font-family: 'Josefin Sans', sans-serif;
+	text-transform: uppercase;
+	font-weight: 600;
+	text-shadow: 1px 1px 0 rgba(0, 0, 0, .7);
+	margin-top: 40px;
+}
+	#logo a{
+		display: block;
+		width: 100%;
+		height: 100%;
+		border: none;
+		color: #fff;
+	}
+
+#header > div{
+	width: 620px;
+	float: right;
+	background: url(images/border.png) repeat-x 0 100%;
+	margin-bottom: 10px;
+}
+
+#navi{
+	float: right;
+	width: auto;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 18px;
+	font-weight: 600;
+}
+
+	#navi li{
+		float: left;
+		margin: 0 10px;
+	}
+		#navi a{
+			color: #fff;
+			border: none;
+			display: block;
+			padding: 40px 10px 30px;
+			text-shadow: 0 1px rgba(0, 0, 0, .4);
+			background: url(images/navi-bg.png) no-repeat 50% -100px;
+		}
+			#navi .current { background-position: 50% -25px; }
+
+#searchform{
+	float: right;
+	width: auto;
+	margin: 30px 0 30px 10px;
+}
+
+#s{
+	width: 160px;
+	height: 20px;
+	padding: 2px 30px 2px 8px;
+	border: 1px solid #ddd;
+	outline: none;
+	font-size: 13px;
+	color: #777;
+	margin: 0;
+	width: 180px;
+	display: block;
+	background: #fff url(images/s.png) no-repeat 190px 1px;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	border-radius: 20px;
+}
+
+#s:focus {
+ 	color: #444;
+ 	-moz-box-shadow: 0 0 3px rgba(0, 0, 0, .4);
+	-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .4);
+	box-shadow:  0 0 3px rgba(0, 0, 0, .4); 
+}
+
+
+/****************************************
+
+          4. main
+
+*****************************************/
+
+#breadcrumb { margin-bottom: 40px; }
+
+	#breadcrumb li{
+		float: left;
+		margin-right: .5em;
+	}
+	
+#main h2{
+	clear: both;
+	font-family: 'Tangerine', cursive;
+	font-size: 36px;
+	margin-bottom: 20px;
+	text-shadow: 0 1px rgba(0, 0, 0, .4);
+} 
+
+#main .module{ margin-bottom: 40px; }
+
+.box,
+.heading-box{
+	padding-top:20px;
+	width: 300px;
+	float: left;
+	margin-right: 20px;
+	background: url(images/border.png) repeat-x 0 100%;
+	min-height: 155px;
+}
+	.box{ cursor: pointer; }
+	
+	#main h3{
+		font-family: 'Josefin Sans', sans-serif;
+		font-size: 20px;
+		top:-3px;
+		font-weight: 600;
+		text-shadow: 0 1px rgba(0, 0, 0, .4);
+	}
+	.box .right{
+		width: 150px;
+		float: right;
+		text-shadow: 0 1px rgba(0, 0, 0, .4);
+	}
+		.right h4{ font-weight: bold; }
+
+	.box .left{
+		width: 140px;
+		height: 94px;
+		float: left;
+		margin-bottom: 40px;
+		position: relative;
+	}
+	
+	.even{ margin-right: 0; }
+	.last{ background: none; }
+
+	.box:hover .right{
+		color: #3a0517;
+		text-shadow: none;
+	}
+
+.box img{
+		-moz-box-shadow: 0 2px 2px rgba(0, 0, 0, .4);
+		-webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, .4);
+		box-shadow:  0 2px 2px rgba(0, 0, 0, .4); 
+	}
+	
+.orange-ribbon,
+.green-ribbon,
+.blue-ribbon{
+	width: 55px;
+	height: 57px;
+	position: absolute;
+	top:-6px;
+	right:-7px;
+	background: url(images/orange-ribbon.png) no-repeat 0 0;
+	text-indent: -9999px;
+	z-index: 10;
+}
+	.green-ribbon{
+		background-image: url(images/green-ribbon.png);
+	}
+	.blue-ribbon{
+		background-image: url(images/blue-ribbon.png);
+		top:-7px;
+	}
+
+.layer{
+	background: #fff;
+	background: rgba(255, 255, 255, .7);
+	border: 5px solid #fff;
+	padding: 5px;
+	width: 120px;
+	height: 74px;
+	color: #a55516;
+	position: absolute;
+	top:0;
+	left:0;
+}
+	.layer h5{ font-weight: bold; }
+	
+		.more a{
+			background: url(images/link.png) no-repeat 0 100%;
+			display: block;
+			width: 45px;
+			height: 15px;
+			float: right;
+			text-indent: -9999px;
+		}
+
+
+/****************************************
+
+          5. Sidebar
+
+*****************************************/
+
+#sidebar h2{
+	font-family: 'Josefin Sans', sans-serif;
+	margin-bottom: 37px;
+	font-size: 18px;
+	font-weight: 600;
+	text-shadow: 0 1px rgba(0, 0, 0, .4);
+}
+
+.rectangle{
+	background: url(images/layer.png) repeat;
+	padding: .5em 1em;
+	border-top: 1px solid #762C25;
+	border-bottom: 1px solid #CF7269;
+	position: relative;
+}
+	.rectangle p{ padding-right: 1em; }
+	
+	.rectangle img{
+		width: 75px;
+		height: 75px;
+		float: left;
+		margin-right: .5em;
+	}
+
+#sidebar .module{ margin-bottom: 60px; }
+
+.tweet{
+	font-size: 12px;
+	line-height: 1.4;
+}
+	.tweet li{
+		margin-bottom: 10px;
+		background: url(images/tweet.png) no-repeat 0 0;
+		padding-left: 20px;
+	}
+
+#follow{
+	width: 135px;
+	height: 48px;
+	background: url(images/twitter.png) no-repeat 100% 0;
+	position: absolute;
+	top:-45px;
+	right: 0;
+	border: none;
+	color: #fff;
+	text-indent: -9999px;
+}
+	#follow:hover{ text-indent: 0; }
+
+
+/****************************************
+
+          6. footer
+
+*****************************************/
+
+#footer{
+	padding-top: 20px;
+	background: url(images/border.png) repeat-x 0 0;
+	font-size: 12px;
+}
+
+
+/****************************************
+
+          7. clearfix
+
+*****************************************/
+
+.clearboth{
+	display: block;
+	clear: both;
+}
+
+.clearfix:after{ 
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+/* clearfix for ie7 */
+.clearfix{ 
+    display: inline-block; 
+}
+.clearfix{ 
+    display: block; 
+}

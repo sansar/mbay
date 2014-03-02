@@ -1,0 +1,165 @@
+@charset "utf-8";
+
+/* ------- Set ------- */
+
+html, body, div, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, p, img {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+ul, ol {
+	list-style: none;
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #BD0076;
+	text-decoration: underline;
+}
+
+h1 {
+	color: #FFF;
+	font-size: 14px;
+}
+
+body {
+	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	font-size: 14px;
+	color: #000;
+	background: url(img/bg.jpg) no-repeat center top;
+}
+
+/*  clearFix  */
+.clearfix:after {
+	height: 0;
+	visibility: hidden;
+	content: ".";
+	display: block;
+	clear: both;
+}
+
+/* ------- wrapper ------- */
+
+#wrapper {
+	margin: 0px auto;
+	width: 940px;
+}
+
+/* ------- header ------- */
+
+#header {
+	height: 315px;
+}
+
+#header #logo {
+	margin-top: 45px;
+	float: left;
+}
+
+ul.megamenu {
+	margin-top: 45px;
+	float: right;
+	background-image: url(images/menu-background.gif);
+	background-repeat: repeat-x;
+	background-position: 0px 0px;
+}
+
+#tokushu {
+	margin-left: 640px;
+	height: 135px;
+}
+
+/* ------- contents ------- */
+
+#contents {
+	padding:45px 0 0 0;
+}
+
+#contents #news {
+	padding:0 20px 0 0;
+	float: left;
+	width: 300px;
+	height: 255px;
+}
+
+#contents #shopping {
+	width: 300px;
+	padding:0 20px 0 0;
+	float: left;
+	height: 255px;
+	position: relative;
+}
+
+#contents #shoplist {
+	float: right;
+	width: 300px;
+	position: relative;
+	height: 255px;
+}
+
+#contents #news dl dt {
+	padding-top: 15px;
+}
+
+#contents #news dl dd {
+	padding-bottom: 17px;
+	border-bottom: 1px solid #D9E8F0;
+}
+
+#contents #shopping p {
+	padding-top: 15px;
+	width: 270px;
+}
+
+#contents #shopping #item {
+	padding-top: 15px;
+}
+
+#contents #shoplist #map {
+	position: absolute;
+	left: 120px;
+	top: 30px;
+	z-index: -1;
+}
+
+#contents #shoplist p {
+	padding-top: 15px;
+	width: 185px;
+}
+
+#detail {
+	position: absolute;
+	bottom: 0px;
+}
+
+/* ------- footer ------- */
+
+#footer {
+	background: #E7E9EB;
+	width: 940px;
+	height:45px;
+	margin-top: 30px;
+	color: #666;
+}
+
+#footer ul {
+	font-size: 12px;
+	padding:0 0 0 20px;
+}
+
+#footer ul li {
+	padding:12px 20px 0 0;
+	float: left;
+}
+
+#footer address {
+	font-size: 10px;
+	padding:14px 20px 0 0;
+	float: right;
+	font-style: normal;
+}

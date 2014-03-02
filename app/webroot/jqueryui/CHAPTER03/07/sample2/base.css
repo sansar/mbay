@@ -1,0 +1,97 @@
+@charset "utf-8";
+
+/* ------- Set ------- */
+
+html, body, div, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, p, img {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+ul, ol {
+	list-style: none;
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+}
+
+#submenu a:hover {
+	color: #00B2CC;
+	text-decoration: none;
+}
+
+body {
+	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	font-size: 12px;
+	color: #000;
+	background: #EFEFEF url(img/bg.png) no-repeat center top;
+}
+
+/* ------- wrapper ------- */
+
+#wrapper {
+	position:relative;
+	margin: 0px auto;
+	width: 940px;
+}
+
+/* ------- navi ------- */
+
+#navi #logo {
+	padding-top: 10px;
+}
+
+#navi #menu {
+	padding-top: 15px;
+	height:440px;
+}
+
+#dock {
+	display:none;
+}
+
+.jqDockLabel {
+	background: #E81B90;
+	color: #fff;
+	padding: 3px 10px;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+}
+
+#navi #submenu {
+	padding-left: 15px;
+}
+
+#navi #submenu ul li {
+	float: left;
+	padding:0px 15px 0 0px;
+}
+
+/* ------- contents ------- */
+
+#contents #mainImg {
+	position: absolute;
+	left: 150px;
+	top: -40px;
+}
+
+/* ------- footer ------- */
+
+#footer {
+	margin: 0px auto;
+	width: 940px;
+	clear: both;
+}
+
+#footer address {
+	padding-top: 15px;
+	padding-left: 15px;
+	color: #BBB;
+	font-size: 10px;
+	font-style: normal;
+}
+
+

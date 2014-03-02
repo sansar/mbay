@@ -1,0 +1,232 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>タブ・スクロール サンプル｜DailyFashion!</title>
+
+<link rel="stylesheet" href="css/jquery.ui.tabs.css">
+<link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
+<link rel="stylesheet" href="css/tab_scroll.css">
+
+<script src="js/jquery-1.7.1.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+
+<script src="js/ui/jquery.ui.core.min.js"></script>
+<script src="js/ui/jquery.ui.widget.min.js"></script>
+<script src="js/ui/jquery.ui.tabs.min.js"></script>
+
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/jquery.mousewheel.min.js"></script>
+
+<!--[if lt IE 9]>
+<script src="js/html5.js"></script>
+<![endif]-->
+
+<script>
+$(function() {
+$( "#tabs" ).tabs();
+});
+</script>
+
+</head>
+
+<body>
+<header>
+<h1>DailyFashion!</h1>
+<ul>
+<li>配達方法をメール便にすると<br>
+ <strong>Tシャツ１枚から送料無料!!</strong></li>
+<li>宅配便をご利用の場合は<br>
+<strong>Tシャツ３枚から送料無料!!</strong><br>
+<small>※セール品は５枚から</small></li>
+</ul>
+<nav><ul>
+<li><a href="#" class="this"><img src="img/menu_1.png" alt="ホーム" width="40" height="13"></a></li>
+<li><a href="#"><img src="img/menu_2.png" alt="Tシャツ一覧" width="80" height="14"></a></li>
+<li><a href="#"><img src="img/menu_3.png" alt="マイアカウント" width="96" height="13"></a></li>
+<li><a href="#"><img src="img/menu_4.png" alt="商品の返品・交換" width="112" height="14"></a></li>
+<li><a href="#"><img src="img/menu_5.png" alt="このサイトについて" width="124" height="13"></a></li>
+<li><a href="#"><img src="img/menu_6.png" alt="お問い合わせ" width="83" height="14"></a></li>
+</ul>
+</nav>
+
+</header>
+
+
+<section>
+<h1><img src="img/cat_neko.png" alt="ねこシリーズ" width="187" height="31"></h1>
+<div id="tabs">
+
+<ul>
+<li><a href="#tabs-1">モッサモサ</a></li>
+<li><a href="#tabs-2">刈り込み</a></li>
+<li><a href="#tabs-3">耳おれ</a></li>
+</ul>
+
+<div id="tabs-1">
+<div id="mcs1_container"><div class="customScrollBox"><div class="container"><div class="content">
+<article><a href="#"><img src="img/t_neko_mosa2_006.png" alt="Tシャツデザイン：モッサモサ 006" width="148" height="138">
+<dl><dt>モッサモサ 006</dt><dd class="price">2,000</dd><dd class="tag">Unisex</dd><dd class="tag">カラバリ有</dd><dd class="new"><img src="img/new.png" alt="シリーズ新作" width="53" height="53"></dd></dl></a></article>
+<article><a href="#"><img src="img/t_neko_mosa2_005.png" alt="Tシャツデザイン：モッサモサ 005" width="148" height="138">
+<dl><dt>モッサモサ 005</dt><dd class="price">2,000</dd><dd class="tag">Unisex</dd><dd class="tag">カラバリ有</dd><dd class="new"><img src="img/new.png" alt="シリーズ新作" width="53" height="53"></dd></dl></a></article>
+<article><a href="#"><img src="img/t_neko_mosa2_004.png" alt="Tシャツデザイン：モッサモサ 004" width="148" height="138">
+<dl><dt>モッサモサ 004</dt><dd class="price">2,000</dd><dd class="tag">Unisex</dd><dd class="tag">カラバリ有</dd><dd class="new"><img src="img/new.png" alt="シリーズ新作" width="53" height="53"></dd></dl></a></article>
+<article><a href="#"><img src="img/t_neko_mosa2_003.png" alt="Tシャツデザイン：モッサモサ 003" width="148" height="138">
+<dl><dt>モッサモサ 003</dt><dd class="price">2,000</dd><dd class="tag">Unisex</dd><dd class="tag">カラバリ有</dd></dl></a></article>
+<article><a href="#"><img src="img/t_neko_mosa2_002.png" alt="Tシャツデザイン：モッサモサ 002" width="148" height="138">
+<dl><dt>モッサモサ 002</dt><dd class="price">2,000</dd><dd class="tag">Unisex</dd><dd class="tag">カラバリ有</dd></dl></a></article>
+<article><a href="#"><img src="img/t_neko_mosa2_001.png" alt="Tシャツデザイン：モッサモサ 001" width="148" height="138">
+<dl><dt>モッサモサ 001</dt><dd class="price">2,000</dd><dd class="tag">Unisex</dd><dd class="tag">カラバリ有</dd></dl></a></article>
+</div></div><div class="dragger_container"><div class="dragger"></div></div></div></div>
+</div>
+
+<div id="tabs-2">
+<article><a href="#"><img src="img/t_neko_karikomi_003.png" alt="Tシャツデザイン：刈り込み 003" width="148" height="138">
+<dl><dt>刈り込み 003</dt><dd class="price">2,000</dd><dd class="tag">Unisex</dd><dd class="tag">カラバリ有</dd><dd class="new"><img src="img/new.png" alt="シリーズ新作" width="53" height="53"></dd></dl></a></article>
+<article><a href="#"><img src="img/t_neko_karikomi_002.png" alt="Tシャツデザイン：刈り込み 002" width="148" height="138">
+<dl><dt>刈り込み 002</dt><dd class="price">2,000</dd><dd class="tag">Unisex</dd><dd class="tag">カラバリ有</dd><dd class="new"><img src="img/new.png" alt="シリーズ新作" width="53" height="53"></dd></dl></a></article>
+<article><a href="#"><img src="img/t_neko_karikomi_001.png" alt="Tシャツデザイン：刈り込み 001" width="148" height="138">
+<dl><dt>刈り込み 001</dt><dd class="price">2,000</dd><dd class="tag">Unisex</dd><dd class="tag">カラバリ有</dd><dd class="new"><img src="img/new.png" alt="シリーズ新作" width="53" height="53"></dd></dl></a></article>
+</div>
+
+<div id="tabs-3">
+<article><a href="#"><img src="img/t_neko_mimiore_002.png" alt="Tシャツデザイン：耳おれ 002" width="148" height="138">
+<dl><dt>耳おれ 002</dt><dd class="price">2,000</dd><dd class="tag">Unisex</dd><dd class="tag">カラバリ有</dd><dd class="new"><img src="img/new.png" alt="シリーズ新作" width="53" height="53"></dd></dl></a></article>
+<article><a href="#"><img src="img/t_neko_mimiore_001.png" alt="Tシャツデザイン：耳おれ 001" width="148" height="138">
+<dl><dt>耳おれ 001</dt><dd class="price">2,000</dd><dd class="tag">Unisex</dd><dd class="tag">カラバリ有</dd></dl></a></article>
+</div>
+
+</div>
+</section>
+
+
+<div id="menu">
+<a href="#"><img src="img/btn_cart1.png" alt="お買い物かごを見る" width="152" height="40"></a>
+<section>
+<h3><img src="img/m_tsyatu.png" alt="Tシャツコレクション" width="152" height="29"></h3> 
+<dl>
+<dt><a href="#">ねこシリーズ</a></dt>
+<dd><a href="#">モッサモサ</a></dd>
+<dd><a href="#">刈り込み</a></dd>
+<dd><a href="#">耳おれ</a></dd>
+</dl>
+
+<dl>
+<dt><a href="#">Flowerシリーズ</a></dt>
+<dd><a href="#">バラ</a></dd>
+<dd><a href="#">桜</a></dd>
+<dd><a href="#">その他</a></dd>
+</dl>
+
+<dl>
+<dt><a href="#">ジョークシリーズ</a></dt>
+<dd><a href="#">ブラック</a></dd>
+<dd><a href="#">中２</a></dd>
+<dd><a href="#">変な英語</a></dd>
+<dd><a href="#">変な日本語</a></dd>
+</dl>
+
+<dl>
+<dt><a href="#">和風シリーズ</a></dt>
+<dd><a href="#">花鳥風月</a></dd>
+<dd><a href="#">浮世絵</a></dd>
+<dd><a href="#">妖怪</a></dd>
+</dl>
+</section>
+</div>
+
+<div id="info">
+
+<form>
+<input type="text" name="q" size="31" />
+<button type="submit" value="検索">検索</button>
+</form>
+
+<section id="new">
+<h3><img src="img/m_new.png" alt="新着情報" width="175" height="29"></h3>
+<div>
+<div id="mcs2_container"><div class="customScrollBox"><div class="container"><div class="content">
+<article><a href="#"><time pubdate datetime="2012-07-01">2012.7.1</time>
+ねこシリーズ新作入荷しました！</a></article>
+<article><a href="#"><time pubdate datetime="2012-07-01">2012.7.1</time>
+Flowerシリーズ新作入荷しました！</a></article>
+<article><a href="#"><time pubdate datetime="2012-07-01">2012.7.1</time>
+Flowerシリーズ新作入荷しました！</a></article>
+<article><a href="#"><time pubdate datetime="2012-07-01">2012.7.1</time>
+Flowerシリーズ新作入荷しました！</a></article>
+</div></div><div class="dragger_container"><div class="dragger"></div></div></div></div>
+</div>
+</section>
+
+<aside id="banner">
+<a href="#"><img src="img/banner.png" alt="Fashion site" width="120" height="60"></a>
+</aside>
+
+<section id="story">
+<article>
+<header><h5>店長の小説</h5><h4>りんご太郎</h4><span>第一話</span></header>
+<div id="mcs3_container"><div class="customScrollBox"><div class="container"><div class="content">
+<p>むかしむかし、あるところに、<br>
+おじいさんとおばあさんがおりました。<br>
+おじいさんは山へしばかりに、<br>
+おばあさんは川へせんたくにいきました。</p>
+
+<p>おばあさんが川でせんたくをしていると、川の上から、<br>
+どんぶらっこっこ、<br>
+どんぶらこっこと<br>
+大きなりんごが流れてくるではありませんか。</p>
+
+<p>おばあさんは、川からりんごをひろいあげ、家にもちかえりました。<br>
+たいそうりっぱなりんごです。<br>
+「今夜はりんごぱーてぃじゃい！」<br>
+おばあさんは、おじいさんのよろこぶかおが、目にうかびました。</p>
+
+<p>しばらくして、山からしごとをおえたおじいさんが、かえってきました。</p>
+
+<p>続く！！</p>
+</div></div><div class="dragger_container"><div class="dragger"></div></div></div></div>
+</article>
+
+<img src="img/story_backnumber.png" alt="大きいページで見る バックナンバーも読めます" width="156" height="35">
+<p class="yorosiku">おもしろかった？<br>
+<a href="maito:">ファンレター待ってるよ！</a></p>
+</section>
+
+
+</div>
+
+<footer>
+<ul>
+<li><a href="#">会社概要</a></li>
+<li><a href="#">よくある質問</a></li>
+<li><a href="#">お問い合わせ</a></li>
+</ul>
+<small><img src="img/copyright.png" alt="©2012 DailyFashion!" width="152" height="17"></small>
+</footer>
+
+
+<script>
+$(window).load(function() {
+mCustomScrollbars();
+});
+
+function mCustomScrollbars(){
+$("#mcs1_container").mCustomScrollbar("vertical",0,"easeOutCirc",1.05,"auto","yes","no",0); 
+$("#mcs2_container").mCustomScrollbar("vertical",900,"easeOutCirc",1.05,"auto","yes","no",0);
+$("#mcs3_container").mCustomScrollbar("vertical",900,"easeOutCirc",1.05,"auto","yes","no",0);
+}
+
+/* function to fix the -10000 pixel limit of jquery.animate */
+$.fx.prototype.cur = function(){
+if ( this.elem[this.prop] != null && (!this.elem.style || this.elem.style[this.prop] == null) ) {
+return this.elem[ this.prop ];
+}
+var r = parseFloat( jQuery.css( this.elem, this.prop ) );
+return typeof r == 'undefined' ? 0 : r;
+}
+</script>
+
+<script src="js/jquery.mCustomScrollbar.js"></script>
+
+</body>
+</html>

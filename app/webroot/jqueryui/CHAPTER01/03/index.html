@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<title>Ranbow Books Online</title>
+		<link rel="stylesheet" href="js/libs/jquery.mobile-1.1.0/jquery.mobile.structure-1.1.0.min.css" />
+		<link rel="stylesheet" href="js/libs/themes/bs.css" />
+		<script type="application/javascript" src="js/libs/jquery-1.7.2.min.js"></script>
+		<script type="application/javascript" src="js/libs/jquery.mobile-1.1.0/jquery.mobile-1.1.0.min.js"></script>
+		<style>
+			#gallary {
+				margin-top: -15px;
+				margin-left: -15px;
+				margin-right: -15px;
+				margin-bottom: 15px;
+				overflow-x: scroll;
+			}
+			#gallary ul {
+				list-style: none;
+				padding: 0;
+				width: 2168px;
+			}
+			#gallary li {
+				margin-left: 0.5em;
+				/* float: left; */
+				display: inline-block;
+			}
+			#gallary li img {
+				width: 128px;
+				height: 171px;
+			}
+			.ui-header .ui-title {
+			  overflow: visible !important;
+			  white-space: normal !important;
+			}
+			.ui-icon-rbo-cart {
+				background-image: url('img/cart.png');
+			}
+			.ui-icon-rbo-call {
+				background-image: url('img/call.png');
+			}
+		</style>
+	</head>
+	<body>
+		<!-- main page -->
+		<div data-role="page" id="main">
+			<div data-role="header" data-position="fixed">
+				<a href='#' date-role="button" data-iconpos="notext" data-icon="home" >Home</a>
+				<h1 class="ui-title" tabindex="0" role="heading" aria-level="1">Books Online</h1>
+				<a href='callto:117' date-role="button" data-iconpos="notext" data-icon="rbo-call" >Call</a>
+			</div><!-- /header -->
+			<div data-role="content">
+				<div class="content-primary" id="gallary">
+					<ul>
+						<li><img src="img/01.png"/>
+						</li>
+						<li><img src="img/02.png"/>
+						</li>
+						<li><img src="img/03.png"/>
+						</li>
+						<li><img src="img/04.png"/>
+						</li>
+					</ul>
+				</div>
+				<div class="content-secondary">
+					<ul data-role="listview">
+						<li>
+							<a href="#releases">新刊</a>
+							<span class="ui-li-count">4</span>
+						</li>
+						<li>
+							<a href="#ranking" data-transition="fade">ランキング</a>
+						</li>
+						<li>
+							<a href="news.html" data-transition="flip">お知らせ</a>
+						</li>
+						<li>
+							<a href="http://www.facebook.com/mdnjp">Facebook</a>
+						</li>
+					</ul>
+				</div>
+			</div><!-- /content -->
+			<div data-role="footer" style="text-align:center">
+				<a href='#' date-role="button" data-icon="rbo-cart" >カート</a>
+				<a href='#' date-role="button" data-icon="gear" >&nbsp;設&nbsp;定&nbsp;</a>
+			</div><!-- /footer -->
+		</div><!-- /main page -->
+		<!-- releases page -->
+		<div data-role="page" id="releases">
+			<div data-role="header" data-position="fixed">
+				<a href='#main' date-role="button" data-iconpos="notext" data-icon="home" >Home</a>
+				<h1 class="ui-title" tabindex="0" role="heading" aria-level="1">新刊</h1>
+				<a href='callto:117' date-role="button" data-iconpos="notext" data-icon="rbo-call" >Call</a>
+			</div><!-- /header -->
+			<div data-role="content">
+				<div class="content-primary">
+					<ul data-role="listview" >
+						<li data-icon="rbo-cart">
+							<a data-icon="plus"> <img src="img/01.png"/> <h3>Smart Community</h3>
+							<p>
+								SunBusiness, Inc.
+							</p> 
+							</a>
+						</li>
+						<li data-icon="rbo-cart">
+							<a data-icon="plus"> <img src="img/02.png"/> <h3>Fuast</h3>
+							<p>
+								Goethe
+							</p> </a>
+						</li>
+						<li data-icon="rbo-cart">
+							<a data-icon="plus"> <img src="img/03.png"/> <h3>WEBと著作権法問題集</h3>
+							<p>
+								株式会社 サンビジネス
+							</p> </a>
+						</li>
+						<li data-icon="rbo-cart">
+							<a data-icon="plus"> <img src="img/04.png"/> <h3>ある知財マンの思い</h3>
+							<p>
+								長谷川暁司
+							</p> </a>
+						</li>
+					</ul>
+				</div>
+			</div><!-- /content -->
+			<div data-role="footer" style="text-align:center">
+				<a href='#' date-role="button" data-icon="rbo-cart" >カート</a>
+				<a href='#' date-role="button" data-icon="gear" >&nbsp;設&nbsp;定&nbsp;</a>
+			</div><!-- /footer -->
+		</div><!-- /main page -->
+		<!-- ranking page -->
+		<div data-role="page" id="ranking">
+			<div data-role="header" data-position="fixed">
+				<a href='#main' date-role="button" data-iconpos="notext" data-icon="home" >Home</a>
+				<h1 class="ui-title" tabindex="0" role="heading" aria-level="1">ランキング</h1>
+				<a href='callto:117' date-role="button" data-iconpos="notext" data-icon="rbo-call" >Call</a>
+			</div><!-- /header -->
+			<div data-role="content">
+				<div class="content-primary">
+					<ol data-role="listview" data-split-icon="plus">
+						<li >
+							<a> <img src="img/04.png"/> <h3>ある知財マンの思い</h3>
+							<p>
+								長谷川暁司
+							</p> </a>
+						</li>
+						<li>
+							<a data-icon="plus"> <img src="img/02.png"/> <h3>Fuast</h3>
+							<p>
+								Goethe
+							</p> </a>
+						</li>
+						<li>
+							<a data-icon="plus"> <img src="img/01.png"/> <h3>Smart Community</h3>
+							<p>
+								SunBusiness, Inc.
+							</p> </a>
+						</li>
+						<li>
+							<a data-icon="plus"> <img src="img/03.png"/> <h3>WEBと著作権法問題集</h3>
+							<p>
+								株式会社 サンビジネス
+							</p> </a>
+						</li>
+						</ul>
+				</div>
+			</div><!-- /content -->
+			<div data-role="footer" style="text-align:center">
+				<a href='#' date-role="button" data-icon="rbo-cart" >カート</a>
+				<a href='#' date-role="button" data-icon="gear" >&nbsp;設&nbsp;定&nbsp;</a>
+			</div><!-- /footer -->
+		</div><!-- /main page -->
+	</body>
+</html>

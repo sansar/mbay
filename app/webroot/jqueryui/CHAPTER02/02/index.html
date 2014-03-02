@@ -1,0 +1,225 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ドロップダウンなどサンプル｜STATIONERY</title>
+
+<!-- ソーシャルボタン用：URL(Google+は必須) -->
+<link rel="canonical" href="http://URLを入れてください" />
+
+<!-- ソーシャルボタン用：概要(mixi) -->
+<meta property="og:description" content="サイトの紹介を入れてください" />
+
+<!-- ソーシャルボタン用：種類(Facebookは必須) -->
+<meta property="og:type" content="article" />
+
+<!-- ソーシャルボタン用：URL(Facebookは必須) -->
+<meta property="og:url" content="http://URLを入れてください" />
+
+
+<link href="css/superfish.css" rel="stylesheet" type="text/css">
+<link href="css/dropdown.css" rel="stylesheet" type="text/css">
+
+<script src="js/jquery-1.7.1.min.js"></script>
+<script src="js/hoverIntent.js" type="text/javascript"></script>
+<script src="js/superfish.js" type="text/javascript"></script>
+<script src="js/jquery.socialbutton-1.8.1.js"></script>
+<script src="js/jquery.idTabs.min.js"></script>
+<!--[if lt IE 9]>
+<script src="js/html5.js"></script>
+<![endif]-->
+<script>
+jQuery(function() {
+
+//ドロップダウンメニュー
+$('.sf-menu').superfish();
+
+//ソーシャルボタン
+$('#google_plusone').socialbutton('google_plusone', {
+lang: 'ja',
+size: 'medium'
+});
+
+$('#hatena').socialbutton('hatena');
+
+$('#mixi_check').socialbutton('mixi_check', {
+key: 'あなたのmixiキーを入れてください'
+});
+
+$('#twitter').socialbutton('twitter', {
+button: 'horizontal',
+text: '投稿時に自動挿入テキストを書いてください',
+via: 'あなたのアカウントを@抜きで入れてください'
+});
+
+$('#facebook_like').socialbutton('facebook_like', {
+button: 'button_count'
+});
+
+//写真切り換えタブ
+$(".photo").idTabs("!mouseover");
+//写真切り換えタブ:クリックでページ内移動回避
+$('.photo a').click(function(){
+return false;
+});
+
+
+
+//テーブルをシマシマ
+$( "table tr:nth-child(odd)" ).addClass("odd");
+});
+</script>
+</head>
+
+<body>
+<header>
+<h1>STATIONERY</h1>
+<nav>
+<ul class="sf-menu">
+<li><a href="#">事務用品</a></li>
+<li><a href="#">筆記用具</a>
+<ul>
+<li><a href="#">鉛筆・シャープペン</a></li>
+<li><a href="#">ペン</a>
+<ul>
+<li><a href="#">蛍光ペン</a></li>
+<li><a href="#">油性マーカー</a></li>
+<li><a href="#">水性マーカー</a></li>
+<li><a href="#">アートマーカー</a></li>
+<li><a href="#">ホワイトボード用</a></li>
+</ul>
+</li>
+<li><a href="#">マーカー・蛍光ペン</a></li>
+<li><a href="#">デッサン・色鉛筆</a></li>
+<li><a href="#">消しゴム・修正用品</a></li>
+<li><a href="#">書道用具</a></li>
+</ul>
+</li>
+<li><a href="#">ノート</a></li>
+<li><a href="#">紙製品</a></li>
+<li><a href="#">プリンタインク</a></li>
+<li><a href="#">バーゲン</a></li>
+</ul>
+</nav>
+
+<form>
+<input type="text" name="q" size="31" />
+<button type="submit" value="検索">検索</button>
+</form>
+
+<a href="#"><img src="img/btn_cart2.png" alt="お買い物かごを見る" width="180" height="35"></a>
+</header>
+
+<section>
+<header>
+スーパーグレートなシャーペン
+<small>ヘリックス設計</small>
+</header>
+
+<div class="spec">
+<dl>
+<dt>参考価格</dt>
+<dd>¥ 100,000</dd>
+<dt>価格</dt>
+<dd><strong>¥ 80,000</strong>
+配送料無料</dd>
+<dt>OFF</dt>
+<dd>¥ 20,000 (20%)</dd>
+</dl>
+
+<strong>在庫あり</strong>
+
+<div class="shopBtns">
+<form>
+<label for="select">数量</label>
+<select name="select" id="select">
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+</select>
+</form>
+
+<a href="#" class="cart"><img src="img/btn_cart.png" alt="お買い物かごに入れる" width="350" height="50"></a>
+<a href="#" class="fav"><img src="img/btn_fav.png" alt="お気に入りリストに入れる" width="190" height="24"></a>
+</div>
+
+</div>
+
+<div class="socialBtns">
+<div id="mixi_check"></div><div id="hatena"></div><div id="twitter"></div>
+<div id="facebook_like"></div><div id="google_plusone"></div>
+</div>
+
+<dl class="photo">
+<dt><a href="#photo1"><img src="img/img1.jpg" alt="写真：スーパーグレートなシャーペン1" width="53" height="53"></a></dt>
+<dd><img src="img/img10.jpg" alt="拡大写真：スーパーグレートなシャーペン1" name="photo1" width="320" height="320" id="photo1"></dd>
+<dt><a href="#photo2"><img src="img/img2.jpg" alt="写真：スーパーグレートなシャーペン2" width="53" height="53"></a></dt>
+<dd><img src="img/img20.jpg" alt="拡大写真：スーパーグレートなシャーペン2" name="photo2" width="320" height="320" id="photo2"></dd>
+<dt><a href="#photo3"><img src="img/img3.jpg" alt="写真：スーパーグレートなシャーペン3" width="53" height="53"></a></dt>
+<dd><img src="img/img30.jpg" alt="拡大写真：スーパーグレートなシャーペン3" name="photo3" width="320" height="320" id="photo3"></dd>
+<dt><a href="#photo4"><img src="img/img4.jpg" alt="写真：スーパーグレートなシャーペン4" width="53" height="53"></a></dt>
+<dd><img src="img/img40.jpg" alt="拡大写真：スーパーグレートなシャーペン4" name="photo4" width="320" height="320" id="photo4"></dd>
+<dt><a href="#photo5"><img src="img/img5.jpg" alt="写真：スーパーグレートなシャーペン5" width="53" height="53"></a></dt>
+<dd><img src="img/img50.jpg" alt="拡大写真：スーパーグレートなシャーペン5" name="photo5" width="320" height="320" id="photo5"></dd>
+</dl>
+
+<hr>
+
+<dl class="comment">
+<dt>商品の説明</dt>
+<dd>製図作業の使用にも耐えうる、クオリティの高いシャープペンシルです。<br>
+グリップ部分のフィット感を高め、滑り止めにもなるシリコンは10年以上の経年経過テストにも劣化が現れませんでした！<br>
+また、シャープペンシルとしては重めの仕上がりになっていますので、毎日使い続けていると筋肉トレーニングにもなります。</dd>
+</dl>
+
+<hr>
+
+
+<table>
+<caption>商品の詳細</caption>
+<tr>
+<th>ブランド名</th>
+<td>ヘリックス設計</td>
+</tr>
+<tr>
+<th>製品型番</th>
+<td>SPG-ア</td>
+</tr>
+<tr>
+<th>メーカー型番</th>
+<td>SPG-ア</td>
+</tr>
+</table>
+
+
+<table>
+<caption>仕様</caption>
+<tr>
+<th>種類</th>
+<td>シャーペン</td>
+</tr>
+<tr>
+<th>方式</th>
+<td>ノック繰り出し式</td>
+</tr>
+<tr>
+<th>芯サイズ</th>
+<td>0.5mm</td>
+</tr>
+</table>
+
+</section>
+
+<footer>
+<ul>
+<li><a href="#">会社概要</a></li>
+<li><a href="#">よくある質問</a></li>
+<li><a href="#">お問い合わせ</a></li>
+</ul>
+<small><img src="img/copyright.png" alt="©2012 STATIONERY" width="149" height="14"></small>
+</footer>
+
+</body>
+</html>

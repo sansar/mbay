@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<title>UI Elements Form ::: Sample Website</title>
+<link rel="stylesheet" type="text/css" media="all" href="style.css" />
+</head>
+<body id="top">
+<!-- container -->
+<div id="container" class="clearfix">
+<div id="header">
+	<!-- logo -->
+	<h1 id="logo"><a href="index.html">サンプル Web サイト</a></h1>
+	
+	<!-- Main Navi -->
+	<div id="navi">
+		<ul class="">
+			<li class="home"><a href="#">Home</a></li>
+			<li class="about"><a href="#">About</a></li>
+			<li class="cafe"><a href="#">Cafe</a></li>
+			<li class="restaurant"><a href="#">Restaurant</a></li>
+			<li class="current contact"><a href="#">Contact</a></li>
+		</ul>
+	</div>
+</div>
+<!-- header -->
+
+<h2 class="main-heading">CONTACT US</h2>
+
+<!-- form -->
+<form method="get" id="contact-form" action="#">
+
+<h3 class="heading">お問い合わせには、こちらのコンタクトフォームをご利用ください。</h3>
+
+<div class="colum left">
+<div class="section">
+<label for="your-name" class="label">お名前 : </label>
+<input type="text" name="your-name" id="your-name" />
+</div>
+
+<div class="section">
+<label for="your-email" class="label">Eメール : </label>
+<input type="text" name="your-email" id="your-email" />
+</div>
+
+<fieldset class="section">
+<legend class="label">性別 : </legend>
+<label for="male"><input type="radio" name="gender[]" id="male" value="man" checked="checked" />男性</label>
+<label for="female"><input type="radio" name="gender[]" id="female" value="woman" />女性</label>
+</fieldset>
+
+<div class="section stack-top">
+<label for="age" class="label" id="select-label">年齢</label>
+	<select id="age" name="age">
+	<option value="">お選びください...</option>
+	<option value="10">10代</option>
+	<option value="20">20代</option>
+	<option value="30">30代</option>
+	<option value="40">40代</option>
+	<option value="50">50代 ~</option>
+	</select>
+</div>
+</div>
+
+<div class="colum right">
+<div class="section">
+<label class="label" for="message">メッセージ : </label>
+<textarea id="message" cols="30" rows="5" name="message"></textarea>
+</div>
+</div>
+
+<div class="section clearboth questionnaire">
+<h3 class="heading">アンケートにお答えいただけるとうれしいです！（必須ではありません）</h3>
+<fieldset>
+<legend>当店を何でお知りになりましたか？</legend>
+<div>
+	<label for="magazine"><input type="checkbox" name="questionnaire[]" id="magazine" value="1" />雑誌</label>
+	<label for="newspaper"><input type="checkbox" name="questionnaire[]" id="newspaper" value="2" />新聞広告</label>	
+	<label for="internet"><input type="checkbox" name="questionnaire[]" id="internet" value="3" />インターネット</label>	
+	<label for="friends"><input type="checkbox" name="questionnaire[]" id="friends" value="4" />知人から</label>
+</div>
+</fieldset>
+</div>
+
+<div class="section submit">
+<input type="submit" value="送信" class="button" id="submit-button" />
+</div>
+
+</form>
+<!-- footer -->
+<div id="footer">
+	<p><small>&copy; Web Design Sample  All Rights Reserved.</small></p>
+</div><!-- /footer -->
+</div><!-- /container -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="ui.elements.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+	/* ui-elements */
+	$('#contact-form').UIElements({
+		radio: [
+			{ name: 'gender[]'}
+		],
+		checkbox: [
+			{ name: 'questionnaire[]' }
+		],
+		select: [
+			{ name: 'age'}
+		]
+	});
+});
+</script>
+</body>
+</html>

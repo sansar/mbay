@@ -1,0 +1,45 @@
+/* ===== Primary Styles ========================================================
+ Author:
+ ========================================================================== */
+body {
+	padding-top: 20px;
+	padding-bottom: 40px;
+}
+
+h1 {
+	margin-bottom: 0;
+	font-size: 104px;
+	font-wight: bold;
+	line-height: 1;
+	color: inherit;
+	letter-spacing: -1px;
+}
+
+.hero-unit {
+	padding: 60px 30px 60px 30px;
+}
+
+.row {
+	margin-bottom: 1em;
+}
+
+.reel {
+	margin-bottom: 1em;
+}
+
+div img,
+div div.reel {
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.btn {
+	float: right;
+}
+
+
+.credit {
+	text-align: right !important;
+	font-size: 9px !important;
+}

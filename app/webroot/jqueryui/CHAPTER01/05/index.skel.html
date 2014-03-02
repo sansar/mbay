@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>tbFeedReader</title>
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+			<a href="./" class="brand"><i class="icon-bookmark icon-white"></i> tbFeedReader <i class="icon-bookmark icon-white"></i></a>
+			<div class="nav-collapse">
+				<ul class="nav">
+					<li class="active"><a href="/">Home</a></li>
+				</ul>
+				<ul class="nav pull-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Feed追加・編集・削除&nbsp;<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#addFeeds" data-toggle="modal"><i class="icon-plus icon-white"></i> Feed追加</a></li>
+							<li><a href="#editFeeds" data-toggle="modal"><i class="icon-pencil icon-white"></i> Feed編集</a></li>
+							<li><a href="#deleteFeeds" data-toggle="modal"><i class="icon-trash icon-white"></i> Feed削除</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<div id="messageBox">
+				<div id="readError" class="alert alert-error hide">
+					<a href="#" class="close" data-dismiss="alert">&times;</a>
+					<p><strong>読込失敗</strong> Feedの読込みに失敗しました。</p>
+				</div>
+				<div id="emptyFeedInformation" class="alert alert-info hide">
+					<a href="#" class="close" data-dismiss="alert">&times;</a>
+					<p><strong>ヘッダー右上よりFeedを追加してください</strong></p>
+					<p>あらかじめ複数のFeedが登録されています。URL入力欄でスペースやプロ野球チーム名を入力してみてください。</p>
+				</div>
+				<div class="alert">
+					<p><strong>読み込みボタンをクリックすると、Feedを取得し画面に表示します</strong></p>
+					<p><a href="#" id="startReading" class="btn btn-primary"><i class="icon-refresh icon-white"></i> Feed読み込みを開始する</a></p>
+				</div>
+			</div>
+			<div id="result" class="accordion"></div>
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#tabAbout" data-toggle="tab">About</a></li>
+				<li><a href="#tab-profile" data-toggle="tab">Profile</a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="tabAbout">
+					<div class="well">
+						<h3>tbFeedReader</h3>
+						<p>tbFeedReaderは、Twitter BootstrapとjQueryプラグインでできたRSSリーダーです。</p>
+					</div>
+					<p>Twitter Bootstrapを利用したウェブアプリケーションのサンプルサイトです。</p>
+					<p>JavaScriptのみで作成しています。</p>
+					<p>iPadやスマートフォンでも動作します。ぜひご活用ください。</p>
+					<h4>使用しているプラグイン</h4>
+					<ul>
+						<li>Twitter Bootstrap</li>
+						<li>SNBinder</li>
+						<li>FeedReader</li>
+					</ul>
+				</div>
+				<div class="tab-pane" id="tab-profile">
+					<div class="well">
+						<h3>@mon_sat</h3>
+						<p>I love JavaScript and jQuery :)</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="addFeeds" class="modal hide">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h3>Feed設定</h3>
+	</div>
+	<div class="modal-body">
+		<h4>新規 Feed 追加</h4>
+		<div class="form-settings">
+			<div class="alert alert-success hide"><strong>入力内容を保存しました</strong></div>
+			<div class="alert alert-error hide"><strong>入力内容を確認してください</strong></div>
+			<div class="alert alert-error hide"><strong>URLが重複しています</strong></div>
+			<input type="hidden" class="form-settings-id span3">
+			<input type="text" class="form-settings-url span6" placeholder="httpから始まるURLを入力してください" required>
+			<input type="text" class="form-settings-title span5" placeholder="タイトルを入力してください（省略可）">
+			<input type="text" class="form-settings-numentries span3" placeholder="スペース等で選択肢が開きます"><span class="help-inline">エントリー取得数（省略時は20）</span>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button href="#" id="submitAddFeeds" class="btn btn-primary"><i class="icon-plus-sign icon-white"></i> 新規追加</button>
+	</div>
+</div>
+<div id="editFeeds" class="modal hide">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h3>Feed設定</h3>
+	</div>
+	<div class="modal-body">
+		<h4>既存 Feed 編集</h4>
+		<div class="form-settings">
+			<div class="alert alert-success hide"><strong>Feedを編集しました</strong></div>
+			<div class="alert alert-error hide"><strong>入力内容を確認してください</strong></div>
+			<span class="help-inline">Feed番号</span><select class="form-settings-id span2"></select>
+			<input type="text" class="form-settings-url span6" placeholder="httpから始まるURLを入力してください" required>
+			<input type="text" class="form-settings-title span5" placeholder="タイトルを入力してください（省略可）">
+			<input type="text" class="form-settings-numentries span3" placeholder="スペース等で選択肢が開きます"><span class="help-inline">エントリー取得数（省略時は20）</span>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button id="submitEditFeeds" class="btn btn-primary"><i class="icon-pencil icon-white"></i> 編集した内容で保存</button>
+	</div>
+</div>
+<div id="deleteFeeds" class="modal hide">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h3>Feed設定</h3>
+	</div>
+	<div class="modal-body">
+		<h4>Feed 削除</h4>
+		<div class="form-settings">
+			<div class="alert alert-success hide"><strong>Feedを削除しました</strong></div>
+			<div class="alert alert-error hide"><strong>内容を確認してください</strong></div>
+			<span class="help-inline">Feed番号</span><select class="form-settings-id span2"></select>
+			<input type="text" class="form-settings-url span6" disabled>
+			<input type="text" class="form-settings-title span5" disabled>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button id="submitDeleteFeeds" class="btn btn-danger"><i class="icon-trash icon-white"></i> 選択したFeedを削除</button>
+	</div>
+</div>
+<div id="snTemplates" style="display:none;">
+	<div class="accordion-group">
+		<div class="accordion-heading"><a data-target="#fr-$(_id)" href="javascript:void(0);" class="accordion-toggle" data-toggle="collapse"data-parent="#result">$(.mytitle)</a></div>
+		<div class="accordion-body collapse" id="fr-$(_id)">
+			<div class="accordion-inner">
+				<div class="well"><h4><a href="$(.link)" target="_blank">$(.title)</a></h4><div>$(.description)</div></div>
+				<div class="feed-body">
+					<h4><a href="$(.link)" target="_blank">$(.title)</a></h4><div><p>$(_contentSnippet)$(.publishedDate)</p>$(_content)</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<hr>
+<footer>
+	<div class="container">
+		&copy; @mon_sat 2012
+	</div>
+</footer>
+</body>
+</html>

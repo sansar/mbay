@@ -1,0 +1,28 @@
+/* ===== Primary Styles ========================================================
+ Author:
+ ========================================================================== */
+
+.hero-unit {
+	padding: 15px;
+}
+
+#map-canvas {
+	height: 640px;
+	width: 100%;
+}
+.navbar .brand {
+	font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;
+	font-weight: bold;
+	font-size: 32px;
+	color: #222;
+	text-shadow: 2px 2px #FFF;
+}
+.navbar-inner {
+	background-color: #F4C521;
+	background-image: -moz-linear-gradient(top, #F4C521, #F4C521);
+	background-image: -ms-linear-gradient(top, #F4C521, #F4C521);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#F4C521), to(#F4C521));
+	background-image: -webkit-linear-gradient(top, #F4C521, #F4C521);
+	background-image: -o-linear-gradient(top, #F4C521, #F4C521);
+	background-image: linear-gradient(top, #F4C521, #F4C521);
+}

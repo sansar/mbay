@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>LIVE NATURE ACTION 2013</title>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+<!--[if IE 6]>
+	<script type="text/javascript" src="js/DD_belatedPNG_0.0.8a-min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="js/parallaxslider.js"></script>
+<script type="text/javascript">
+	$(function() {
+		
+		//parallaxSliderを有効にする
+		$('#pxs_container').parallaxSlider({
+			speed: 1000,
+			easing: 'easeOutSine',
+			easingBg: 'easeOutSine',
+			circular: true,
+			thumbRotation: false
+		});
+
+		//IEの透過pngバグを解消する
+	    if(navigator.userAgent.indexOf("MSIE") != -1) {
+			if(navigator.userAgent.indexOf("MSIE 6") >= 0){
+				DD_belatedPNG.fix('img, .pxs_bg div');
+			} else {
+				$('img').each(function() {
+					if($(this).attr('src').indexOf('.png') != -1) {
+						$(this).css({
+		                    'filter': 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src="' + $(this).attr('src') + '", sizingMethod="scale");'
+						});
+					}
+				});
+			}
+		}
+
+	});
+</script>
+</head>
+<body>
+<div id="pxs_container">
+	<div class="pxs_bg">
+		<div class="pxs_bg1"></div>
+		<div class="pxs_bg2"></div>
+		<div class="pxs_bg3"></div>
+	</div>
+	<div class="pxs_loading"><img src="images/loading.gif" width="120" height="30" alt="Now Loading" /></div>
+	<div class="pxs_slider_wrapper">
+		<ul class="pxs_slider">
+			<li><img src="images/main01.png" width="560" height="400" alt="" /></li>
+			<li><img src="images/main02.png" width="560" height="400" alt="" /></li>
+			<li><img src="images/main03.png" width="560" height="400" alt="" /></li>
+			<li><img src="images/main04.png" width="560" height="400" alt="" /></li>
+		</ul>
+		<div class="pxs_navigation">
+			<span class="pxs_next"><img src="images/next.png" width="81" height="81" alt="NEXT" /></span>
+			<span class="pxs_prev"><img src="images/prev.png" width="81" height="81" alt="PREV" /></span>
+		</div>
+		<ul class="pxs_thumbnails">
+			<li><img src="images/nav_top.png" width="116" height="72" alt="TOP" /></li>
+			<li><img src="images/nav_about.png" width="116" height="72" alt="ABOUT" /></li>
+			<li><img src="images/nav_detail.png" width="116" height="72" alt="DETAIL" /></li>
+			<li><img src="images/nav_contact.png" width="116" height="72" alt="CONTACT" /></li>
+		</ul>
+	</div>
+</div>
+
+<div class="footer">
+	<p class="credit">Copyright (C) 2013 LIVE NATURE ACTION All rights reserved.</a>
+</div>
+
+
+</body>
+</html>
