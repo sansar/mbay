@@ -1,0 +1,64 @@
+/* ===== Primary Styles ========================================================
+ Author: Toshiya TSURU <t_tsuru@sunbi.co.jp>
+ ========================================================================== */
+@font-face {
+	font-family: 'Ultra';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Ultra'), url('http://themes.googleusercontent.com/static/fonts/ultra/v4/Uwyb9czCiEZ7UnGAgIR6JA.woff') format('woff');
+}
+@font-face {
+	font-family: 'UltraBold';
+	font-style: normal;
+	font-weight: bold;
+	src: local('Ultra'), url('http://themes.googleusercontent.com/static/fonts/ultra/v4/Uwyb9czCiEZ7UnGAgIR6JA.woff') format('woff');
+}
+h1 {
+	font-family: 'UltraBold', serif;
+	color: #777;
+	/* font-weight: bold; */
+}
+body {
+	padding-top: 15px;
+}
+p {
+	font-family: georgia, "times new roman", times, serif;
+	font-size: 16px;
+	line-height: 1.6em;
+}
+@media (min-width: 1200px) {
+	#pageslide {
+		width: 260px;
+	}
+	.container {
+		width: 960px;
+	}
+}
+@media (min-width: 980px) and (max-width: 1119px) {
+	#pageslide {
+		width: 211px;
+	}
+	.container {
+		width: 778px;
+	}
+}
+@media (min-width: 768px) and (max-width: 979px) {
+	#pageslide {
+		width: 162px;
+	}
+	.container {
+		width: 596px;
+	}
+}
+a.slide {
+	font-weight: bold;
+}
+.annotation p {
+	font-size: 13px;
+}
+.annotation {
+	display: none;
+}
+footer p {
+	font-size: 13px;
+}

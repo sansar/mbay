@@ -1,0 +1,141 @@
+/**
+ * Housekeeping book
+ */
+/**
+ * Layout
+ */
+html, body {
+  position: relative;
+  height: 100%;
+  background: url(../img/bg.png);
+}
+
+#wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-width: 960px;
+  min-height: 960px;
+  margin: 0 auto;
+}
+
+.ui-layout-pane {
+  padding: 20px;
+}
+
+.ui-layout-west {
+  padding: 20px 30px;
+}
+
+.ui-layout-east {
+  border: 1px solid #ccc;
+  border-right: none;
+  border-radius: 8px 0 0 8px;
+  -moz-border-radius: 8px 0 0 8px;
+  -webkit-border-radius: 8px 0 0 8px;
+  background-color: #fff;
+}
+
+.ui-layout-south {
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.ui-layout-center {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  padding: 20px;
+  _overflow: auto;
+  background-color: #fff;
+}
+.ui-layout-center .note {
+  padding: 40px;
+  background: url(../img/bg-line.png) 0 20px;
+}
+
+.ui-layout-toggler {
+  background-color: #aaa;
+}
+.ui-layout-toggler .content {
+  text-align: right;
+}
+
+.ui-layout-toggler-east {
+  background-color: transparent;
+}
+
+.ui-layout-resizer-hover {
+  background: #ccc;
+}
+
+.nav-menu li {
+  padding-bottom: 2em;
+}
+
+.ui-layout-east li {
+  padding: 0.5em 1em;
+  border-bottom: 1px solid #ccc;
+}
+
+.ui-layout-south {
+  text-align: center;
+  font-size: 12px;
+  color: #999;
+}
+
+/**
+ * visualize
+ */
+.account {
+  margin-bottom: 60px;
+  width: 100%;
+  font-size: 14px;
+}
+.account caption {
+  color: #7cb58f;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: left;
+}
+.account thead th, .account thead td {
+  border-left: 1px solid #7cb58f;
+  padding: 0.5em;
+  background-color: #7cb58f;
+  color: #fff;
+  font-weight: bold;
+}
+.account tbody {
+  background-color: #fff;
+}
+.account tbody th {
+  border: 1px solid #7cb58f;
+  padding: 0.5em;
+  text-align: left;
+  font-weight: bold;
+}
+.account tbody td {
+  border: 1px solid #7cb58f;
+  padding: 0.5em;
+  text-align: right;
+}
+.account tbody tr:nth-child(odd) {
+  background-color: #e8f2f6;
+}
+.account tbody tr:last-child {
+  border-top: 3px double #ccc;
+  background-color: #ffe3e3;
+}
+
+.area-graph {
+  margin: 0 auto;
+  padding: 40px 60px;
+  width: 600px;
+  border: 1px solid #efefef;
+  background-color: #fffff5;
+  box-shadow: 0 2px 4px #cccccc;
+  -moz-box-shadow: 0 2px 4px #cccccc;
+  -webkit-box-shadow: 0 2px 4px #cccccc;
+  *display: none;
+}

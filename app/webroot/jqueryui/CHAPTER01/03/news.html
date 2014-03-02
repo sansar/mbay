@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<title>Ranbow Books Online</title>
+		<link rel="stylesheet" href="js/libs/themes/bs.css" />
+		<link rel="stylesheet" href="js/libs/jquery.mobile-1.1.0/jquery.mobile.structure-1.1.0.min.css" />
+		<script type="application/javascript" src="js/libs/jquery-1.7.2.min.js"></script>
+		<script type="application/javascript" src="js/libs/jquery.mobile-1.1.0/jquery.mobile-1.1.0.min.js"></script>
+		
+		<style>
+			#gallary {
+				margin-top: -15px;
+				margin-left: -15px;
+				margin-right: -15px;
+				margin-bottom: 15px;
+				overflow-x: scroll;
+			}
+			#gallary ul {
+				list-style: none;
+				padding: 0;
+				width: 2168px;
+			}
+			#gallary li {
+				margin-left: 0.5em;
+				/* float: left; */
+				display: inline-block;
+			}
+			#gallary li img {
+				width: 128px;
+				height: 171px;
+			}
+			.ui-icon-rbo-cart {
+				background-image: url('img/cart.png');
+			}
+			.ui-icon-rbo-call {
+				background-image: url('img/call.png');
+			}
+		</style>
+	</head>
+	<body>
+		<!-- main page -->
+		<div data-role="page" id="news">
+			<div data-role="header" data-position="fixed">
+				<a href='index.html' date-role="button" data-iconpos="notext" data-icon="home" >Home</a>
+				<h1 class="ui-title" tabindex="0" role="heading" aria-level="1">お知らせ</h1>
+				<a href='callto:117' date-role="button" data-iconpos="notext" data-icon="rbo-call" >Call</a>
+			</div><!-- /header -->
+			<div data-role="content">
+				<div class="content-primary">
+					<ul data-role="listview">
+						<li data-role="list-divider">
+							2012年
+							<span class="ui-li-count">2</span>
+						</li>
+						<li>
+							<a href="index.html"> 
+								<p>
+									Rainbow Books からのお知らせ
+								</p>
+								<h3>スマートフォン対応サイトをオープンしました！</h3>
+								<p class="ui-li-aside">4月1日&nbsp;8:00&nbsp;</p>
+							</a>
+						</li>
+						<li>
+							<a href="index.html"> 
+								<p>
+									Rainbow Books からのお知らせ
+								</p>
+								<h3>スマートフォン対応サイトを制作中です。</h3>
+								<p class="ui-li-aside">3月16日&nbsp;10:00&nbsp;</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div><!-- /content -->
+		</div><!-- /news page -->
+	</body>
+</html>
