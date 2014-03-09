@@ -421,24 +421,22 @@ class UploadHandler
     }
 
     protected function upcount_name($name) {
-        return preg_replace_callback(
-            '/(?:(?: \(([\d]+)\))?(\.[^.]+))?$/',
-            array($this, 'upcount_name_callback'),
-            $name,
-            1
-        );
+    	$name_number = substr($name, 0, strlen(-5));
+    	if (intval($name_number) != $name_number) {
+    		$name_number = '0';
+    	}
+    	$name_number++;
+    	return $name_number . substr($name, -4);
     }
 
-    protected function get_unique_filename($file_path, $name, $size, $type, $error,
-            $index, $content_range) {
+    protected function get_unique_filename($file_path, $name, $size, $type, $error, $index, $content_range) {
         while(is_dir($this->get_upload_path($name))) {
             $name = $this->upcount_name($name);
         }
         // Keep an existing filename if this is part of a chunked upload:
         $uploaded_bytes = $this->fix_integer_overflow(intval($content_range[1]));
         while(is_file($this->get_upload_path($name))) {
-            if ($uploaded_bytes === $this->get_file_size(
-                    $this->get_upload_path($name))) {
+            if ($uploaded_bytes === $this->get_file_size($this->get_upload_path($name))) {
                 break;
             }
             $name = $this->upcount_name($name);
@@ -487,8 +485,7 @@ class UploadHandler
         return $name;
     }
 
-    protected function get_file_name($file_path, $name, $size, $type, $error,
-            $index, $content_range) {
+    protected function get_file_name($file_path, $name, $size, $type, $error, $index, $content_range) {
         return $this->get_unique_filename(
             $file_path,
             $this->trim_file_name($file_path, $name, $size, $type, $error,

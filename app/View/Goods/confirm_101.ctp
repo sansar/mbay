@@ -1,4 +1,4 @@
-<link href="/jqueryui/CHAPTER03/02/sample3/base.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="/css/confirm/base.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="/jqueryui/CHAPTER03/02/sample3/cloud-zoom.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/jqueryui/CHAPTER03/02/sample3/../jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="/jqueryui/CHAPTER03/02/sample3/cloud-zoom.1.0.2.min.js"></script>
@@ -25,33 +25,34 @@
 				<li>&nbsp;＞&nbsp;<a href="#">手作り雑貨</a></li>
 				<li>&nbsp;＞&nbsp;ぬいぐるみ・雑貨</li>
 			</ul>
-
+			
+			<div id="thumbnail">
+				<ul>
+				<?php foreach($images as $image):?>
+				<?php if ( isset($image['tumb']) ): ?>
+					<li><a href='<?php echo $image['big']; ?>' class='cloud-zoom-gallery'
+						rel="useZoom: 'zoom1', smallImage: '<?php echo $image['medium']; ?>' ">
+						<img src="<?php echo $image['tumb']; ?>" /></a>
+					</li>
+				<?php endif; ?>
+				<?php endforeach; ?>
+				</ul>
+			</div>
+			
 			<div id="main-image">
 				<a href='<?php echo $images[0]['big']; ?>' class='cloud-zoom' id='zoom1'
 					rel="position: 'inside' , showTitle: false, adjustX:-4, adjustY:-4">
-					<img src="<?php echo $images[0]['medium']; ?>" alt='' />
+					<img src="<?php echo $images[0]['medium']; ?>" style="max-width: 400px"/>
 				</a>
 			</div>
 
 			<div id="outline">
-				<h1>ぬいぐるみ・雑貨</h1>
+				<h1><?php echo $data['Good']['overview']; ?></h1>
+				<p><?php echo $data['Good']['detail']; ?></p>
 				<p>
-					手作りのかわいいぬいぐるみ・雑貨です。<br /> ナチュラルでぬくもりの ある当店オリジナル商品となります。<br />
-					お友達へのプレゼントにもおススメ！です。<br /> 全商品送料無料ほか、お得なポイントサービスもご利用いただけます。
+					価格：<br /> <strong><?php echo $data['Good']['price']; ?></strong>
 				</p>
-				<p>
-					価格：<br /> 各1,050円（税込）
-				</p>
-				<div id="thumbnail">
-					<ul>
-						<?php foreach($images as $image):?>
-						<li><a href='<?php echo $image['big']; ?>' class='cloud-zoom-gallery'
-							rel="useZoom: 'zoom1', smallImage: '<?php echo $image['medium']; ?>' ">
-							<img src="<?php echo $image['tumb']; ?>" /></a>
-						</li>
-						<?php endforeach; ?>
-					</ul>
-				</div>
+				<p>Condition: <?php echo $data['Good']['cond']?></p>
 			</div>
 		</div>
 
@@ -64,7 +65,10 @@
 		'value' => $token,
 		'type'  => 'hidden'
 	));
-	echo $this->Form->end ( __ ( 'Confirm', true ) );
+?>
+	<input type="submit" value="Back" onClick="history.back(); return false;" />
+<?php
+	echo $this->Form->end ( __( 'Confirm', true ) );
 ?>
 		</div>
 	</div>

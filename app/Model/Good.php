@@ -61,6 +61,31 @@ class Good extends AppModel {
 			)
 		),
 	);
+	
+	public function get($category, $start, $count, $options = array()) {
+		$db = $this->getDataSource();
+		$option_table_name = 'clothes_clothes';
+		$data = $db->fetchAll(
+				"SELECT
+					goods.id,
+					overview,
+					price,
+					pickup_flag,
+					sale,
+					sale_price,
+					secret_number
+				FROM
+					goods join clothes_clothes on goods.id = {$option_table_name}.id
+				WHERE
+					category = ?
+				ORDER BY
+					created DESC
+				LIMIT
+					{$start}, {$count}",
+				array($category)
+		);
+		return $data;
+	}
 
 	public function beforeSave($options = array()) {
 		$this->data[$this->alias]['created'] = date("Y-m-d H:i:s");

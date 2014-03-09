@@ -19,6 +19,7 @@ class GoodsController extends AppController {
 	}
 	
 	public function step2($category = null) {
+// 		$this->layout = false;
 		
 		$view = "category_" . $category;
 		$view_path = APP . 'View' . DS . 'Goods' . DS . $view . $this->ext;
@@ -33,7 +34,7 @@ class GoodsController extends AppController {
 			$validate_category = $this->$category_validator ();
 			$good_token = $this->request->data['images']['dirpath'];
 			if ($validate_good && $validate_category && $good_token) {
-				$this->Session->write ( $good_token, $this->request->data );
+				$this->Session->write ( 'good_info', $this->request->data );
 				
 				$this->set ( 'images', $this->_get_image_list ( '/server/php/files/' ) );
 				$this->set ( 'data', $this->request->data );
@@ -44,8 +45,14 @@ class GoodsController extends AppController {
 				$this->Session->setFlash ( __ ( 'Please, try again.' ) );
 			}
 		} else {
-			$good_token = sha1(time() . rand(0, 10000));
+			$good_data = $this->Session->read ( 'good_info' );
+			if ($good_data) {
+				$good_token = $good_data['images']['dirpath'];
+			} else {
+				$good_token = sha1(time() . rand(0, 10000));
+			}
 		}
+		debug($good_token);
 		$this->set ( 'token', $good_token );
 		$this->render ( $view );
 	}
@@ -54,10 +61,9 @@ class GoodsController extends AppController {
 		if ( ! isset($this->request->data['Good']['token']) ) {
 			$this->redirect ( "/goods/step1" );
 		}
-		$good_token = $this->request->data['Good']['token'];
-		$good_data = $this->Session->read ( $good_token );
-		$good_data['Good']['secret_number'] = $good_token;
-// 		$this->Session->delete ( $good_token );
+		$good_data = $this->Session->read ( 'good_info' );
+		$good_data['Good']['secret_number'] = $good_data['images']['dirpath'];
+		$this->Session->delete ( 'good_info' );
 		
 		$user = $this->Auth->user();
 		$good_data['Good']['owner'] = $user['id'];
@@ -66,14 +72,19 @@ class GoodsController extends AppController {
 		$this->Good->save($good_data['Good'], false);
 		$saver = '_save_' . $good_data['Good']['category'];
 		$this->$saver($this->Good->getID(), $good_data);
-		debug ( $good_token );
 		debug ( $good_data );
 		exit ();
 	}
 	
 	private function _get_image_list($basepath) {
-		$dirpath = $this->request->data ['images'] ['dirpath'] . '/';
-		$img_names = $this->request->data ['images'] ['img'];
+		$dirpath = $this->request->data['images']['dirpath'] . '/';
+		if ( ! isset($this->request->data['images']['img']) ) {
+			return array(
+				'big' => '/img/noimage.gif',
+				'medium' => '/img/noimage.gif'
+			);
+		}
+		$img_names = $this->request->data['images']['img'];
 		$image_list = array ();
 		foreach ( $img_names as $img_name ) {
 			$image_list [] = array (

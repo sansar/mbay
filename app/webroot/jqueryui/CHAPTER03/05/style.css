@@ -42,13 +42,13 @@ body{
     color: #fff;	
 }
 #container{
-	width:940px;
+	width:1080px;
 	margin:0 auto;
 	padding: 0 0 20px;
 }
 #main{
 	clear: both;
-	width: 620px;
+	width: 1120px;
 	float: right;
 }
 #sidebar{
@@ -189,7 +189,7 @@ ul{
 .box,
 .heading-box{
 	padding-top:20px;
-	width: 300px;
+	width: 200px;
 	float: left;
 	margin-right: 20px;
 	background: url(images/border.png) repeat-x 0 100%;
@@ -206,16 +206,13 @@ ul{
 	}
 	.box .right{
 		width: 150px;
-		float: right;
 		text-shadow: 0 1px rgba(0, 0, 0, .4);
 	}
 		.right h4{ font-weight: bold; }
 
 	.box .left{
 		width: 140px;
-		height: 94px;
-		float: left;
-		margin-bottom: 40px;
+		height: 200px;
 		position: relative;
 	}
 	
@@ -255,7 +252,7 @@ ul{
 
 .layer{
 	background: #fff;
-	background: rgba(255, 255, 255, .7);
+	background: rgba(255, 255, 255, 0);
 	border: 5px solid #fff;
 	padding: 5px;
 	width: 120px;
