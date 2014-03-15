@@ -1,3 +1,22 @@
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/dropdown/jquery.easydropdown.min.js"></script>
+<link rel="stylesheet" href="/css/dropdown/demo.css">
+<link rel="stylesheet" href="/css/dropdown/easydropdown.css">
+<style>
+.dropdown{
+	position: relative;
+	width: 100px;
+	border: 1px solid #ccc;
+	cursor: pointer;
+	background: #fff;
+
+	border-radius: 3px;
+	
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+</style>
 <div class="admin form">
 	<?php
 		echo $this->Form->create('User', Array('url' => '/users/add'));
@@ -38,18 +57,25 @@
 			'options' => array(1 => __('Male', true), 2 => __('Female', true)),
 			'type' => 'radio'
 		));
-		echo $this->Form->input('birthday', array(
+		$birthday = $this->Form->input('birthday', array(
 			'label' => array('text' => __('Birthday', true)),
 			'dateFormat' => 'YMD',
 			'maxYear' => '2013',
 			'minYear' => '1910',
 			'monthNames' => false,
 			'selected' => '',
-			'empty' => '',
+			'empty' => '[RandomStringWhichDoesNotAppearInTheMarkup]',
 			'error' => array(
 				'date' => __('Enter valid date', true)
-			)
+			),
+			'class' => 'dropdown',
+			'data-settings' => '{"cutOff": 5}'
 		));
+		$escapedPlaceholder = preg_quote('[RandomStringWhichDoesNotAppearInTheMarkup]', '/');
+		$birthday = preg_replace("/$escapedPlaceholder/", __('YEAR', true), $birthday, 1);
+		$birthday = preg_replace("/$escapedPlaceholder/", __('MONTH', true), $birthday, 1);
+		$birthday = preg_replace("/$escapedPlaceholder/", __('DAY', true), $birthday, 1);
+		echo $birthday;
 		echo $this->Form->input('phone', array(
 			'label' => false,
 			'placeholder' => __('Phone number', true),

@@ -1,10 +1,13 @@
 <script type="text/javascript" src="/js/jquery.js"></script>
 <script type="text/javascript" src="/js/jquery.steps.min.js"></script>
+<script type="text/javascript" src="/js/dropdown/jquery.easydropdown.min.js"></script>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/uploader/blueimg-gallery.min.css">
 <link rel="stylesheet" href="/css/uploader/jquery.fileupload.css">
 <link rel="stylesheet" href="/css/uploader/jquery.fileupload-ui.css">
+<link rel="stylesheet" href="/css/dropdown/demo.css">
+<link rel="stylesheet" href="/css/dropdown/easydropdown.css">
 
 <div class="admin form">
 	<?php
@@ -62,6 +65,7 @@
 			'error' => array (
 					'inList' => __ ( 'Choose the condition', true ) 
 			),
+			'class' => 'dropdown',
 			'required' => false 
 	) );
 	echo $this->Form->input ( 'Good.quantity', array (
@@ -92,7 +96,7 @@
 			'label' => array (
 					'text' => __ ( 'Type', true ) 
 			),
-			'empty' => __ ( '--Choose type--' ),
+			'empty' => __ ( '--Choose type--', true ),
 			'options' => array (
 					CLOTHES_TYPE_hoslol => __ ( 'hoslol', true ),
 					CLOTHES_TYPE_umd => __ ( 'umd', true ),
@@ -104,7 +108,8 @@
 			'error' => array (
 					'inList' => __ ( 'Choose the type', true ) 
 			),
-			'required' => false 
+			'class' => 'dropdown',
+			'required' => false
 	) );
 	echo $this->Form->end ( __ ( 'Confirm', true ) );
 	?>

@@ -16,7 +16,7 @@ class TopController extends AppController {
 		foreach ($clothes as $key => $cloth) {
 			$dir = 'server/php/files/' . $cloth['goods']['secret_number'] . '/medium/';
 			if ( ! is_dir($dir) ) {
-				$clothes[$key]['image'] = '/img/noimage.gif';
+				$clothes[$key]['image'][] = '/img/noimage.gif';
 				continue;
 			}
 			$res_dir = opendir( $dir );
@@ -25,11 +25,10 @@ class TopController extends AppController {
 				if ( is_dir($file_name) ) {
 					continue;
 				}
-				$clothes[$key]['image'] = $file_name;
-				break;
+				$clothes[$key]['image'][] = $file_name;
 			}
 			if ( ! isset($clothes[$key]['image']) ) {
-				$clothes[$key]['image'] = '/img/noimage.gif';
+				$clothes[$key]['image'][] = '/img/noimage.gif';
 			}
 		}
 		$this->set('clothes', $clothes);

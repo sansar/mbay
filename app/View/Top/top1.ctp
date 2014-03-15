@@ -21,10 +21,17 @@
 				</form>
 				<div id="navi">
 					<ul class="clearfix">
-						<li><a href="#">About</a></li>
-						<li><a class="current" href="#">Menu</a></li>
-						<li><a href="#">Access</a></li>
+					<?php if ($user == null): ?>
+						<li><a class="current" href="#">Main</a></li>
+						<li><a href="/users/add">Register</a></li>
+						<li><a href="/users/login">Login</a></li>
 						<li><a href="#">Contact</a></li>
+					<?php else: ?>
+						<li><a class="current" href="#">Main</a></li>
+						<li><a href="/goods/step1">Add Good</a></li>
+						<li><a href="/users/logout">Logout</a></li>
+						<li><a href="#">Contact</a></li>
+					<?php endif; ?>
 					</ul>
 				</div>
 
@@ -48,13 +55,17 @@
 			<?php foreach ($clothes as $cloth): ?>
 				<div class="box even clearfix">
 					<div class="left">
-						<img src="<?php echo $cloth['image']; ?>" width="140" height="200" alt="" />
+						<div>
+						<?php foreach ($cloth['image'] as $key => $image):?>
+							<img src="<?php echo $image;?>" width="140" height="200" <?php if ($key > 0) echo 'style="display:none"'; else echo 'class="active"';?>/>
+						<?php endforeach;?>
+						</div>
 						<?php if ($cloth['goods']['pickup_flag']) {echo '<span class="green-ribbon">おすすめ</span>';}?>
 						<div class="layer">
-							<h5>Croquemonsieur</h5>
+							<h5>Fruit tart</h5>
 							<p>もっと詳しく</p>
 							<p class="more">
-								<a href="http://www.mdn.co.jp/di/">もっと詳しく</a>
+								<a href="/goods/detail/<?php echo $cloth['goods']['id'];?>">もっと詳しく</a>
 							</p>
 						</div>
 					</div>
@@ -76,8 +87,11 @@
 				</div>
 				<div class="box even clearfix">
 					<div class="left">
-						<img src="/jqueryui/CHAPTER03/05/images/menu04.jpg" width="140" height="94" alt="" /> <span
-							class="orange-ribbon">おすすめ</span>
+						<div>
+							<img src="/jqueryui/CHAPTER03/05/images/menu04.jpg" width="140" height="200" />
+							<img src="/jqueryui/CHAPTER03/05/images/menu05.jpg" width="140" height="200" style="display: none"/>
+						</div>
+						<span class="orange-ribbon">おすすめ</span>
 						<div class="layer">
 							<h5>Fruit tart</h5>
 							<p>もっと詳しく</p>
@@ -95,8 +109,8 @@
 				</div>
 				<div class="box odd clearfix last">
 					<div class="left">
-						<img src="/jqueryui/CHAPTER03/05/images/menu05.jpg" width="140" height="94" alt="" /> <span
-							class="orange-ribbon">おすすめ</span>
+						<img src="/jqueryui/CHAPTER03/05/images/menu05.jpg" width="140" height="94" alt="" />
+						<span class="orange-ribbon">おすすめ</span>
 						<div class="layer">
 							<h5>Fruit roll</h5>
 							<p>もっと詳しく</p>
@@ -148,34 +162,59 @@
 	<script type="text/javascript">
 $(function(){
 	$('#navi a:not(.current)').hover(
-		function() {
-			$(this).stop().animate({"background-position" :"(50% -25px)"},300,'easeOutBack');			
-		},
-		function() {			
-			$(this).stop().animate({"background-position" :"(50% -100px)"},100);
-		}
-  	);
-  	
-  	$(".layer").css("opacity","0");
-  	$(".box").click(function(){
+		function() {$(this).stop().animate({"background-position" :"(50% -25px)"},300,'easeOutBack');},
+		function() {$(this).stop().animate({"background-position" :"(50% -100px)"},100);}
+	);
+
+	// 設定
+	var $width      = 140;// 横幅
+	var $height     = 200;// 高さ
+	var $interval   = 1000;// 切り替わりの間隔(ミリ秒)
+	var $fade_speed = 200;// フェード処理の早さ(ミリ秒)
+	// 開始処理
+	$(".crossFade").css({"position":"relative", "overflow":"hidden", "width":$width, "height":$height});
+	$(".box img").css({"position":"absolute", "top":0, "left":0});
+	// ループセット
+	var timerID;
+	// マウスオーバーで中断
+	$(".crossFade").hover(function(){
+		var me = $(this);
+		timerID = setInterval(function(){show(me);}, $interval);
+	}, function(){
+		clearInterval(timerID);
+	});
+	// フェードイン処理
+	function show(elem){
+		if (elem.find("img").length < 2) return;
+		var $active = elem.find("img.active");
+		var $next = $active.next("img").length?$active.next("img"):elem.find("img:first");
+		$active.fadeOut($fade_speed).removeClass("active");
+		$next.fadeIn($fade_speed).addClass("active");
+	}
+	
+	$(".layer").css("opacity","0");
+ 	$(".box").click(function(){
 		window.location=$(this).find("a").attr("href");
 		return false;
-	}).hover(function() { 
-		targetImage = $(this).find("img");
+	}).hover(function() {
+		var me = $(this);
+		timerID = setInterval(function(){show(me);}, $interval);
+		
+		targetImage = me.find("img");
 		targetImage.stop().animate({
 			"margin-top": "-10px",
 			"margin-left": "-10px",
 			"width": "150px",
 			"height": "210px"
-        }, 200);
-        
-        targetSpan = $(this).find("span");
-        targetSpan.stop().animate({
+		}, 200);
+
+		targetSpan = me.find("span");
+		targetSpan.stop().animate({
 			"margin-top": "-10px"
-        }, 200);
-        
-        targetLayer = $(this).find(".layer");
-        targetLayer.stop().animate({
+		}, 200);
+
+		targetLayer = me.find(".layer");
+		targetLayer.stop().animate({
 			"margin-top": "-10px",
 			"margin-left": "-10px",
 			"width": "130px",
@@ -185,7 +224,8 @@ $(function(){
         
     },
     function() {
-       	targetImage.stop().animate({
+		clearInterval(timerID);
+    	targetImage.stop().animate({
        	    "margin-top": "0",
        	    "margin-left": "0",
        	    "width": "140px",
