@@ -28,7 +28,7 @@
 			
 			<div id="thumbnail">
 				<ul>
-				<?php $images = $this->Image->get_images($this->request->data['images']['dirpath']); ?>
+				<?php $images = $this->Image->get_images($data['secret_number']); ?>
 				<?php foreach($images as $image):?>
 				<?php if ( isset($image['tumb']) ): ?>
 					<li style="margin-bottom: 5px"><a href='<?php echo $image['big']; ?>' class='cloud-zoom-gallery'
@@ -48,29 +48,17 @@
 			</div>
 
 			<div id="outline">
-				<h1><?php echo $data['Good']['overview']; ?></h1>
-				<p><?php echo $data['Good']['detail']; ?></p>
+				<h1><?php echo $data['overview']; ?></h1>
+				<p><?php echo $data['detail']; ?></p>
 				<p>
-					価格：<br /> <strong><?php echo $data['Good']['price']; ?></strong>
+					価格：<br /> <strong><?php echo $data['price']; ?></strong>
 				</p>
-				<p>Condition: <?php echo $data['Good']['cond']?></p>
+				<p>Condition: <?php echo $data['cond']?></p>
 			</div>
 		</div>
 
 		<div id="footer">
-<?php 
-	echo $this->Form->create ( 'Good', array (
-			'url' => '/goods/complete/101' 
-	) );
-	echo $this->Form->input ('token', array (
-		'value' => $token,
-		'type'  => 'hidden'
-	));
-?>
-	<input type="submit" value="Back" onClick="history.back(); return false;" />
-<?php
-	echo $this->Form->end ( __( 'Confirm', true ) );
-?>
+			<input type="submit" value="Back" onClick="history.back(); return false;" />
 		</div>
 	</div>
 </body>

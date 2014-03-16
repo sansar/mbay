@@ -3,21 +3,103 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Animate :: Sample Website</title>
+
 <link rel="stylesheet" type="text/css" media="all" href="/jqueryui/CHAPTER03/05/style.css" />
-<link
-	href='http://fonts.googleapis.com/css?family=Josefin+Sans:600|Tangerine'
-	rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Josefin+Sans:600|Tangerine' rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="/jqueryui/CHAPTER02/01/sample3/stylesheets/jquery.megamenu.css" type="text/css" media="screen" />
+<link href="/jqueryui/CHAPTER02/01/sample3/base.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" href="/css/cake.generic.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="/jqueryui/CHAPTER03/05/js/jquery.backgroundPosition.js" type="text/javascript"></script>
+<script src="/jqueryui/CHAPTER03/05/js/jquery.easing.1.3.js" type="text/javascript"></script>
+<script src="/jqueryui/CHAPTER02/01/sample3/javascripts/jquery.megamenu.js" type="text/javascript"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery(".megamenu").megamenu();
+	});
+</script>
 
 </head>
 <body id="top">
 	<div id="container">
 		<div id="header">
-			<h1 id="logo">
-				<a href="#"><span>S</span>ample <span>W</span>ebsite</a>
-			</h1>
+			<img src="/img/logo.gif" style="margin: 10px 0px 0px -15px;"/>
 			<div>
 				<form id="searchform" action="#" method="get">
 					<input type="text" name="s" id="s" value="" />
+					<input type="hidden" name="category"/>
+					<ul class="megamenu" >
+						<li>
+							<a href="javascript: void(0)" id="categoryButton">Категори</a>
+							<div style="width: 1200px;">
+								<table border="0" cellpadding="0" cellspacing="0" id="tabular-content">
+									<tr>
+										<th style="vertical-align: middle"><div class="menu-head"><a href="#10">Хувцас</a></div></th>
+										<th style="vertical-align: middle"><div class="menu-head"><a href="#20">Тавилга</a></div></th>
+										<th style="vertical-align: middle"><div class="menu-head"><a href="#30">Цахилгаан бараа</a></div></th>
+										<th style="vertical-align: middle"><div class="menu-head"><a href="#40">Цуглуулга</a></div></th>
+										<th style="vertical-align: middle"><div class="menu-head"><a href="#50">Монголд үйлдвэрлэв</a></div></th>
+										<th style="vertical-align: middle"><div class="menu-head"><a href="#60">Бэлэг дурсгал</a></div></th>
+										<th style="vertical-align: middle"><div class="menu-head"><a href="#70">Бусад</a></div></th>
+									</tr>
+									<tr>
+										<td><ul class="tabular-lists">
+											<li><a href="#101">Хувцас</a></li>
+											<li><a href="#102">Гутал</a></li>
+											<li><a href="#103">Аксессуар</a></li>
+											<li><a href="#104">Хүүхдийн хувцас</a></li>
+											<li><a href="#105">Бусад</a></li>
+										</ul></td>
+										<td><ul class="tabular-lists">
+											<li><a href="#201">Гал тогоо</a></li>
+											<li><a href="#202">Зочны өрөө</a></li>
+											<li><a href="#203">Унтлагын өрөө</a></li>
+											<li><a href="#204">Ажлын өрөө</a></li>
+											<li><a href="#205">Хүүхдийн өрөө</a></li>
+											<li><a href="#206">Оффис</a></li>
+											<li><a href="#207">Бусад</a></li>
+										</ul></td>
+										<td><ul class="tabular-lists">
+											<li><a href="#301">Компьютер</a></li>
+											<li><a href="#302">Гэр ахуй</a></li>
+											<li><a href="#303">Утас</a></li>
+											<li><a href="#304">Аппарат</a></li>
+											<li><a href="#305">Хөгжим</a></li>
+											<li><a href="#306">Бусад</a></li>
+										</ul></td>
+										<td><ul class="tabular-lists">
+											<li><a href="#401">Ном</a></li>
+											<li><a href="#402">DVD/CD/диск</a></li>
+											<li><a href="#403">Марк/тэмдэг</a></li>
+											<li><a href="#404">Бусад</a></li>
+										</ul></td>
+										<td><ul class="tabular-lists">
+											<li><a href="#501">Хувцас</a></li>
+											<li><a href="#502">Тавилга</a></li>
+											<li><a href="#503">Гэр ахуй</a></li>
+											<li><a href="#504">Бусад</a></li>
+										</ul></td>
+										<td><ul class="tabular-lists">
+											<li><a href="#601">Эрэгтэй бэлэг</a></li>
+											<li><a href="#602">Эмэгтэй бэлэг</a></li>
+											<li><a href="#603">Хүүхдийн бэлэг</a></li>
+											<li><a href="#604">Төрсөн өдрийн бэлэг</a></li>
+											<li><a href="#605">Хуримын бэлэг</a></li>
+											<li><a href="#606">Валентины бэлэг</a></li>
+											<li><a href="#607">Бусад</a></li>
+										</ul></td>
+										<td><ul class="tabular-lists">
+											<li><a href="#701">Тоног төхөөрөмж</a></li>
+											<li><a href="#702">Үйлдвэрлэл</a></li>
+											<li><a href="#703">Бусад</a></li>
+										</ul></td>
+									</tr>
+								</table>
+							</div>
+						</li>
+					</ul>
+
 				</form>
 				<div id="navi">
 					<ul class="clearfix">
@@ -48,16 +130,21 @@
 			<h2>Lunch &amp; Cakes</h2>
 			<div class="module clearfix">
 				<div class="heading-box odd clearfix" style="width: 100px">
-					<h3>Food</h3>
-					<p>お得なセットメニューの他、たくさんのフードメニューを用意しております。</p>
+					<h3>Хувцас</h3>
+					<form style="margin-left:-25px">
+						<div class="submit">
+							<input type="submit" value="Цааш үзэх" onclick="window.location='/goods/category/10';return false;">
+						</div>
+					</form>
 				</div>
 			<?php if ($clothes): ?>
 			<?php foreach ($clothes as $cloth): ?>
 				<div class="box even clearfix">
 					<div class="left">
 						<div>
+						<?php $cloth['image'] = $this->Image->get_images($cloth['goods']['secret_number']); ?>
 						<?php foreach ($cloth['image'] as $key => $image):?>
-							<img src="<?php echo $image;?>" width="140" height="200" <?php if ($key > 0) echo 'style="display:none"'; else echo 'class="active"';?>/>
+							<img src="<?php echo $image['medium'];?>" width="140" height="200" <?php if ($key > 0) echo 'style="display:none"'; else echo 'class="active"';?>/>
 						<?php endforeach;?>
 						</div>
 						<?php if ($cloth['goods']['pickup_flag']) {echo '<span class="green-ribbon">おすすめ</span>';}?>
@@ -156,9 +243,6 @@
 		</div>
 	</div>
 	<!-- /container -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-	<script src="/jqueryui/CHAPTER03/05/js/jquery.backgroundPosition.js" type="text/javascript"></script>
-	<script src="/jqueryui/CHAPTER03/05/js/jquery.easing.1.3.js" type="text/javascript"></script>
 	<script type="text/javascript">
 $(function(){
 	$('#navi a:not(.current)').hover(
@@ -225,7 +309,14 @@ $(function(){
     },
     function() {
 		clearInterval(timerID);
-    	targetImage.stop().animate({
+		if ($(this).find("img").length > 1) {
+			var $active = $(this).find("img.active");
+			var $next = $(this).find("img:first");
+			$active.hide().removeClass("active");
+			$next.show().addClass("active");
+			$(this).find("img").css("opacity","1");
+		}
+		targetImage.stop().animate({
        	    "margin-top": "0",
        	    "margin-left": "0",
        	    "width": "140px",

@@ -2,17 +2,36 @@
 App::uses ( 'Controller', 'Controller' );
 class GoodsController extends AppController {
 	
-	public $uses = array (
+	var $uses = array (
 			'Good',
 			'Clothes',
 			'ClothesClothes' 
 	);
 	
+	var $helpers = array( 'Image' );
+	
 	public function mygoods() {
+		// TODO
 	}
 	
 	public function beforeFilter() {
-		parent::beforeFilter ();
+		parent::beforeFilter();
+		$this->Auth->allow('detail');
+	}
+	
+	public function detail($id = null) {
+		if ($id == null) {
+			$this->redirect('/');
+		}
+		$good = $this->Good->getGood($id);
+		if ($good == null) {
+			$this->redirect('/');
+		}
+		App::import('View/Helper', 'Image');
+		$this->set ( 'data', $good );
+		$this->set ( 'token', $good['secret_number']);
+		$this->render ( 'detail_' . $good['category'] );
+		return;
 	}
 	
 	public function step1() {
@@ -36,7 +55,6 @@ class GoodsController extends AppController {
 			if ($validate_good && $validate_category && $good_token) {
 				$this->Session->write ( 'good_info', $this->request->data );
 				
-				$this->set ( 'images', $this->_get_image_list ( '/server/php/files/' ) );
 				$this->set ( 'data', $this->request->data );
 				$this->set ( 'token', $good_token);
 				$this->render ( 'confirm_' . $category );
@@ -76,29 +94,8 @@ class GoodsController extends AppController {
 		exit ();
 	}
 	
-	private function _get_image_list($basepath) {
-		$dirpath = $this->request->data['images']['dirpath'] . '/';
-		if ( ! isset($this->request->data['images']['img']) ) {
-			return array(
-				'big' => '/img/noimage.gif',
-				'medium' => '/img/noimage.gif'
-			);
-		}
-		$img_names = $this->request->data['images']['img'];
-		$image_list = array ();
-		foreach ( $img_names as $img_name ) {
-			$image_list [] = array (
-					'big' => $basepath . $dirpath . $img_name,
-					'medium' => $basepath . $dirpath . 'medium/' . $img_name,
-					'tumb' => $basepath . $dirpath . 'thumbnail/' . $img_name 
-			);
-		}
-		return $image_list;
-	}
-	
 	private function _validate_101() {
 		$this->ClothesClothes->set ( $this->request->data ['ClothesClothes'] );
-		// debug($this->request->data['ClothesClothes']);
 		return $this->ClothesClothes->validates ();
 	}
 	

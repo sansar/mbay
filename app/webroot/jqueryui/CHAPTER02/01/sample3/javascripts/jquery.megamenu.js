@@ -18,6 +18,11 @@ jQuery.fn.megamenu = function(options) {
                           }, options);
   var $megamenu_object = this;
   if( options.activate_action == "click" ) options.mm_timeout = 0;
+  $megamenu_object.find("a").click(function(){
+	  $("#categoryButton").text($(this).text());
+	  $("#searchform  [name=category]").attr("value", $(this).attr('href').substr(1));
+	  $megamenu_object.find("div:first").fadeOut();
+  });
   $megamenu_object.children("li").each(function(){
     jQuery(this).addClass("mm-item");
     jQuery(".mm-item").css({ 'float': options.justify });
@@ -50,7 +55,7 @@ jQuery.fn.megamenu = function(options) {
         mm_item_link_obj.addClass("mm-item-link-hover");
         mm_item_content_obj.css({
           'top': ($mm_item_link.offset().top + $mm_item_link.outerHeight()) - 1 +"px",
-          'left': ($mm_item_link.offset().left) - 5 + 'px'
+          'left': '0px'
         })
         
         if(options.justify == "left"){
@@ -60,7 +65,7 @@ jQuery.fn.megamenu = function(options) {
                                     // Coordinates of the right end of the megamenu content
           if( mm_content_right_end >= mm_object_right_end ) { // Menu content exceeding the outer box
             mm_item_content_obj.css({
-              'left': ($mm_item_link.offset().left - (mm_content_right_end - mm_object_right_end)) - 2 + 'px'
+              'left': '30px'
             }); // Limit megamenu inside the outer box
           }
         } else if( options.justify == "right" ) {

@@ -12,6 +12,15 @@ class Good extends AppModel {
 	public $userTable  = 'goods';
 	public $primaryKey = 'id';
 	
+	public static $category_table = array(
+			CATEGORY_CLOTHES_CLOTHES   => 'clothes_clothes',
+			CATEGORY_CLOTHES_BOOT      => 'clothes_boots',
+			CATEGORY_CLOTHES_ACCESSORY => 'clothes_accesorries',
+			CATEGORY_CLOTHES_KID       => 'clothes_kids',
+			CATEGORY_CLOTHES_OTHER     => 'clothes_others',
+			CATEGORY_MONGOLIAN_ART     => 'clothes_arts',
+	);
+	
 	public $validate = array(
 		'category' => array(
 			'notEmpty' => array(
@@ -63,9 +72,7 @@ class Good extends AppModel {
 	);
 	
 	public function get($category, $start, $count, $options = array()) {
-		$db = $this->getDataSource();
-		$option_table_name = 'clothes_clothes';
-		$data = $db->fetchAll(
+		$data = $this->getDataSource()->fetchAll(
 				"SELECT
 					goods.id,
 					overview,
@@ -75,16 +82,42 @@ class Good extends AppModel {
 					sale_price,
 					secret_number
 				FROM
-					goods join clothes_clothes on goods.id = {$option_table_name}.id
+					goods
 				WHERE
-					category = ?
+					category like ?
 				ORDER BY
 					created DESC
 				LIMIT
 					{$start}, {$count}",
-				array($category)
+				array($category . '%')
 		);
 		return $data;
+	}
+	
+	public function getGood($id) {
+		$good = $this->find('first', array(
+			'conditions' => array('id' => $id)
+		));
+		if (empty($good)) {
+			return null;
+		}
+		$good = $good['Good'];
+		if ( ! isset(Good::$category_table[$good['category']])) {
+			return $good;
+		}
+		$option_table_name = Good::$category_table[$good['category']];
+		$option = $this->getDataSource()->fetchAll(
+				"SELECT * FROM
+					{$option_table_name}
+				WHERE
+					id = ?",
+				array($good['id'])
+		);
+		if (empty($option)) {
+			// TODO error
+			return $good;
+		}
+		return array_merge($good, $option[0][$option_table_name]);
 	}
 
 	public function beforeSave($options = array()) {

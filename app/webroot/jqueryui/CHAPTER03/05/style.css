@@ -19,6 +19,7 @@ table, caption, tbody, tfoot, thead, tr, th, td, figure {
     font-size: 100%;
     font-family: inherit;
     vertical-align: baseline;
+    font-family: 'Helvetica Neue', arial, sans-serif !important;
 }
 
 
@@ -104,7 +105,7 @@ ul{
 	}
 
 #header > div{
-	width: 620px;
+	width: 850px;
 	float: right;
 	background: url(images/border.png) repeat-x 0 100%;
 	margin-bottom: 10px;
@@ -114,7 +115,7 @@ ul{
 	float: right;
 	width: auto;
 	font-family: 'Josefin Sans', sans-serif;
-	font-size: 18px;
+	font-size: 13px;
 	font-weight: 600;
 }
 
@@ -133,26 +134,22 @@ ul{
 			#navi .current { background-position: 50% -25px; }
 
 #searchform{
-	float: right;
+	float: left;
 	width: auto;
-	margin: 30px 0 30px 10px;
+	margin: 10px 0 30px 10px;
 }
 
 #s{
-	width: 160px;
-	height: 20px;
+	height: 34px;
 	padding: 2px 30px 2px 8px;
-	border: 1px solid #ddd;
 	outline: none;
-	font-size: 13px;
+	font-size: 26px;
 	color: #777;
 	margin: 0;
-	width: 180px;
+	width: 400px;
 	display: block;
-	background: #fff url(images/s.png) no-repeat 190px 1px;
-	-moz-border-radius: 20px;
-	-webkit-border-radius: 20px;
-	border-radius: 20px;
+	background: #fff url(images/s.png) no-repeat 411px 9px;
+	border: 5px solid black;
 }
 
 #s:focus {

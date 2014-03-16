@@ -30,8 +30,7 @@ h1 {
 body {
 	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 	font-size: 14px;
-	color: #000;
-	background: url(img/bg.jpg) no-repeat center top;
+	color: #fff;
 }
 
 /*  clearFix  */
@@ -52,10 +51,6 @@ body {
 
 /* ------- header ------- */
 
-#header {
-	height: 315px;
-}
-
 #header #logo {
 	margin-top: 45px;
 	float: left;
@@ -74,15 +69,27 @@ ul.megamenu {
 }
 
 #tabular-content th {
-	padding: 8px;
 	width: 180px;
 }
 
 #tabular-content th .menu-head {
+	text-align:center;
+	background: #A9306C;
+	margin: 3px;
+	border-radius: 10px;
+}
+
+#tabular-content th .menu-head:hover {
+	background: indigo;
+}
+
+#tabular-content th .menu-head a:hover {
+	text-decoration: none;
+}
+
+#tabular-content th .menu-head a {
 	text-align:left;
 	color: #FFF;
-	background: #A9306C;
-	padding: 4px 10px;
 }
 
 #tabular-content td {
@@ -91,8 +98,19 @@ ul.megamenu {
 }
 
 ul .tabular-lists li {
-	padding: 0px 5px 7px;
 	font-size: 12px;
+	background-color: antiquewhite;
+	border-radius: 12px;
+	padding-left: 8px;
+	margin-bottom: 3px;
+}
+
+ul .tabular-lists li:hover {
+	background-color: burlywood;
+}
+
+ul .tabular-lists li a:hover {
+	text-decoration: none;
 }
 
 #tokushu {
@@ -161,31 +179,4 @@ ul .tabular-lists li {
 #detail {
 	position: absolute;
 	bottom: 0px;
-}
-
-/* ------- footer ------- */
-
-#footer {
-	background: #E7E9EB;
-	width: 940px;
-	height:45px;
-	margin-top: 30px;
-	color: #666;
-}
-
-#footer ul {
-	font-size: 12px;
-	padding:0 0 0 20px;
-}
-
-#footer ul li {
-	padding:12px 20px 0 0;
-	float: left;
-}
-
-#footer address {
-	font-size: 10px;
-	padding:14px 20px 0 0;
-	float: right;
-	font-style: normal;
 }
