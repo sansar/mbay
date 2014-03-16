@@ -121,7 +121,7 @@ ul{
 
 	#navi li{
 		float: left;
-		margin: 0 10px;
+		margin-top: -10px;
 	}
 		#navi a{
 			color: #fff;
