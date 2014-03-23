@@ -38,10 +38,11 @@ class GoodsController extends AppController {
 		$items = $this->Good->getList($category, $start, PER_ITEM_COUNT, $options);
 		$next_link = null;
 		if (count($items) == PER_ITEM_COUNT) {
-			$start += PER_ITEM_COUNT;
-			$next_link = "/goods/search?keywords={$keywords}&category={$category}&start={$start}";
+			$next_start = $start + PER_ITEM_COUNT;
+			$next_link = "/goods/search?keywords={$keywords}&category={$category}&start={$next_start}";
 		}
-		if ($start > PER_ITEM_COUNT) {
+		debug($start . " " . PER_ITEM_COUNT);
+		if ($start > 0) {
 			$view = new View($this, false);
 			echo $view->element('items', array('items' => $items, 'next_link' => $next_link));
 			exit;
