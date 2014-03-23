@@ -91,8 +91,7 @@ class AppController extends Controller {
 	public $helpers = array('Facebook.Facebook');
 	
 	function beforeFilter() {
-		$user = $this->Auth->user();
-		$this->set('user', $user);
+		$this->set('user', $this->Auth->user());
 		Configure::write('Config.language', 'mn');
 	}
 }

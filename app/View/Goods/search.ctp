@@ -14,6 +14,16 @@
 <script src="/jqueryui/CHAPTER03/05/js/jquery.backgroundPosition.js" type="text/javascript"></script>
 <script src="/jqueryui/CHAPTER03/05/js/jquery.easing.1.3.js" type="text/javascript"></script>
 <script src="/jqueryui/CHAPTER02/01/sample3/javascripts/jquery.megamenu.js" type="text/javascript"></script>
+<script type="text/javascript" src="/js/jquery.jscroll.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.scroll').jscroll({
+			autoTrigger: true,
+			loadingHtml: '<small>Loading...</small>',
+			nextSelector: '.next a:last',
+		});
+	});
+</script>
 </head>
 <body id="top">
 	<div id="container">
@@ -36,27 +46,27 @@
 					<?php endif; ?>
 					</ul>
 				</div>
-
-			</div>
-		</div>
-		<div id="main">
-
-			<h2>Lunch &amp; Cakes</h2>
-			<div class="module clearfix">
-				<div class="heading-box odd clearfix" style="width: 100px">
-					<h3>Хувцас</h3>
-					<form style="margin-left:-25px">
-						<div class="submit">
-							<input type="submit" value="Цааш үзэх" onclick="window.location='/goods/category/10';return false;">
-						</div>
-					</form>
-				</div>
-				<div>
-				<?php echo $this->element('items', array('items' => $clothes)); ?>
-				</div>
 			</div>
 		</div>
 		
+		<div id="main">
+			<ul id="breadcrumb" class="clearfix">
+				<li><a href="/">Top</a></li>
+				<li>></li>
+				<li>Search</li>
+			</ul>
+
+			<h2>Lunch &amp; Cakes</h2>
+			<div class="module clearfix">
+				<div class="heading-box odd clearfix">
+					<h3>Хувцас</h3>
+				</div>
+				<div class="scroll" style="display:flex">
+				<?php echo $this->element('items', array('items' => $items, 'next_link' => $next_link)); ?>
+				</div>
+			</div>
+		</div>
+
 		<div id="footer">
 			<p>&copy; Sample Website All Rights Reserved.</p>
 		</div>

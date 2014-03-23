@@ -71,9 +71,10 @@ class Good extends AppModel {
 		),
 	);
 	
-	public function get($category, $start, $count, $options = array()) {
-		$data = $this->getDataSource()->fetchAll(
-				"SELECT
+	public function getList($category, $start, $count, $options = array()) {
+		$parameters = array();
+		$where = array();
+		$sql = "SELECT
 					goods.id,
 					overview,
 					price,
@@ -82,19 +83,32 @@ class Good extends AppModel {
 					sale_price,
 					secret_number
 				FROM
-					goods
-				WHERE
-					category like ?
-				ORDER BY
-					created DESC
-				LIMIT
-					{$start}, {$count}",
-				array($category . '%')
-		);
-		return $data;
+					goods ";
+		
+		if ($category) {
+			$where[] = "category like ?";
+			$parameters[] = "$category%";
+		}
+		if (isset($options['keywords'])) {
+			foreach ($options['keywords'] as $keyword) {
+				$where[] = "(overview like ? OR detail like ?)";
+				$parameters[] = "%$keyword%";
+				$parameters[] = "%$keyword%";
+			}
+			unset($options['keywords']);
+		}
+		foreach ($options as $key => $value) {
+			$where[] = "$key = $value";
+			$parameters[] = $value;
+		}
+		if (count($where) > 0) {
+			$sql .= "WHERE " . implode(" AND ", $where);
+		}
+		$sql .= " ORDER BY created DESC LIMIT {$start}, {$count}";
+		return $this->getDataSource()->fetchAll($sql, $parameters);
 	}
 	
-	public function getGood($id) {
+	public function getById($id) {
 		$good = $this->find('first', array(
 			'conditions' => array('id' => $id)
 		));
