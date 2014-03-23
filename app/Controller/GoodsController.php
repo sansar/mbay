@@ -41,7 +41,6 @@ class GoodsController extends AppController {
 			$next_start = $start + PER_ITEM_COUNT;
 			$next_link = "/goods/search?keywords={$keywords}&category={$category}&start={$next_start}";
 		}
-		debug($start . " " . PER_ITEM_COUNT);
 		if ($start > 0) {
 			$view = new View($this, false);
 			echo $view->element('items', array('items' => $items, 'next_link' => $next_link));
