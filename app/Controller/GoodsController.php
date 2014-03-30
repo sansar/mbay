@@ -26,20 +26,23 @@ class GoodsController extends AppController {
 		$keywords = $_GET['keywords'];
 		$start = isset($_GET['start']) ? intval($_GET['start']) : 0;
 		$view = "search_" . $category;
-		if ( ! $this->_isExistingView("search_" . $category)) {
-			$view = "search";
-			$category = null;
+		if ( $this->_isExistingView($view)) {
+			return $this->category($category);
 		}
 		
 		$options = array();
 		if ($keywords) {
 			$options['keywords'] = explode(" ", $keywords);
 		}
-		$items = $this->Good->getList($category, $start, PER_ITEM_COUNT, $options);
+		$items = $this->Good->getList(null, $start, PER_ITEM_COUNT, $options);
 		$next_link = null;
 		if (count($items) == PER_ITEM_COUNT) {
 			$next_start = $start + PER_ITEM_COUNT;
-			$next_link = "/goods/search?keywords={$keywords}&category={$category}&start={$next_start}";
+			$query_string = "start={$next_start}";
+			if (isset($_SERVER['REDIRECT_QUERY_STRING'])) {
+				$query_string .= '&' . $_SERVER['REDIRECT_QUERY_STRING'];
+			}
+			$next_link = "/goods/search?$query_string";
 		}
 		if ($start > 0) {
 			$view = new View($this, false);
@@ -49,6 +52,39 @@ class GoodsController extends AppController {
 		$this->set('items', $items);
 		$this->set('next_link', $next_link);
 		$this->layout = false;
+	}
+	
+	public function category($category = null) {
+		$template = "search_$category";
+		if ( ! $this->_isExistingView($template) ) {
+			return $this->search();
+		}
+		
+		$option_func = "_get_option_$category";
+		
+		$options = $this->$option_func();
+		$start = isset($_GET['start']) ? intval($_GET['start']) : 0;
+		if ($keywords) {
+			$options['keywords'] = explode(" ", $keywords);
+		}
+		$items = $this->Good->getList(null, $start, PER_ITEM_COUNT, $options);
+		if (count($items) == PER_ITEM_COUNT) {
+			$next_start = $start + PER_ITEM_COUNT;
+			$query_string = "start={$next_start}";
+			if (isset($_SERVER['REDIRECT_QUERY_STRING'])) {
+				$query_string .= '&' . $_SERVER['REDIRECT_QUERY_STRING'];
+			}
+			$next_link = "/goods/category/$category?$query_string";
+		}
+		if ($start > 0) {
+			$view = new View($this, false);
+			echo $view->element('items', array('items' => $items, 'next_link' => $next_link));
+			exit;
+		}
+		$this->set('items', $items);
+		$this->set('next_link', $next_link);
+		$this->layout = false;
+		$this->render($template);
 	}
 	
 	public function detail($id = null) {
@@ -131,6 +167,10 @@ class GoodsController extends AppController {
 	private function _save_101($id, $data) {
 		$data ['ClothesClothes'] ['id'] = $id;
 		$this->ClothesClothes->save ( $data ['ClothesClothes'], false );
+	}
+	
+	private function _get_option_101() {
+		
 	}
 	
 	private function _isExistingView($view_name) {

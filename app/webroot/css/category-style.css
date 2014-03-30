@@ -1,0 +1,180 @@
+@media screen {
+	*,*::after,*::before {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box
+	}
+	a {
+		text-decoration: none
+	}
+	body {
+		margin: 0
+	}
+	.page-wrap {
+		width: 100%;
+		max-width: 1350px;
+		overflow-x: hidden;
+		margin: 0 auto 40px;
+		position: relative;
+		padding-top: 15px
+	}
+}
+
+@media screen {
+	.main-nav {
+		font-size: 0;
+		position: relative
+	}
+	.main-nav a {
+		display: inline-block;
+		position: relative;
+		width: 200px;
+		height: 50px;
+		color: #444;
+		font-family: 'Gotham Rounded A', 'Gotham Rounded B', sans-serif;
+		font-weight: 500;
+		font-style: normal;
+		font-size: 1rem;
+		text-transform: uppercase;
+		margin: 0 0 0 -50px
+	}
+	.main-nav a.clothes {
+		margin-left: 0;
+		z-index: 100
+	}
+	.main-nav a.clothes svg,body.clothes .main-nav a.clothes svg,body.single .main-nav a.clothes svg
+		{
+		fill: #e18728
+	}
+	.main-nav a.clothes:hover svg,.main-nav a.clothes:active svg {
+		fill: #d27a1d
+	}
+	.main-nav a.furnitures {
+		z-index: 90
+	}
+	.main-nav a.furnitures svg,body.furniture .main-nav a.furnitures svg,body.page-template-video-single-php .main-nav a.furnitures svg
+		{
+		fill: #be4c39
+	}
+	.main-nav a.furnitures:hover svg,.main-nav a.furnitures:active svg {
+		fill: #a43
+	}
+	.furniture .main-nav a.furnitures,.page-template-video-single-php .main-nav a.furnitures
+		{
+		z-index: 200
+	}
+	.main-nav a.almanac {
+		z-index: 80
+	}
+	.main-nav a.almanac svg,body.electronic .main-nav a.almanac svg,body.page-template-page-almanac-single-php .main-nav a.almanac svg
+		{
+		fill: #9351a6
+	}
+	.main-nav a.almanac:hover svg,.main-nav a.almanac:active svg {
+		fill: #844995
+	}
+	.electronic .main-nav a.almanac,.page-template-page-almanac-single-php .main-nav a.almanac
+		{
+		z-index: 200
+	}
+	.main-nav a.snippets {
+		z-index: 70
+	}
+	.main-nav a.snippets svg,body.collections .main-nav a.snippets svg,body.page-template-page-snippet-php .main-nav a.snippets svg
+		{
+		fill: #4472b9
+	}
+	.main-nav a.snippets:hover svg,.main-nav a.snippets:active svg {
+		fill: #3d67a6
+	}
+	.collections .main-nav a.snippets,.page-template-page-snippet-php .main-nav a.snippets
+		{
+		z-index: 200
+	}
+	.main-nav a.forums {
+		z-index: 60
+	}
+	.main-nav a.forums svg,body.bbpress .main-nav a.forums svg {
+		fill: #4ca454
+	}
+	.main-nav a.forums:hover svg,.main-nav a.forums:active svg {
+		fill: #44934b
+	}
+	.bbpress .main-nav a.forums {
+		z-index: 200
+	}
+	.main-nav a.lodge {
+		position: absolute;
+		right: 0;
+		bottom: 10px;
+		width: 250px;
+		height: 62.5px;
+		z-index: 60;
+		font-size: 1rem;
+		margin: 0
+	}
+	.main-nav a.lodge span {
+		color: #222;
+		text-shadow: none;
+		padding: 21px 0 0 45px
+	}
+	.main-nav a.lodge span em {
+		font-style: normal
+	}
+}
+
+@media screen {
+	.main-nav a.lodge svg,body.lodge .main-nav a.lodge svg {
+		fill: #eee
+	}
+	.main-nav a.lodge:hover svg,.main-nav a.lodge:active svg {
+		fill: #e1e1e1
+	}
+	.lodge .main-nav a.lodge {
+		z-index: 200
+	}
+	.main-nav a .shape-tab {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%
+	}
+	.main-nav a span {
+		color: white;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: block;
+		padding: 15px 40px 0 0;
+		text-align: center;
+		font-size: 85%;
+		text-shadow: 0 0 7px rgba(0, 0, 0, 0.4)
+	}
+	.main-nav:after {
+		content: "";
+		display: block;
+		height: 10px;
+		background: #ccc
+	}
+	.clothes .main-nav:after,.single .main-nav:after {
+		background: #e18728
+	}
+	.furniture .main-nav:after,.page-template-video-single-php .main-nav:after
+		{
+		background: #be4c39
+	}
+	.electronic .main-nav:after,.page-template-page-almanac-single-php .main-nav:after
+		{
+		background: #9351a6
+	}
+	.collections .main-nav:after,.page-template-page-snippet-php .main-nav:after
+		{
+		background: #4472b9
+	}
+	.bbpress .main-nav:after {
+		background: #4ca454
+	}
+}

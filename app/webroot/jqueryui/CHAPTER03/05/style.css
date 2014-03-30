@@ -32,7 +32,6 @@ table, caption, tbody, tfoot, thead, tr, th, td, figure {
 body{
 	background: #b63c2f url(images/body-bg.jpg) no-repeat 50% 0;
 	font-size: 14px;
-    line-height: 160%;
     font-family: 
     	Verdana, Arial,
     	'ヒラギノ角ゴ Pro W3',
@@ -250,7 +249,7 @@ ul{
 .layer{
 	background: #fff;
 	background: rgba(255, 255, 255, 0);
-	border: 5px solid #fff;
+	/* border: 5px solid #fff; */
 	padding: 5px;
 	width: 120px;
 	height: 74px;

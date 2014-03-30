@@ -10,8 +10,6 @@
 			</div>
 			<?php if ($item['goods']['pickup_flag']) {echo '<span class="green-ribbon">おすすめ</span>';}?>
 			<div class="layer">
-				<h5>Fruit tart</h5>
-				<p>もっと詳しく</p>
 				<p class="more">
 					<a href="/goods/detail/<?php echo $item['goods']['id'];?>">もっと詳しく</a>
 				</p>
@@ -80,11 +78,6 @@ $(function(){
 			"height": "210px"
 		}, 200);
 
-		targetSpan = me.find("span");
-		targetSpan.stop().animate({
-			"margin-top": "-10px"
-		}, 200);
-
 		targetLayer = me.find(".layer");
 		targetLayer.stop().animate({
 			"margin-top": "-10px",
@@ -110,9 +103,6 @@ $(function(){
        	    "width": "140px",
        	    "height": "200px"
        	}, 400);
-       	targetSpan.stop().animate({
-			"margin-top": "0"
-        }, 400);
         targetLayer.stop().animate({
 			"margin-top": "0",
 			"margin-left": "0",
