@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-11/style.css?v1.2">
   <![endif]-->
 </head>
-<body id="top" class="electronic">
+<body id="top" class="gift">
 	<div id="container">
 		<div id="header">
 			<img src="/img/logo.gif" style="margin: 10px 0px 0px -15px;"/>
@@ -52,7 +52,7 @@
 		<div class="page-wrap">
 	
 			<nav class="main-nav" id="main-nav">
-				<a href="./CSS-Tricks.html" class="clothes">
+				<a href="./CSS-Tricks.html" class="clothes" style="width:200px">
 					<svg viewBox="0 0 100 25" class="shape-tab">
 						<use xlink:href="#shape-tab"></use>
 					</svg>
@@ -64,31 +64,31 @@
 	    			</svg>
 					<span>Тавилга</span>
 				</a>
-				<a href="./CSS-Tricks-3.html" class="almanac">
+				<a href="./CSS-Tricks-3.html" class="electronics">
 					<svg viewBox="0 0 100 25" class="shape-tab">
 						<use xlink:href="#shape-tab"></use>
 	    			</svg>
 					<span>Цахилгаан бараа</span>
 				</a>
-				<a href="./CSS-Tricks-4.html" class="snippets">
+				<a href="./CSS-Tricks-4.html" class="collections">
 					<svg viewBox="0 0 100 25" class="shape-tab">
 	      				<use xlink:href="#shape-tab"></use>
 	    			</svg>
 					<span>Цуглуулга</span>
 				</a>
-				<a href="./CSS-Tricks-5.html" class="forums">
+				<a href="./CSS-Tricks-5.html" class="mongolians">
 					<svg viewBox="0 0 100 25" class="shape-tab">
 	      				<use xlink:href="#shape-tab"></use>
 	    			</svg>
 					<span>Монголд үйлдвэрлэв</span>
 				</a>
-				<a href="./CSS-Tricks-5.html" class="forums">
+				<a href="./CSS-Tricks-5.html" class="gifts">
 					<svg viewBox="0 0 100 25" class="shape-tab">
 	      				<use xlink:href="#shape-tab"></use>
 	    			</svg>
 					<span>бэлэг дурсгал</span>
 				</a>
-				<a href="./CSS-Tricks-6.html" class="lodge">
+				<a href="./CSS-Tricks-6.html" class="other">
 					<svg viewBox="0 0 100 25" class="shape-tab-right">
 	      				<use xlink:href="#shape-tab-right"></use>
 	    			</svg>
