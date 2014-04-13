@@ -85,6 +85,9 @@ class Good extends AppModel {
 				FROM
 					goods ";
 		
+		if (isset(self::$category_table[$category])) {
+			$sql .= "left join " . self::$category_table[$category] . " as op on goods.id = op.id ";
+		}
 		if ($category) {
 			$where[] = "category like ?";
 			$parameters[] = "$category%";
@@ -98,13 +101,19 @@ class Good extends AppModel {
 			unset($options['keywords']);
 		}
 		foreach ($options as $key => $value) {
-			$where[] = "$key = $value";
-			$parameters[] = $value;
+			$replacer = array();
+			foreach ($value as $val) {
+				$replacer[] = '?';
+				$parameters[] = $val;
+			}
+			$where[] = "$key in (" . implode(',', $replacer) . ") ";
 		}
 		if (count($where) > 0) {
 			$sql .= "WHERE " . implode(" AND ", $where);
 		}
 		$sql .= " ORDER BY created DESC LIMIT {$start}, {$count}";
+// 		debug($sql);
+// 		debug($parameters);
 		return $this->getDataSource()->fetchAll($sql, $parameters);
 	}
 	

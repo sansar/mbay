@@ -78,18 +78,19 @@
 			'required' => false 
 	) );
 	echo $this->Form->input ( 'ClothesClothes.sex', array (
+			'legend' => false,
 			'label' => array (
 					'text' => __ ( 'Sex', true ) 
 			),
+			'type' => 'select',
+			'multiple'=> 'checkbox',
 			'options' => array (
 					0 => __ ( 'male', true ),
 					1 => __ ( 'female', true ),
-					2 => __ ( 'both', true ) 
 			),
 			'error' => array (
 					'inList' => __ ( 'Choose sex', true ) 
 			),
-			'type' => 'radio',
 			'required' => false 
 	) );
 	echo $this->Form->input ( 'ClothesClothes.type', array (

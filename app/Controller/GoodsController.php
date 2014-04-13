@@ -1,6 +1,6 @@
 <?php
 
-define('PER_ITEM_COUNT', 10);
+define('PER_ITEM_COUNT', 6);
 App::uses ( 'Controller', 'Controller' );
 class GoodsController extends AppController {
 	
@@ -14,7 +14,7 @@ class GoodsController extends AppController {
 	
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('detail', 'search');
+		$this->Auth->allow('detail', 'search', 'category');
 	}
 
 	public function mygoods() {
@@ -22,26 +22,24 @@ class GoodsController extends AppController {
 	}
 	
 	public function search() {
-		$category = $_GET['category'];
-		$keywords = $_GET['keywords'];
-		$start = isset($_GET['start']) ? intval($_GET['start']) : 0;
+		$category = isset($_GET['category']) ? $_GET['category'] : '';
 		$view = "search_" . $category;
 		if ( $this->_isExistingView($view)) {
-			return $this->category($category);
+			$query_string = isset($_SERVER['REDIRECT_QUERY_STRING']) ? $_SERVER['REDIRECT_QUERY_STRING'] : '';
+			$this->redirect("/goods/category/$category?$query_string");
 		}
 		
 		$options = array();
+		$keywords = isset($_GET['keywords']) ? $_GET['keywords'] : '';
 		if ($keywords) {
 			$options['keywords'] = explode(" ", $keywords);
 		}
+		
+		$start = isset($_GET['start']) ? intval($_GET['start']) : 0;
 		$items = $this->Good->getList(null, $start, PER_ITEM_COUNT, $options);
 		$next_link = null;
 		if (count($items) == PER_ITEM_COUNT) {
-			$next_start = $start + PER_ITEM_COUNT;
-			$query_string = "start={$next_start}";
-			if (isset($_SERVER['REDIRECT_QUERY_STRING'])) {
-				$query_string .= '&' . $_SERVER['REDIRECT_QUERY_STRING'];
-			}
+			$query_string = $this->_change_start($start + PER_ITEM_COUNT);
 			$next_link = "/goods/search?$query_string";
 		}
 		if ($start > 0) {
@@ -57,32 +55,32 @@ class GoodsController extends AppController {
 	public function category($category = null) {
 		$template = "search_$category";
 		if ( ! $this->_isExistingView($template) ) {
-			return $this->search();
+			$query_string = isset($_SERVER['REDIRECT_QUERY_STRING']) ? $_SERVER['REDIRECT_QUERY_STRING'] : '';
+			$this->redirect("/goods/search?$query_string");
 		}
-		
-		$option_func = "_get_option_$category";
-		
-		$options = $this->$option_func();
-		$start = isset($_GET['start']) ? intval($_GET['start']) : 0;
+		$options = $this->_get_option($category);
+		$keywords = isset($_GET['keywords']) ? $_GET['keywords'] : '';
 		if ($keywords) {
 			$options['keywords'] = explode(" ", $keywords);
 		}
-		$items = $this->Good->getList(null, $start, PER_ITEM_COUNT, $options);
+		$start = isset($_GET['start']) ? intval($_GET['start']) : 0;
+		$items = $this->Good->getList($category, $start, PER_ITEM_COUNT, $options);
+		$next_link = null;
 		if (count($items) == PER_ITEM_COUNT) {
-			$next_start = $start + PER_ITEM_COUNT;
-			$query_string = "start={$next_start}";
-			if (isset($_SERVER['REDIRECT_QUERY_STRING'])) {
-				$query_string .= '&' . $_SERVER['REDIRECT_QUERY_STRING'];
-			}
-			$next_link = "/goods/category/$category?$query_string";
+			$next_link = "/goods/category/$category?" . $this->_change_start($start + PER_ITEM_COUNT);
 		}
 		if ($start > 0) {
 			$view = new View($this, false);
 			echo $view->element('items', array('items' => $items, 'next_link' => $next_link));
 			exit;
 		}
+		
 		$this->set('items', $items);
 		$this->set('next_link', $next_link);
+		if (isset($options['keywords'])) {
+			$options['keywords'] = implode(' ', $options['keywords']);
+		}
+		$this->set('options', $options);
 		$this->layout = false;
 		$this->render($template);
 	}
@@ -116,7 +114,7 @@ class GoodsController extends AppController {
 			$this->Good->set ( $this->request->data ['Good'] );
 			$category_validator = '_validate_' . $category;
 			$validate_good = $this->Good->validates ();
-			$validate_category = $this->$category_validator ();
+			$validate_category = $this->_validate_option ($category);
 			$good_token = $this->request->data['images']['dirpath'];
 			if ($validate_good && $validate_category && $good_token) {
 				$this->Session->write ( 'good_info', $this->request->data );
@@ -159,9 +157,25 @@ class GoodsController extends AppController {
 		exit ();
 	}
 	
-	private function _validate_101() {
-		$this->ClothesClothes->set ( $this->request->data ['ClothesClothes'] );
-		return $this->ClothesClothes->validates ();
+	private function _validate_option ($category) {
+		debug($this->request->data ['ClothesClothes']);
+		switch ($category) {
+			case CATEGORY_CLOTHES_CLOTHES:
+				$option = $this->request->data ['ClothesClothes'];
+				if ( ! isset($option['sex']) || ! $option['sex'] ) {
+					$option['sex'] = '2';
+				} else {
+					$option['sex'] = $option['sex'][0];
+				}
+				$this->ClothesClothes->set ( $option );
+				$this->request->data ['ClothesClothes'] = $option;
+				return $this->ClothesClothes->validates ();
+			case CATEGORY_CLOTHES_BOOT:
+				$this->ClothesBoot->set ($this->request->data ['ClothesBoot']);
+				return $this->ClothesBoot->validates();
+			default:
+				return false;
+		}
 	}
 	
 	private function _save_101($id, $data) {
@@ -169,12 +183,36 @@ class GoodsController extends AppController {
 		$this->ClothesClothes->save ( $data ['ClothesClothes'], false );
 	}
 	
-	private function _get_option_101() {
-		
+	private function _get_option($category) {
+		$option = array();
+		switch ($category) {
+			case CATEGORY_CLOTHES:
+				return $option;
+			case CATEGORY_CLOTHES_CLOTHES:
+				return $this->ClothesClothes->get_option($_GET);
+			case CATEGORY_CLOTHES_BOOT:
+				return $option;
+			case CATEGORY_CLOTHES_ACCESSORY:
+				return $option;
+			case CATEGORY_CLOTHES_KID:
+				return $option;
+			case CATEGORY_CLOTHES_OTHER:
+				return $option;
+			default:
+				return $option;
+		}
 	}
 	
 	private function _isExistingView($view_name) {
 		$view_path = APP . 'View' . DS . 'Goods' . DS . $view_name . $this->ext;
 		return file_exists($view_path);
+	}
+	
+	private function _change_start($start_value) {
+		$query_string = isset($_SERVER['REDIRECT_QUERY_STRING']) ? $_SERVER['REDIRECT_QUERY_STRING'] : '';
+		if ( ! isset($_GET['start']) ) {
+			return $query_string . "&start=$start_value";
+		}
+		return preg_replace("/(.*)(start=[^&]*)(.*)/i", '${1}start=' . $start_value . '${3}', $query_string);
 	}
 }

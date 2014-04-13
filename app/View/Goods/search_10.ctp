@@ -14,6 +14,16 @@
 <script src="/jqueryui/CHAPTER03/05/js/jquery.backgroundPosition.js" type="text/javascript"></script>
 <script src="/jqueryui/CHAPTER03/05/js/jquery.easing.1.3.js" type="text/javascript"></script>
 <script src="/jqueryui/CHAPTER02/01/sample3/javascripts/jquery.megamenu.js" type="text/javascript"></script>
+<script type="text/javascript" src="/js/jquery.jscroll.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.scroll').jscroll({
+			autoTrigger: true,
+			loadingHtml: '<small>Loading...</small>',
+			nextSelector: '.next a:last',
+		});
+	});
+</script>
 
 <!--[if !IE]><!-->
 <link rel="stylesheet" href="/css/category-style.css">
@@ -25,7 +35,7 @@
   <link rel="stylesheet" href="http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-11/style.css?v1.2">
   <![endif]-->
 </head>
-<body id="top" class="gift">
+<body id="top" class="clothes">
 	<div id="container">
 		<div id="header">
 			<img src="/img/logo.gif" style="margin: 10px 0px 0px -15px;"/>
@@ -57,61 +67,49 @@
 					<svg viewBox="0 0 100 25" class="shape-tab">
 						<use xlink:href="#shape-tab"></use>
 					</svg>
-					<span>Хувцас</span>
+					<span>Бүгд</span>
 				</a>
 				<a href="./CSS-Tricks-2.html" class="furnitures">
 					<svg viewBox="0 0 100 25" class="shape-tab">
 	      				<use xlink:href="#shape-tab"></use>
 	    			</svg>
-					<span>Тавилга</span>
+					<span>Хувцас</span>
 				</a>
 				<a href="./CSS-Tricks-3.html" class="electronics">
 					<svg viewBox="0 0 100 25" class="shape-tab">
 						<use xlink:href="#shape-tab"></use>
 	    			</svg>
-					<span>Цахилгаан бараа</span>
+					<span>Гутал</span>
 				</a>
 				<a href="./CSS-Tricks-4.html" class="collections">
 					<svg viewBox="0 0 100 25" class="shape-tab">
 	      				<use xlink:href="#shape-tab"></use>
 	    			</svg>
-					<span>Цуглуулга</span>
+					<span>Аксессуар</span>
 				</a>
 				<a href="./CSS-Tricks-5.html" class="mongolians">
 					<svg viewBox="0 0 100 25" class="shape-tab">
 	      				<use xlink:href="#shape-tab"></use>
 	    			</svg>
-					<span>Монголд үйлдвэрлэв</span>
-				</a>
-				<a href="./CSS-Tricks-5.html" class="gifts">
-					<svg viewBox="0 0 100 25" class="shape-tab">
-	      				<use xlink:href="#shape-tab"></use>
-	    			</svg>
-					<span>бэлэг дурсгал</span>
+					<span>Хүүхдийн хувцас</span>
 				</a>
 				<a href="./CSS-Tricks-6.html" class="other">
 					<svg viewBox="0 0 100 25" class="shape-tab-right">
 	      				<use xlink:href="#shape-tab-right"></use>
 	    			</svg>
-					<span>бусад</span>
+					<span>Бусад</span>
 				</a>
 			</nav>
 		</div>
 
 		<div id="main">
 
-			<h2>Lunch &amp; Cakes</h2>
 			<div class="module clearfix">
-				<div class="heading-box odd clearfix" style="width: 100px">
+				<div class="heading-box odd clearfix">
 					<h3>Хувцас</h3>
-					<form style="margin-left:-25px">
-						<div class="submit">
-							<input type="submit" value="Цааш үзэх" onclick="window.location='/goods/category/10';return false;">
-						</div>
-					</form>
 				</div>
-				<div>
-				<?php echo $this->element('items', array('items' => $clothes)); ?>
+				<div class="scroll" style="display:flex">
+				<?php echo $this->element('items', array('items' => $items, 'next_link' => $next_link)); ?>
 				</div>
 			</div>
 		</div>

@@ -4,7 +4,7 @@
 	<ul class="megamenu" >
 		<li>
 			<a href="javascript: void(0)" id="categoryButton">Категори</a>
-			<div style="width: 1200px;">
+			<div style="width: 1200px;z-index:300">
 				<table border="0" cellpadding="0" cellspacing="0" id="tabular-content">
 					<tr>
 						<th style="vertical-align: middle"><div class="menu-head"><a href="#10">Хувцас</a></div></th>
