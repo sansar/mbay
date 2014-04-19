@@ -43,13 +43,6 @@
 				'notEmpty' => __('Enter your last name', true)
 			)
 		));
-		echo $this->Form->input('User.password', array(
-			'label' => false,
-			'placeholder' => __('Password', true),
-			'error' => array(
-				'minLength' => __('Enter password at least 8 lengths', true)
-			)
-		));
 		echo $this->Form->input('User.gender', array(
 			'error' => array(
 				'inList' => __('Choose your gender', true)

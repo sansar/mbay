@@ -81,7 +81,7 @@ class AppController extends Controller {
 		'Facebook.Connect',
 		'Session',
 		'Auth' => Array(
-			'loginRedirect' => Array('controller'  => 'top', 'action' => 'index'),
+			'loginRedirect' => Array('controller'  => 'users', 'action' => 'loggedIn'),
 			'logoutRedirect' => Array('controller' => 'top', 'action' => 'index'),
 			'loginAction' => Array('controller' => 'top', 'action' => 'index'),
 			'authenticate' => Array('Form' => Array('fields' => Array('username' => 'email', 'password' => 'password')))

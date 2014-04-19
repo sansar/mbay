@@ -1,6 +1,7 @@
 <?php
 
 App::uses('AppModel', 'Model');
+App::uses( 'CakeEmail', 'Network/Email');
 
 class User extends AppModel {
 	public $userTable  = 'users';
@@ -39,8 +40,12 @@ class User extends AppModel {
 		),
 		'password' => array(
 			'minLength' => array(
-				'required' => true,
 				'rule' => array('minLength', '3')
+			)
+		),
+		'password_confirm' => array(
+			'confirm' => array(
+				'rule' => array('validate_reenter')
 			)
 		),
 		'birthday' => array(
@@ -106,7 +111,37 @@ class User extends AppModel {
 		if (isset($this->data[$this->alias]['password'])) {
 			$this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
 		}
+		if (isset($this->data[$this->alias]['id'])) {
+			$this->data[$this->alias]['modified'] = date("Y-m-d H:i:s");
+			return true;
+		}
+		if ( ! isset($this->data[$this->alias]['facebook_id']) && ! isset($this->data[$this->alias]['twitter_id'])) {
+			$password_reset = $this->data[$this->alias]['first_name'] . $this->data[$this->alias]['email'] . time() . rand(0, PHP_INT_MAX);
+			$this->data[$this->alias]['password_reset'] = AuthComponent::password($password_reset);
+			if ( ! $this->_send_activation_mail($this->data[$this->alias])) {
+				return false;
+			}
+		}
 		$this->data[$this->alias]['created'] = date("Y-m-d H:i:s");
 		return true;
+	}
+	
+	private function _send_activation_mail($user) {
+		$email = new CakeEmail('gmail');
+		$email->from(array('sansarjpn@gmail.com' => 'Mbay'));
+		$email->to($user['email']);
+		$email->subject('Бүртгэл идэвхжүүлэх');
+		$email->emailFormat('html');
+		$email->template('activation_mail');
+		$email->viewVars($user);
+		return $email->send();
+	}
+	
+	private function _send_password_reset_mail($user) {
+		// TODO
+	}
+	
+	function validate_reenter($data) {
+		return $data['password_confirm'] == $_POST['data']['User']['password'];
 	}
 }

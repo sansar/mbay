@@ -41,9 +41,18 @@ class EmailConfig {
 
 	public $default = array(
 		'transport' => 'Mail',
-		'from' => 'you@localhost',
-		//'charset' => 'utf-8',
-		//'headerCharset' => 'utf-8',
+		'from' => 'sansarjpn@gmail.com',
+		'charset' => 'utf-8',
+		'headerCharset' => 'utf-8',
+	);
+	
+	public $gmail = array(
+		'host' => 'ssl://smtp.gmail.com',
+		'port' => 465,
+		'username' => 'sansarjpn',
+		'password' => '***',
+		'transport' => 'Smtp',
+		'tls' => false
 	);
 
 	public $smtp = array(
