@@ -16,6 +16,5 @@ class TopController extends AppController {
 		$clothes = $this->Good->getList(CATEGORY_CLOTHES, 0, 5);
 		$this->set('clothes', $clothes);
 		$this->layout = false;
-		$this->render('top1');
 	}
 }

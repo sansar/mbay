@@ -107,22 +107,53 @@ class User extends AppModel {
 		return null;
 	}
 	
+	public function register($data = null) {
+		$password_reset = $data[$this->alias]['first_name'] . $data[$this->alias]['email'] . time() . rand(0, PHP_INT_MAX);
+		$data[$this->alias]['password_reset'] = AuthComponent::password($password_reset);
+		$data = $this->save($data);
+		if ( ! $data ) {
+			return false;
+		}
+		if ( ! $this->_send_activation_mail($data[$this->alias])) {
+			return false;
+		}
+		return true;
+	}
+	
+	public function passwordReset($email) {
+		$user = $this->find('first', array(
+				'conditions' => array('email' => $email),
+				'fields' => array('id', 'facebook_id', 'twitter_id', 'first_name', 'last_name', 'email')));
+		if ( ! $user ) {
+			return 'Таны оруулсан Е-майл хаяг бүртгэгдээгүй байна.';
+		}
+		if ($user[$this->alias]['facebook_id'] != null) {
+			return 'Та Facebook-ээр дамжуулж манай сайтад бүртгүүлсэн байна.';
+		}
+		if ($user[$this->alias]['twitter_id'] != null) {
+			return 'Та Twitter-ээр дамжуулж манай сайтад бүртгүүлсэн байна.';
+		}
+		$password_reset = $user[$this->alias]['first_name'] . $user[$this->alias]['email'] . time() . rand(0, PHP_INT_MAX);
+		$user[$this->alias]['password_reset'] = AuthComponent::password($password_reset);
+		if ( ! $this->save($user, false)) {
+			return 'Амжилтгүй боллоо. Та дахин оролдоно уу.';
+		}
+		if ( ! $this->_send_password_reset_mail($user[$this->alias])) {
+			return 'E-майл илгээж чадсангүй. Та дахин оролдоно уу.';
+		}
+		return true;
+	}
+	
 	public function beforeSave($options = array()) {
-		if (isset($this->data[$this->alias]['password'])) {
-			$this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
+		$data = $this->data[$this->alias];
+		if (isset($data['password'])) {
+			$this->data[$this->alias]['password'] = AuthComponent::password($data['password']);
 		}
-		if (isset($this->data[$this->alias]['id'])) {
+		if (isset($data['id'])) {
 			$this->data[$this->alias]['modified'] = date("Y-m-d H:i:s");
-			return true;
+		} else {
+			$this->data[$this->alias]['created'] = date("Y-m-d H:i:s");
 		}
-		if ( ! isset($this->data[$this->alias]['facebook_id']) && ! isset($this->data[$this->alias]['twitter_id'])) {
-			$password_reset = $this->data[$this->alias]['first_name'] . $this->data[$this->alias]['email'] . time() . rand(0, PHP_INT_MAX);
-			$this->data[$this->alias]['password_reset'] = AuthComponent::password($password_reset);
-			if ( ! $this->_send_activation_mail($this->data[$this->alias])) {
-				return false;
-			}
-		}
-		$this->data[$this->alias]['created'] = date("Y-m-d H:i:s");
 		return true;
 	}
 	
@@ -138,7 +169,14 @@ class User extends AppModel {
 	}
 	
 	private function _send_password_reset_mail($user) {
-		// TODO
+		$email = new CakeEmail('gmail');
+		$email->from(array('sansarjpn@gmail.com' => 'Mbay'));
+		$email->to($user['email']);
+		$email->subject('Нууц үг сэргээх');
+		$email->emailFormat('html');
+		$email->template('password_reset_mail');
+		$email->viewVars($user);
+		return $email->send();
 	}
 	
 	function validate_reenter($data) {

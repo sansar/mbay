@@ -5,13 +5,14 @@
 	<?php echo $this->Form->create('User', Array('url' => '/users/login')); ?>
 	<table>
 		<tr>
-			<th>メールアドレス</th>
+			<th>Е-майл хаяг</th>
 			<td><?php echo $this->Form->input('email', Array('label' => false)); ?></td>
 		</tr>
 		<tr>
-			<th>パスワード</th>
+			<th>Нууц үг</th>
 			<td><?php echo $this->Form->input('password', Array('label' => false)); ?></td>
 		</tr>
 	</table>
-	<?php echo $this->Form->end('ログイン'); ?>
+	<?php echo $this->Form->end('Нэвтрэх'); ?>
+	<a href="/users/password_reset">Нууц үгээ мартсан?</a>
 </div>

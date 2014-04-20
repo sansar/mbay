@@ -40,23 +40,7 @@
 		<div id="header">
 			<img src="/img/logo.gif" style="margin: 10px 0px 0px -15px;"/>
 			<div>
-				<?php echo $this->element('searchbox'); ?>
-				<div id="navi">
-					<ul class="clearfix">
-					<?php if ($user == null): ?>
-						<li><a class="current" href="/">Main</a></li>
-						<li><a href="/users/add">Register</a></li>
-						<li><a href="/users/login">Login</a></li>
-						<li><a href="#">Contact</a></li>
-					<?php else: ?>
-						<li><a class="current" href="/">Main</a></li>
-						<li><a href="/goods/step1">Add Good</a></li>
-						<li><a href="/users/logout">Logout</a></li>
-						<li><a href="#">Contact</a></li>
-					<?php endif; ?>
-					</ul>
-				</div>
-
+				<?php echo $this->element('menu-aim'); ?>
 			</div>
 		</div>
 		

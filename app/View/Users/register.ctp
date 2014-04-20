@@ -19,7 +19,7 @@
 </style>
 <div class="admin form">
 	<?php
-		echo $this->Form->create('User', Array('url' => '/users/add'));
+		echo $this->Form->create('User', Array('url' => '/users/register'));
 		echo $this->Form->input('User.email', array(
 			'label' => false,
 			'placeholder' => __('Email', true),
@@ -76,6 +76,6 @@
 				'phone' => __('Enter valid phone number', true)
 			)
 		));
-		echo $this->Form->end('アカウントを作成する');
+		echo $this->Form->end('Бүртгүүлэх');
 	?>
 </div>

@@ -11,7 +11,7 @@ class UsersController extends AppController {
 	
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('login', 'add', 'opauth_complete', 'password_set');
+		$this->Auth->allow('login', 'register', 'opauth_complete', 'password_set', 'password_reset');
 	}
 	
 	public function opauth_complete() {
@@ -33,12 +33,12 @@ class UsersController extends AppController {
 		return $this->redirect ( $this->Auth->redirect () );
 	}
 
-	public function add() {
+	public function register() {
 		if ($this->request->is('post')) {
 			$this->User->create();
-			if ($this->User->save($this->request->data)) {
+			if ($this->User->register($this->request->data)) {
 				$this->Session->setFlash(__('The user has been saved'));
-				$this->render('add_done');
+				$this->render('register_done');
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}
@@ -93,5 +93,18 @@ class UsersController extends AppController {
 	
 	public function logout($id = null) {
 		$this->redirect ( $this->Auth->logout () );
+	}
+	
+	public function password_reset() {
+		if ($this->request->is( 'post' )) {
+			$email = $this->request->data['User']['email'];
+			$result = $this->User->passwordReset($email);
+			if ($result === true) {
+				$this->render('password_reset_done');
+				$this->Session->setFlash('Мэйл хаягаа шалган, нууц үгээ шинээр тохируулна уу.');
+			} else {
+				$this->Session->setFlash($result);
+			}
+		}
 	}
 }
