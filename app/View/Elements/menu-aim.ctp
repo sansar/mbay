@@ -1,3 +1,15 @@
+<link rel="stylesheet" type="text/css" href="/css/fancybox/jquery.fancybox.css">
+<script src="/js/fancybox/jquery.fancybox.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.fancybox').fancybox();
+	});
+</script>
+<style type="text/css">
+	.fancybox-custom .fancybox-skin {
+		box-shadow: 0 0 50px #222;
+	}
+</style>
 <link rel="stylesheet" type="text/css" href="/css/flat-dropdown/flat-dropdown.css">
 <link rel="stylesheet" type="text/css" href="/css/flat-dropdown/fontello.css">
 <link rel="stylesheet" type="text/css" href="/css/flat-dropdown/dzyngiri.css">

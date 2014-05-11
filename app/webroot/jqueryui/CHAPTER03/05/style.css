@@ -183,7 +183,7 @@ ul{
 
 .box,
 .heading-box{
-	padding-top:20px;
+	/* padding-top:20px; */
 	width: 200px;
 	float: left;
 	margin-right: 20px;

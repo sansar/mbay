@@ -9,23 +9,11 @@
 <link rel="stylesheet" href="/jqueryui/CHAPTER02/01/sample3/stylesheets/jquery.megamenu.css" type="text/css" media="screen" />
 <link href="/jqueryui/CHAPTER02/01/sample3/base.css" rel="stylesheet" type="text/css" media="screen" />
 <link rel="stylesheet" type="text/css" href="/css/cake.generic.css">
-<link rel="stylesheet" type="text/css" href="/css/fancybox/jquery.fancybox.css">
 
 <script src="/js/jquery.min.js" type="text/javascript"></script>
 <script src="/jqueryui/CHAPTER03/05/js/jquery.backgroundPosition.js" type="text/javascript"></script>
 <script src="/jqueryui/CHAPTER03/05/js/jquery.easing.1.3.js" type="text/javascript"></script>
 <script src="/jqueryui/CHAPTER02/01/sample3/javascripts/jquery.megamenu.js" type="text/javascript"></script>
-<script src="/js/fancybox/jquery.fancybox.js" type="text/javascript"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('.fancybox').fancybox();
-	});
-</script>
-<style type="text/css">
-	.fancybox-custom .fancybox-skin {
-		box-shadow: 0 0 50px #222;
-	}
-</style>
 <!--[if !IE]><!-->
 <link rel="stylesheet" href="/css/category-style.css">
 <!--<![endif]-->

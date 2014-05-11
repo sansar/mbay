@@ -18,7 +18,22 @@ class GoodsController extends AppController {
 	}
 
 	public function mygoods() {
-		// TODO
+		$user = $this->Auth->user();
+		if ( ! $user ) {
+			$this->redirect('/');
+		}
+		$page_count = ceil($this->Good->getItemCountByOwner($user['id']) / PER_ITEM_COUNT);
+		$current_page = isset($_GET['page']) ? $request['page'] : 1;
+		if ($current_page < 1 || $current_page > $page_count) {
+			$current_page = 1;
+		}
+		$items = $this->Good->getListByOwner($user['id'], ($current_page - 1) * PER_ITEM_COUNT, PER_ITEM_COUNT);
+		$this->set('items', $items);
+		$this->set('page_count', $page_count);
+		$this->set('item_per_page', PER_ITEM_COUNT);
+		$this->set('current_page', $current_page);
+		$this->set('page_url', '/goods/mygoods');
+		$this->layout = false;
 	}
 	
 	public function search() {

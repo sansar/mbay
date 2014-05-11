@@ -69,26 +69,16 @@ $(function(){
 	}).hover(function() {
 		var me = $(this);
 		timerID = setInterval(function(){show(me);}, $interval);
-		
-		targetImage = me.find("img");
-		targetImage.stop().animate({
-			"margin-top": "-10px",
-			"margin-left": "-10px",
-			"width": "150px",
-			"height": "210px"
-		}, 200);
 
 		targetLayer = me.find(".layer");
 		targetLayer.stop().animate({
-			"margin-top": "-10px",
-			"margin-left": "-10px",
+			"margin-left": "15px",
 			"width": "130px",
 			"height": "190px",
 			"opacity": "1"
-        }, 200); 
-        
-    },
-    function() {
+		}, 200); 
+	},
+	function() {
 		clearInterval(timerID);
 		if ($(this).find("img").length > 1) {
 			var $active = $(this).find("img.active");
@@ -97,19 +87,12 @@ $(function(){
 			$next.show().addClass("active");
 			$(this).find("img").css("opacity","1");
 		}
-		targetImage.stop().animate({
-       	    "margin-top": "0",
-       	    "margin-left": "0",
-       	    "width": "140px",
-       	    "height": "200px"
-       	}, 400);
-        targetLayer.stop().animate({
-			"margin-top": "0",
+		targetLayer.stop().animate({
 			"margin-left": "0",
 			"width": "140px",
-       	    "height": "200x",
-       	    "opacity": "0"
-        }, 400);
-    });
+			"height": "200x",
+			"opacity": "0"
+		}, 400);
+	});
 });
 </script>

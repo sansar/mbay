@@ -44,7 +44,8 @@ view_count INT UNSIGNED DEFAULT 0,
 created DATETIME NOT NULL,
 modified DATETIME DEFAULT NULL,
 KEY `category` (category),
-KEY `status` (status)
+KEY `status` (status),
+KEY `owner` (`owner`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS clothes_clothes;

@@ -82,7 +82,7 @@ class Good extends AppModel {
 	 * @param unknown $count
 	 * @param unknown $options
 	 */
-	public function getList($category, $start, $count, $options = array()) {
+	public function getList($category, $start = 0, $count = 20, $options = array()) {
 		$where = array("status = ?");
 		$parameters = array(STATUS_CONFIRMED);
 		$sql = "SELECT
@@ -126,8 +126,30 @@ class Good extends AppModel {
 		return $this->getDataSource()->fetchAll($sql, $parameters);
 	}
 	
-	public function getListByOwner($owner_id) {
-		
+	public function getListByOwner($owner_id, $start = 0, $count = 20) {
+		$sql = "SELECT
+					id,
+					overview,
+					price,
+					pickup_flag,
+					sale,
+					sale_price,
+					secret_number,
+					status,
+					view_count,
+					created
+				FROM
+					goods
+				WHERE
+					owner = ?
+				ORDER BY created DESC LIMIT {$start}, {$count}";
+		return $this->getDataSource()->fetchAll($sql, array($owner_id));
+	}
+	
+	public function getItemCountByOwner($owner_id) {
+		$sql = "SELECT COUNT(*) AS count FROM goods WHERE owner = ?";
+		$result = $this->getDataSource()->fetchAll($sql, array($owner_id));
+		return $result[0][0]['count'];
 	}
 	
 	public function getById($id, $user = null) {
@@ -137,7 +159,10 @@ class Good extends AppModel {
 		if (empty($good)) {
 			return null;
 		}
-		if ($user && $user['id'] != $good['Good']['owner']) {
+		if ( ! $user || $user['id'] != $good['Good']['owner']) {
+			if ($good['Good']['status'] == STATUS_CREATED) {
+				return null;
+			}
 			$good['Good']['view_count']++;
 			$this->save($good, false);
 		}
