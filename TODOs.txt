@@ -1,0 +1,8 @@
+1. header хайлтыг бүрэн гүйцээх - DONE
+2. Миний бараа page хийх
+3. Тэмдэглэсэн бараа page хийх
+4. Хувийн тохиргоо page хийх
+5. detail page update
+6. admin created goods list page
+7. admin good update page
+8. user good update page

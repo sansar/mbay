@@ -39,7 +39,7 @@
 <body id="top">
 	<div id="container">
 		<div id="header">
-			<img src="/img/logo.gif" style="margin: 10px 0px 0px -15px;"/>
+			<a href="/"><img src="/img/logo.gif" style="margin: 10px 0px 0px -15px;"/></a>
 			<div>
 				<?php echo $this->element('menu-aim'); ?>
 			</div>

@@ -6,6 +6,10 @@ define("CONDITION_3",        '3');
 define("CONDITION_4",        '4');
 define("CONDITION_5",        '5');
 
+define("STATUS_CREATED",     '0');
+define("STATUS_CONFIRMED",   '1');
+define("STATUS_SOLD",        '2');
+
 App::uses('AppModel', 'Model');
 
 class Good extends AppModel {
@@ -71,9 +75,16 @@ class Good extends AppModel {
 		),
 	);
 	
+	/**
+	 * get only CONFIRMED GOODS
+	 * @param unknown $category
+	 * @param unknown $start
+	 * @param unknown $count
+	 * @param unknown $options
+	 */
 	public function getList($category, $start, $count, $options = array()) {
-		$parameters = array();
-		$where = array();
+		$where = array("status = ?");
+		$parameters = array(STATUS_CONFIRMED);
 		$sql = "SELECT
 					goods.id,
 					overview,
@@ -112,17 +123,23 @@ class Good extends AppModel {
 			$sql .= "WHERE " . implode(" AND ", $where);
 		}
 		$sql .= " ORDER BY created DESC LIMIT {$start}, {$count}";
-// 		debug($sql);
-// 		debug($parameters);
 		return $this->getDataSource()->fetchAll($sql, $parameters);
 	}
 	
-	public function getById($id) {
+	public function getListByOwner($owner_id) {
+		
+	}
+	
+	public function getById($id, $user = null) {
 		$good = $this->find('first', array(
 			'conditions' => array('id' => $id)
 		));
 		if (empty($good)) {
 			return null;
+		}
+		if ($user && $user['id'] != $good['Good']['owner']) {
+			$good['Good']['view_count']++;
+			$this->save($good, false);
 		}
 		$good = $good['Good'];
 		if ( ! isset(Good::$category_table[$good['category']])) {

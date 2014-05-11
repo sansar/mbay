@@ -3,6 +3,9 @@
 App::uses('AppModel', 'Model');
 App::uses( 'CakeEmail', 'Network/Email');
 
+define("ROLE_BASIC",   '0');
+define("ROLE_ADMIN",   '1');
+
 class User extends AppModel {
 	public $userTable  = 'users';
 	public $primaryKey = 'id';
@@ -101,6 +104,10 @@ class User extends AppModel {
 				'last_name'   => $last_name,
 			)
 		);
+		$existed_user = $this->find('first', array('conditions' => array('email' => $email)));
+		if ( $existed_user ) {
+			$user['User']['id'] = $existed_user['User']['id'];
+		}
 		if ($this->save($user, false)) {
 			return $this->find('first', array('conditions' => array('facebook_id' => $data['uid'])));
 		}

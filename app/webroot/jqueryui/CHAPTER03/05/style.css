@@ -141,12 +141,12 @@ ul{
 	height: 50px;
 	padding: 2px 30px 2px 8px;
 	outline: none;
-	font-size: 26px;
+	/* font-size: 26px; */
 	color: #777;
 	margin: 0;
-	width: 450px;
+	width: 500px;
 	display: block;
-	background: #fff url(images/s.png) no-repeat 411px 9px;
+	background: #fff url(images/s.png) no-repeat 461px 9px;
 	border: 5px solid black;
 }
 

@@ -1,3 +1,6 @@
+<link rel="stylesheet" type="text/css" href="/css/flat-dropdown/flat-dropdown.css">
+<link rel="stylesheet" type="text/css" href="/css/flat-dropdown/fontello.css">
+<link rel="stylesheet" type="text/css" href="/css/flat-dropdown/dzyngiri.css">
 <link href="/css/menu-aim/bootstrap.css" rel="stylesheet">
 <style>
   body {
@@ -34,23 +37,34 @@
 		box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 	}
 
-	.navbar .dropdown-menu > li > a:hover {
+	.navbar .dropdown-menu > li > span:hover {
 		background-image: none;
 		color: white;
 		background-color: rgb(0, 129, 194);
-		background-color: rgba(0, 129, 194, 0.5);
 	}
 
-	.navbar .dropdown-menu > li > a.maintainHover {
+	.navbar .dropdown-menu > li > span.maintainHover {
 		color: white !important;
 		background-color: #0081C2;
 	}
 	
+	.dropdown-menu span {
+		color: #0088cc !important;
+		display: block;
+		padding: 3px 20px;
+		font-weight: normal;
+		cursor: pointer;
+	}
+	.dropdown-menu span:hover {
+		color: #fff !important;
+		background-color: #0081C2;
+	}
 	.dropdown-menu a {
 		color: #0088cc !important;
 		display: block;
 		padding: 3px 20px;
 		font-weight: normal;
+		cursor: pointer;
 	}
 	.dropdown-menu a:hover {
 		color: #fff !important;
@@ -62,119 +76,126 @@
 		<div class="container">
 			<div>
 				<form id="searchform" action="/goods/search" method="get">
-					<input type="text" name="keywords" id="s" value="" />
+					<input type="text" name="keywords" data-toggle="dropdown" value="<?php echo isset($keyword) ? $keyword : ""; ?>" id="s" placeholder="ХАЙХ: " autocomplete="off"/>
+						<ul class="dropdown-menu" role="menu">
+							<li>
+								<span alt="">Бүх категори</span>
+								<div class="popover"></div>
+							</li>
+							<li data-submenu-id="submenu-snub">
+								<span alt="10">Хувцас</span>
+								<div id="submenu-snub" class="popover">
+									<h3 class="popover-title"><span alt="10">Хувцас</span></h3>
+									<ul>
+										<li><span alt="101">Хувцас</span></li>
+										<li><span alt="102">Гутал</span></li>
+										<li><span alt="103">Акксесуар</span></li>
+										<li><span alt="104">Хүүхдийн хувцас</span></li>
+										<li><span alt="105">Бусад</span></li>
+									</ul>
+								</div></li>
+							<li data-submenu-id="submenu-snub-nosed">
+								<span alt="20">Тавилга</span>
+								<div id="submenu-snub-nosed" class="popover">
+									<h3 class="popover-title"><span alt="20">Тавилга</span></h3>
+									<ul>
+										<li><span alt="201">Гал тогоо</span></li>
+										<li><span alt="202">Зочны өрөө</span></li>
+										<li><span alt="203">Унтлагын өрөө</span></li>
+										<li><span alt="204">Ажлын өрөө</span></li>
+										<li><span alt="205">Хүүхдийн өрөө</span></li>
+										<li><span alt="206">Оффис</span></li>
+										<li><span alt="207">Бусад</span></li>
+									</ul>
+								</div></li>
+							<li data-submenu-id="submenu-duoc-langur">
+								<span alt="30">Цахилгаан бараа</span>
+								<div id="submenu-duoc-langur" class="popover">
+									<h3 class="popover-title"><span alt="30">Цахилгаан бараа</span></h3>
+									<ul>
+										<li><span alt="301">Компьютер</span></li>
+										<li><span alt="302">Гэр ахуй</span></li>
+										<li><span alt="303">Утас</span></li>
+										<li><span alt="304">Аппарат</span></li>
+										<li><span alt="305">Хөгжим</span></li>
+										<li><span alt="306">Бусад</span></li>
+									</ul>
+								</div></li>
+							<li data-submenu-id="submenu-pygmy">
+								<span alt="40">Цуглуулга</span>
+								<div id="submenu-pygmy" class="popover">
+									<h3 class="popover-title"><span alt="40">Цуглуулга</span></h3>
+									<ul>
+										<li><span alt="401">Ном</span></li>
+										<li><span alt="402">CD/DVD/диск</span></li>
+										<li><span alt="403">Марк/тэмдэг</span></li>
+										<li><span alt="404">Бусад</span></li>
+									</ul>
+								</div></li>
+							<li data-submenu-id="submenu-tamarin">
+								<span alt="50">Монголд үйлдвэрлэв</span>
+								<div id="submenu-tamarin" class="popover">
+									<h3 class="popover-title"><span alt="50">Монголд үйлдвэрлэв</span></h3>
+									<ul>
+										<li><span alt="501">Хувцас</span></li>
+										<li><span alt="502">Тавилга</span></li>
+										<li><span alt="503">Гэр ахуй</span></li>
+										<li><span alt="504">Гар урлал</span></li>
+										<li><span alt="505">Бусад</span></li>
+									</ul>
+								</div></li>
+							<li data-submenu-id="submenu-monk">
+								<span alt="60">Бэлэг дурсгал</span>
+								<div id="submenu-monk" class="popover">
+									<h3 class="popover-title"><span alt="60">Бэлэг дурсгал</span></h3>
+									<ul>
+										<li><span alt="601">Эрэгтэй бэлэг</span></li>
+										<li><span alt="602">Эмэгтэй бэлэг</span></li>
+										<li><span alt="603">Хүүхдийн бэлэг</span></li>
+										<li><span alt="604">Хуримын бэлэг</span></li>
+										<li><span alt="605">Бусад</span></li>
+									</ul>
+								</div></li>
+							<li data-submenu-id="submenu-gabon">
+								<span alt="70">Бусад</span>
+								<div id="submenu-gabon" class="popover">
+									<h3 class="popover-title"><span alt="70">Бусад</span></h3>
+									<ul>
+										<li><span alt="701">Тоног төхөөрөмж</span></li>
+										<li><span alt="702">Үйлдвэрлэл</span></li>
+										<li><span alt="703">Бусад</span></li>
+									</ul>
+								</div></li>
+						</ul>
+					<input type="hidden" name="category" id="category" value="<?php echo isset($category_id) ? $category_id : ""; ?>"/>
 				</form>
 			</div>
-			<div class="nav-collapse collapse">
-				<ul class="nav">
-					<li class="active">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#" style="margin-top:5px;font-size: 20px">Категори сонгох</a>
-						<ul class="dropdown-menu" role="menu">
-							<li data-submenu-id="submenu-patas"><a href="#">Хувцас</a>
-								<div id="submenu-patas" class="popover">
-									<h3 class="popover-title"><a href="#">Хувцас</a></h3>
-									<ul>
-										<li><a href="#">Хувцас</a></li>
-										<li><a href="#">Гутал</a></li>
-										<li><a href="#">Акксесуар</a></li>
-										<li><a href="#">Хүүхдийн хувцас</a></li>
-										<li><a href="#">Бусад</a></li>
-									</ul>
-								</div>
-							</li>
-							<li data-submenu-id="submenu-snub-nosed"><a href="#">Тавилга</a>
-								<div id="submenu-snub-nosed" class="popover">
-									<h3 class="popover-title"><a href="#">Тавилга</a></h3>
-									<ul>
-										<li><a href="#">Гал тогоо</a></li>
-										<li><a href="#">Зочны өрөө</a></li>
-										<li><a href="#">Унтлагын өрөө</a></li>
-										<li><a href="#">Ажлын өрөө</a></li>
-										<li><a href="#">Хүүхдийн өрөө</a></li>
-										<li><a href="#">Оффис</a></li>
-										<li><a href="#">Бусад</a></li>
-									</ul>
-								</div></li>
-							<li data-submenu-id="submenu-duoc-langur"><a href="#">Цахилгаан бараа</a>
-								<div id="submenu-duoc-langur" class="popover">
-									<h3 class="popover-title"><a href="#">Цахилгаан бараа</a></h3>
-									<ul>
-										<li><a href="#">Компьютер</a></li>
-										<li><a href="#">Гэр ахуй</a></li>
-										<li><a href="#">Утас</a></li>
-										<li><a href="#">Аппарат</a></li>
-										<li><a href="#">Хөгжим</a></li>
-										<li><a href="#">Бусад</a></li>
-									</ul>
-								</div></li>
-							<li data-submenu-id="submenu-pygmy"><a href="#">Цуглуулга</a>
-								<div id="submenu-pygmy" class="popover">
-									<h3 class="popover-title"><a href="#">Цуглуулга</a></h3>
-									<ul>
-										<li><a href="#">Ном</a></li>
-										<li><a href="#">CD/DVD/диск</a></li>
-										<li><a href="#">Марк/тэмдэг</a></li>
-										<li><a href="#">Бусад</a></li>
-									</ul>
-								</div></li>
-							<li data-submenu-id="submenu-tamarin"><a href="#">Монголд үйлдвэрлэв</a>
-								<div id="submenu-tamarin" class="popover">
-									<h3 class="popover-title"><a href="#">Монголд үйлдвэрлэв</a></h3>
-									<ul>
-										<li><a href="#">Хувцас</a></li>
-										<li><a href="#">Тавилга</a></li>
-										<li><a href="#">Гэр ахуй</a></li>
-										<li><a href="#">Гар урлал</a></li>
-										<li><a href="#">Бусад</a></li>
-									</ul>
-								</div></li>
-							<li data-submenu-id="submenu-monk"><a href="#">Бэлэг дурсгал</a>
-								<div id="submenu-monk" class="popover">
-									<h3 class="popover-title"><a href="#">Бэлэг дурсгал</a></h3>
-									<ul>
-										<li><a href="#">Эрэгтэй бэлэг</a></li>
-										<li><a href="#">Эмэгтэй бэлэг</a></li>
-										<li><a href="#">Хүүхдийн бэлэг</a></li>
-										<li><a href="#">Төрсөн өдрийн бэлэг</a></li>
-										<li><a href="#">Хуримын бэлэг</a></li>
-										<li><a href="#">Бусад</a></li>
-									</ul>
-								</div></li>
-							<li data-submenu-id="submenu-gabon"><a href="#">Бусад</a>
-								<div id="submenu-gabon" class="popover">
-									<h3 class="popover-title"><a href="#">Бусад</a></h3>
-									<ul>
-										<li><a href="#">Тоног төхөөрөмж</a></li>
-										<li><a href="#">Үйлдвэрлэл</a></li>
-										<li><a href="#">Бусад</a></li>
-									</ul>
-								</div></li>
-						</ul>
-					</li>
+			<div class="nav-collapse collapse" style="float:right;padding-right:10px">
+			<?php if ($user):?>
+			<div class="fdropdown"> <span class="fdropdown-toggle" tabindex="0"></span>
+				<div class="fdropdown-text"><?php echo $user['first_name']; ?><i class="ficon-user ficon"></i></div>
+				<ul class="fdropdown-content">
+					<li><a href="/goods/step1">Бараа оруулах<i class="ficon-edit ficon"></i></a></li>
+					<li><a href="/goods/mygoods">Миний бараа<i class="ficon-picture ficon"></i></a></li>
+					<li><a href="#">Тэмдэглэсэн бараа<i class="ficon-link ficon"></i></a></li>
+					<li><a href="#">Хувийн тохиргоо<i class="ficon-wrench ficon"></i></a></li>
+					<li><a href="/users/logout">Гарах<i class="ficon-logout ficon"></i></a></li>
 				</ul>
 			</div>
-			<div class="nav-collapse collapse" style="float:right;padding-right:50px">
+			<?php else:?>
 				<ul class="nav">
 					<li class="active">
-						<a class="dropdown-toggle setting-menu" data-toggle="dropdown" href="#" style="margin-top:5px;font-size: 15px">Тохиргоо</a>
-						<ul class="dropdown-menu" role="menu">
-						<?php if ($user):?>
-							<li data-submenu-id="submenu-snub-nosed"><a href="/goods/step1">Бараа оруулах</a></li>
-							<li data-submenu-id="submenu-duoc-langur"><a href="#">Тэмдэглэсэн бараа</a></li>
-							<li data-submenu-id="submenu-pygmy"><a href="/users/logout">Гарах</a></li>
-						<?php else:?>
-							<li data-submenu-id="submenu-snub-nosed">
-								<a class="fancybox fancybox.iframe" href="/users/register">Бүртгүүлэх</a>
-							</li>
-							<li data-submenu-id="submenu-duoc-langur">
-								<a class="fancybox fancybox.iframe" href="/users/login">Нэвтрэх</a>
-							</li>
-						<?php endif;?>
-						</ul>
+						<a class="setting-menu fancybox fancybox.iframe" href="/users/login">Нэвтрэх</a>
 					</li>
 				</ul>
+				<ul class="nav">
+					<li class="active">
+						<a class="setting-menu fancybox fancybox.iframe" href="/users/register">Бүртгүүлэх</a>
+					</li>
+				</ul>
+			<?php endif; ?>
 			</div>
-			</div>
+		</div>
 	</div>
 </div>
 <script src="/js/menu-aim/jquery.menu-aim.js" type="text/javascript"></script>
@@ -199,8 +220,6 @@
 			left: width - 3,
 			height: height - 4
 		});
-
-		$row.find("a").addClass("maintainHover");
 	}
 
 	function deactivateSubmenu(row) {
@@ -209,13 +228,26 @@
 			$submenu = $("#" + submenuId);
 
 		$submenu.css("display", "none");
-		$row.find("a").removeClass("maintainHover");
 	}
 
-// 	$(".dropdown-menu li").click(function(e) {
-// 		e.stopPropagation();
-// 	});
-
+	$(".dropdown-menu li span").click(function(e){
+		var target=$(e.currentTarget);
+		$("#s").attr('placeholder', 'ХАЙХ: ' + target.text());
+		$("#category").attr("value", target.attr("alt"));
+		$("#s").focus();
+	});
+	$(".dropdown-menu ul li span").click(function(e){
+		var target = $(e.currentTarget);
+		$("#s").attr('placeholder', 'ХАЙХ: ' + target.parent().parent().prev().text() + " - " + target.text());
+		$("#category").attr("value", target.attr("alt"));
+		$("#s").focus();
+});
+	$(".dropdown-menu h3 span").click(function(e) {
+		var target = $(e.currentTarget);
+		$("#s").attr('placeholder', 'ХАЙХ: ' + target.text());
+		$("#category").attr("value", target.attr("alt"));
+		$("#s").focus();
+});
 	$(document).click(function() {
 		$(".popover").css("display", "none");
 		$("a.maintainHover").removeClass("maintainHover");

@@ -72,9 +72,8 @@
 				<li><a href="/goods/step2/401">Эрэгтэй бэлэг</a></li>
 				<li><a href="/goods/step2/402">Эмэгтэй бэлэг</a></li>
 				<li><a href="/goods/step2/403">Хүүхдийн бэлэг</a></li>
-				<li><a href="/goods/step2/404">Төрсөн өдрийн бэлэг</a></li>
-				<li><a href="/goods/step2/405">Хуримын бэлэг</a></li>
-				<li><a href="/goods/step2/406">Бусад</a></li>
+				<li><a href="/goods/step2/404">Хуримын бэлэг</a></li>
+				<li><a href="/goods/step2/405">Бусад</a></li>
 			</ul>
 		</div>
 	</div>

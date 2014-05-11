@@ -39,7 +39,7 @@
 <body id="top" class="gift">
 	<div id="container">
 		<div id="header">
-			<img src="/img/logo.gif" style="margin: 10px 0px 0px -15px;"/>
+			<a href="/"><img src="/img/logo.gif" style="margin: 10px 0px 0px -15px;"/></a>
 			<div>
 				<?php echo $this->element('menu-aim'); ?>
 			</div>
@@ -52,43 +52,37 @@
 					<svg viewBox="0 0 100 25" class="shape-tab">
 						<use xlink:href="#shape-tab"></use>
 					</svg>
-					<span>Хувцас</span>
+					<span>Бүгд</span>
 				</a>
 				<a href="./CSS-Tricks-2.html" class="furnitures">
 					<svg viewBox="0 0 100 25" class="shape-tab">
 	      				<use xlink:href="#shape-tab"></use>
 	    			</svg>
-					<span>Тавилга</span>
+					<span>Хувцас</span>
 				</a>
 				<a href="./CSS-Tricks-3.html" class="electronics">
 					<svg viewBox="0 0 100 25" class="shape-tab">
 						<use xlink:href="#shape-tab"></use>
 	    			</svg>
-					<span>Цахилгаан бараа</span>
+					<span>Гутал</span>
 				</a>
 				<a href="./CSS-Tricks-4.html" class="collections">
 					<svg viewBox="0 0 100 25" class="shape-tab">
 	      				<use xlink:href="#shape-tab"></use>
 	    			</svg>
-					<span>Цуглуулга</span>
+					<span>Аксессуар</span>
 				</a>
 				<a href="./CSS-Tricks-5.html" class="mongolians">
 					<svg viewBox="0 0 100 25" class="shape-tab">
 	      				<use xlink:href="#shape-tab"></use>
 	    			</svg>
-					<span>Монголд үйлдвэрлэв</span>
-				</a>
-				<a href="./CSS-Tricks-5.html" class="gifts">
-					<svg viewBox="0 0 100 25" class="shape-tab">
-	      				<use xlink:href="#shape-tab"></use>
-	    			</svg>
-					<span>бэлэг дурсгал</span>
+					<span>Хүүхдийн хувцас</span>
 				</a>
 				<a href="./CSS-Tricks-6.html" class="other">
 					<svg viewBox="0 0 100 25" class="shape-tab-right">
 	      				<use xlink:href="#shape-tab-right"></use>
 	    			</svg>
-					<span>бусад</span>
+					<span>Бусад</span>
 				</a>
 			</nav>
 		</div>

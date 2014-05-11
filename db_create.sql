@@ -40,9 +40,11 @@ sale TINYINT DEFAULT 0,
 sale_price INT UNSIGNED DEFAULT NULL,
 status TINYINT UNSIGNED NOT NULL DEFAULT 0,
 secret_number VARCHAR(40) NOT NULL,
+view_count INT UNSIGNED DEFAULT 0,
 created DATETIME NOT NULL,
 modified DATETIME DEFAULT NULL,
-KEY `category` (category)
+KEY `category` (category),
+KEY `status` (status)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS clothes_clothes;

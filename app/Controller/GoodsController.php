@@ -89,7 +89,7 @@ class GoodsController extends AppController {
 		if ($id == null) {
 			$this->redirect('/');
 		}
-		$good = $this->Good->getById($id);
+		$good = $this->Good->getById($id, $this->Auth->user());
 		if ($good == null) {
 			$this->redirect('/');
 		}

@@ -830,9 +830,9 @@ ol ul {
   margin-bottom: 0;
 }
 
-li {
+/*li {
   line-height: 20px;
-}
+} */
 
 ul.unstyled,
 ol.unstyled {
@@ -1102,9 +1102,6 @@ input[type="color"],
   line-height: 20px;
   color: #555555;
   vertical-align: middle;
-  -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-          border-radius: 4px;
 }
 
 input,
@@ -1740,6 +1737,15 @@ select:focus:invalid:focus {
   -webkit-border-radius: 0;
      -moz-border-radius: 0;
           border-radius: 0;
+}
+
+.dropdown-toggle {
+	margin-top:5px;
+	padding-bottom:5px !important;
+	font-size: 20px;
+	width:400px;
+	text-align:center;
+	cursor: pointer;
 }
 
 .input-append .active,
@@ -2909,7 +2915,7 @@ table th[class*="span"],
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  left: 0;
+  left: 200px;
   z-index: 1000;
   display: none;
   float: left;
@@ -4399,7 +4405,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar .container {
   width: auto;
-  padding-left: 200px;
+  padding-left: 150px;
 }
 
 .nav-collapse.collapse {
@@ -4691,7 +4697,7 @@ input[type="submit"].btn.btn-mini {
 .navbar .nav > li > .dropdown-menu:before {
   position: absolute;
   top: -7px;
-  left: 9px;
+  left: 44px;
   display: inline-block;
   border-right: 7px solid transparent;
   border-bottom: 7px solid #ccc;
@@ -4781,6 +4787,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar-inverse .navbar-inner {
+  height:50px;
   background-color: #1b1b1b;
   background-image: -moz-linear-gradient(top, #222222, #111111);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#222222), to(#111111));

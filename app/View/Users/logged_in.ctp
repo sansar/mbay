@@ -3,14 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <script type="text/javascript">
-window.onload = function() {
-	setTimeout(function(){window.parent.location.reload()}, 1000);
-}
+window.parent.location.reload();
 </script>
 </head>
 <body>
-	<div>
-		<h1 style="color: red">Та амжилттай нэвтэрлээ.</h1>
-	</div>
 </body>
 </html>

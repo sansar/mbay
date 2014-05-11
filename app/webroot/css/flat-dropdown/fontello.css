@@ -1,0 +1,123 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'fontello';
+	src: url("/fonts/fontello.eot?74635892");
+	src: url("/fonts/fontello.eot?74635892#iefix")
+		format('embedded-opentype'), url("/fonts/fontello.woff?74635892")
+		format('woff'), url("/fonts/fontello.ttf?74635892")
+		format('truetype'), url("/fonts/fontello.svg?74635892#fontello")
+		format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fontello';
+    src: url('/fonts/fontello.svg?74635892#fontello') format('svg');
+  }
+}
+*/
+[class^="ficon-"]:before,[class*=" ficon-"]:before {
+	font-family: 'fontello';
+	font-style: normal;
+	font-weight: normal;
+	speak: none;
+	display: inline-block;
+	text-decoration: inherit;
+	width: 1em;
+	margin-right: 0.2em;
+	text-align: center;
+	/* opacity .8 */
+	/* For safety - reset parent styles, that can break glyph codes*/
+	font-variant: normal;
+	text-transform: none;
+	/* fix buttons height, for twitter bootstrap */
+	line-height: 1em;
+	/* Animation center compensation - magrins should be symmetric */
+	/* remove if not needed */
+	margin-left: 0.2em;
+	/* you can be more comfortable with increased icons size */
+	/* font-size: 120%; */
+	/* Uncomment for 3D effect */
+	/* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.ficon-gplus:before {
+	content: '\2b';
+} /* '+' */
+.ficon-stumbleupon:before {
+	content: '\2f';
+} /* '/' */
+.ficon-pinterest:before {
+	content: '\31';
+} /* '1' */
+.ficon-flickr:before {
+	content: '\46';
+} /* 'F' */
+.ficon-linkedin:before {
+	content: '\4c';
+} /* 'L' */
+.ficon-rss:before {
+	content: '\52';
+} /* 'R' */
+.ficon-twitter:before {
+	content: '\54';
+} /* 'T' */
+.ficon-youtube:before {
+	content: '\55';
+} /* 'U' */
+.ficon-vimeo:before {
+	content: '\56';
+} /* 'V' */
+.ficon-facebook:before {
+	content: '\66';
+} /* 'f' */
+.ficon-home:before {
+	content: '\2302';
+} /* '⌂' */
+.ficon-mail:before {
+	content: '\2709';
+} /* '✉' */
+.ficon-edit:before {
+	content: '\270d';
+} /* '✍' */
+.ficon-export:before {
+	content: '\e715';
+} /* '' */
+.ficon-chart-pie:before {
+	content: '\e7a2';
+} /* '' */
+.ficon-logout:before {
+	content: '\f02d';
+} /* '' */
+.ficon-link-ext:before {
+	content: '\f08e';
+} /* '' */
+.ficon-picture:before {
+	content: '🌄';
+} /* '\1f304' */
+.ficon-picture-1:before {
+	content: '\e800';
+} /* '' */
+.ficon-user:before {
+	content: '👤';
+} /* '\1f464' */
+.ficon-folder:before {
+	content: '📁';
+} /* '\1f4c1' */
+.ficon-chart-bar:before {
+	content: '📊';
+} /* '\1f4ca' */
+.ficon-link:before {
+	content: '🔗';
+} /* '\1f517' */
+.ficon-wrench:before {
+	content: '🔧';
+} /* '\1f527' */
+.ficon-wrench-1:before {
+	content: '\e801';
+} /* '' */

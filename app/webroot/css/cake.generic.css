@@ -65,9 +65,9 @@ h4 {
 	color: #993;
 	font-weight: normal;
 }
-ul, li {
+/*ul, li {
 	margin-left: 15px;
-}
+}*/
 p {
 	margin: 0 0 1em 0;
 }
@@ -259,7 +259,7 @@ dd {
 
 /** Forms **/
 form {
-	clear: both;
+	/* clear: both; */
 	margin-right: 20px;
 	padding: 0;
 	width: 95%;
