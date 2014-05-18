@@ -5,7 +5,7 @@
 			<div>
 			<?php $item['image'] = $this->Image->get_images($item['goods']['secret_number']); ?>
 			<?php foreach ($item['image'] as $key => $image):?>
-				<img src="<?php echo $image['medium'];?>" width="140" height="200" <?php if ($key > 0) echo 'style="display:none"'; else echo 'class="active"';?>/>
+				<img src="<?php echo $image['medium'];?>" style="width: 140px; max-height: 200px" <?php if ($key > 0) echo 'style="display:none"'; else echo 'class="active"';?>/>
 			<?php endforeach;?>
 			</div>
 			<?php if ($item['goods']['pickup_flag']) {echo '<span class="green-ribbon">おすすめ</span>';}?>
@@ -16,7 +16,7 @@
 			</div>
 		</div>
 		<div class="right">
-			<h4><?php echo $item['goods']['overview']; ?></h4>
+			<h4 style="height: 50px;word-wrap: break-word;"><?php echo $this->Truncate->truncate($item['goods']['overview'], 33); ?></h4>
 			<p>
 				<br /><?php echo $item['goods']['price']; ?>
 			</p>

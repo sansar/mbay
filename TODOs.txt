@@ -1,8 +1,11 @@
-1. header хайлтыг бүрэн гүйцээх - DONE
-2. Миний бараа page хийх
-3. Тэмдэглэсэн бараа page хийх
-4. Хувийн тохиргоо page хийх
-5. detail page update
-6. admin created goods list page
-7. admin good update page
-8. user good update page
+- header хайлтыг бүрэн гүйцээх - DONE
+- Миний бараа page хийх - 80%
+- category menu дээр дэд категори гаргах - 0%
+- detail page update - 60% (бараа тэмдэглэх товч нэмэх)
+- Тэмдэглэсэн бараа page хийх - 40%
+- Хувийн тохиргоо page хийх - 0%
+- Бараа оруулах хуудас update - 0% (бүх категорийн хуудас хийх)
+- admin created goods list page - 0%
+- admin good update page - 0%
+- user good update page - 0%
+- бүх категорийн list page with filter - 0%

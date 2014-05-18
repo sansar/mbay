@@ -148,6 +148,9 @@ ul{
 	display: block;
 	background: #fff url(images/s.png) no-repeat 461px 9px;
 	border: 5px solid black;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box
 }
 
 #s:focus {
@@ -184,7 +187,7 @@ ul{
 .box,
 .heading-box{
 	/* padding-top:20px; */
-	width: 200px;
+	width: 190px;
 	float: left;
 	margin-right: 20px;
 	background: url(images/border.png) repeat-x 0 100%;

@@ -5,9 +5,10 @@ App::uses ( 'Controller', 'Controller' );
 class GoodsController extends AppController {
 	
 	var $uses = array (
+			'Favorite',
 			'Good',
 			'Clothes',
-			'ClothesClothes' 
+			'ClothesClothes',
 	);
 	
 	var $helpers = array( 'Image' );
@@ -22,17 +23,41 @@ class GoodsController extends AppController {
 		if ( ! $user ) {
 			$this->redirect('/');
 		}
-		$page_count = ceil($this->Good->getItemCountByOwner($user['id']) / PER_ITEM_COUNT);
-		$current_page = isset($_GET['page']) ? $request['page'] : 1;
+		$item_count = $this->Good->getItemCountByOwner($user['id']);
+		$page_count = ceil($item_count / PER_ITEM_COUNT);
+		$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 		if ($current_page < 1 || $current_page > $page_count) {
 			$current_page = 1;
 		}
 		$items = $this->Good->getListByOwner($user['id'], ($current_page - 1) * PER_ITEM_COUNT, PER_ITEM_COUNT);
 		$this->set('items', $items);
+		$this->set('item_count', $item_count);
 		$this->set('page_count', $page_count);
 		$this->set('item_per_page', PER_ITEM_COUNT);
 		$this->set('current_page', $current_page);
 		$this->set('page_url', '/goods/mygoods');
+		$this->layout = false;
+	}
+	
+	public function favorites() {
+		$user = $this->Auth->user();
+		if ( ! $user ) {
+			$this->redirect('/');
+		}
+		$item_count = $this->Favorite->getFavoriteCount($user['id']);
+		$page_count = ceil($item_count / PER_ITEM_COUNT);
+		$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+		if ($current_page < 1 || $current_page > $page_count) {
+			$current_page = 1;
+		}
+		$items = $this->Favorite->getList($user['id'], ($current_page - 1) * PER_ITEM_COUNT, PER_ITEM_COUNT);
+		// TODO
+		debug($items);exit;
+		$this->set('items', $items);
+		$this->set('item_count', $item_count);
+		$this->set('item_per_page', PER_ITEM_COUNT);
+		$this->set('current_page', $current_page);
+		$this->set('page_url', '/goods/favorites');
 		$this->layout = false;
 	}
 	
@@ -101,16 +126,33 @@ class GoodsController extends AppController {
 	}
 	
 	public function detail($id = null) {
-		if ($id == null) {
+		if ( ! $id ) {
 			$this->redirect('/');
 		}
 		$good = $this->Good->getById($id, $this->Auth->user());
-		if ($good == null) {
+		if ( ! $good ) {
 			$this->redirect('/');
 		}
-		App::import('View/Helper', 'Image');
+		$seen_item_ids = $this->Session->read('seen');
+		if ( null == $seen_item_ids ) {
+			$seen_item_ids = array();
+		}
+		$seen_items = $this->Good->getByIDs($seen_item_ids, $id, 5);
+		$user = $this->Auth->user();
+		if ( ! $user || $user['id'] != $good['owner'] ) {
+			foreach ($seen_item_ids as $key => $val) {
+				if ($val == $id) {
+					unset($seen_item_ids[$key]);
+					break;
+				}
+			}
+			array_unshift($seen_item_ids, $id);
+			$this->Session->write('seen', $seen_item_ids);
+		}
 		$this->set ( 'data', $good );
-		$this->set ( 'token', $good['secret_number']);
+		$this->set ( 'token', $good['secret_number'] );
+		$this->set ( 'seen_items', $seen_items );
+		$this->layout = false;
 		$this->render ( 'detail_' . $good['category'] );
 	}
 	

@@ -60,6 +60,9 @@
 <link rel="stylesheet" type="text/css" href="/css/cake.generic.css">
 
 <script src="/js/jquery.min.js" type="text/javascript"></script>
+<script src="/jqueryui/CHAPTER03/05/js/jquery.backgroundPosition.js" type="text/javascript"></script>
+<script src="/jqueryui/CHAPTER03/05/js/jquery.easing.1.3.js" type="text/javascript"></script>
+<script src="/jqueryui/CHAPTER02/01/sample3/javascripts/jquery.megamenu.js" type="text/javascript"></script>
 
 <!--[if !IE]><!-->
 <link rel="stylesheet" href="/css/category-style.css">
@@ -71,7 +74,7 @@
   <link rel="stylesheet" href="http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-11/style.css?v1.2">
   <![endif]-->
 </head>
-<body id="top">
+<body id="top" class="clothes">
 	<div id="container">
 		<div id="header">
 			<a href="/"><img src="/img/logo.gif" style="margin: 10px 0px 0px -15px;"/></a>
@@ -81,29 +84,28 @@
 		</div>
 
 		<div id="main">
+		<?php if (empty($items)): ?>
+			<div>Тэмдэглэсэн бараа байхгүй байна.</div>
+		<?php else: ?>
 			<?php echo $this->element('pagination', array(
 					'page_count' => $page_count,
 					'item_per_page' => $item_per_page,
 					'current_page' => $current_page,
 					'page_url' => $page_url)); ?>
 			<div class="module clearfix">
-			<?php if (empty($items)): ?>
-			<div>Оруулсан бараа байхгүй байна.</div>
-			<?php else: ?>
 				<table>
 					<thead>
 						<tr>
-							<th>Оруулсан</th>
+							<th></th>
 							<th>Зураг</th>
 							<th>Гарчиг</th>
-							<th>Статус</th>
 							<th>Үзсэн</th>
 						</tr>
 					</thead>
 					<tbody>
 				<?php foreach ($items as $item): ?>
 					<tr>
-						<td><?php echo $item['goods']['created']; ?></td>
+						<td></td>
 						<td>
 							<div class="box even clearfix" style="width:140px; height: 200px;">
 							<?php $item['image'] = $this->Image->get_images($item['goods']['secret_number']); ?>
@@ -113,25 +115,18 @@
 							</div>
 						</td>
 						<td><a href="/goods/detail/<?php echo $item['goods']['id'];?>"><?php echo $item['goods']['overview']?></a></td>
-						<td>
-							<?php switch ($item['goods']['status']){
-								case STATUS_CREATED: echo 'хүлээгдэж байгаа';break;
-								case STATUS_CONFIRMED: echo 'тавигдсан';break;
-								case STATUS_SOLD: echo 'зарагдсан';break;
-							} ?>
-						</td>
 						<td><?php echo $item['goods']['view_count']; ?></td>
 					</tr>
 				<?php endforeach;?>
 					</tbody>
 				</table>
-			<?php endif; ?>
 			</div>
 			<?php echo $this->element('pagination', array(
 					'page_count' => $page_count,
 					'item_per_page' => $item_per_page,
 					'current_page' => $current_page,
 					'page_url' => $page_url)); ?>
+		<?php endif; ?>
 		</div>
 		
 		<div id="footer">

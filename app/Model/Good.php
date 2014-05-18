@@ -185,6 +185,40 @@ class Good extends AppModel {
 		return array_merge($good, $option[0][$option_table_name]);
 	}
 
+	public function getByIDs($item_ids = array(), $current_id = null, $limit = 5) {
+		if ( ! $item_ids ) {
+			return array();
+		}
+		$sql = "SELECT
+					goods.id,
+					overview,
+					price,
+					pickup_flag,
+					sale,
+					sale_price,
+					secret_number
+				FROM
+					goods
+				WHERE id in (" . implode(',', array_fill(0, count($item_ids), '?')) . ")";
+		$items = $this->getDataSource()->fetchAll($sql, $item_ids);
+		$sorted_items = array();
+		foreach ($item_ids as $item_id) {
+			if (count($sorted_items) == $limit) {
+				break;
+			}
+			if ($item_id == $current_id) {
+				continue;
+			}
+			foreach ($items as $item) {
+				if ($item['goods']['id'] == $item_id) {
+					$sorted_items[] = $item;
+					break;
+				}
+			}
+		}
+		return $sorted_items;
+	}
+	
 	public function beforeSave($options = array()) {
 		$this->data[$this->alias]['created'] = date("Y-m-d H:i:s");
 		return true;

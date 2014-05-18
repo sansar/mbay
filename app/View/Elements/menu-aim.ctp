@@ -189,7 +189,7 @@
 				<ul class="fdropdown-content">
 					<li><a href="/goods/step1">Бараа оруулах<i class="ficon-edit ficon"></i></a></li>
 					<li><a href="/goods/mygoods">Миний бараа<i class="ficon-picture ficon"></i></a></li>
-					<li><a href="#">Тэмдэглэсэн бараа<i class="ficon-link ficon"></i></a></li>
+					<li><a href="/goods/favorites">Тэмдэглэсэн бараа<i class="ficon-link ficon"></i></a></li>
 					<li><a href="#">Хувийн тохиргоо<i class="ficon-wrench ficon"></i></a></li>
 					<li><a href="/users/logout">Гарах<i class="ficon-logout ficon"></i></a></li>
 				</ul>
