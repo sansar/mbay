@@ -1,4 +1,4 @@
-<?php if (isset($items)): ?>
+<?php if (isset($items) && ! empty($items)): ?>
 <?php foreach ($items as $item): ?>
 	<div class="box even clearfix">
 		<div class="left">
@@ -23,6 +23,8 @@
 		</div>
 	</div>
 <?php endforeach; ?>
+<?php else: ?>
+	<span>Одоогоор бараа байхгүй байна.</span>
 <?php endif; ?>
 <?php if (isset($next_link)): ?>
 	<div class="next" style="display:none">

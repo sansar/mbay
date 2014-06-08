@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-11/style.css?v1.2">
   <![endif]-->
 </head>
-<body id="top" class="gift">
+<body id="top" class="furniture">
 	<div id="container">
 		<div id="header">
 			<a href="/"><img src="/img/logo.gif" style="margin: 10px 0px 0px -15px;"/></a>
@@ -45,48 +45,8 @@
 			</div>
 		</div>
 		
-		<div class="page-wrap">
-	
-			<nav class="main-nav" id="main-nav">
-				<a href="./CSS-Tricks.html" class="clothes" style="width:200px">
-					<svg viewBox="0 0 100 25" class="shape-tab">
-						<use xlink:href="#shape-tab"></use>
-					</svg>
-					<span>Бүгд</span>
-				</a>
-				<a href="./CSS-Tricks-2.html" class="furnitures">
-					<svg viewBox="0 0 100 25" class="shape-tab">
-	      				<use xlink:href="#shape-tab"></use>
-	    			</svg>
-					<span>Хувцас</span>
-				</a>
-				<a href="./CSS-Tricks-3.html" class="electronics">
-					<svg viewBox="0 0 100 25" class="shape-tab">
-						<use xlink:href="#shape-tab"></use>
-	    			</svg>
-					<span>Гутал</span>
-				</a>
-				<a href="./CSS-Tricks-4.html" class="collections">
-					<svg viewBox="0 0 100 25" class="shape-tab">
-	      				<use xlink:href="#shape-tab"></use>
-	    			</svg>
-					<span>Аксессуар</span>
-				</a>
-				<a href="./CSS-Tricks-5.html" class="mongolians">
-					<svg viewBox="0 0 100 25" class="shape-tab">
-	      				<use xlink:href="#shape-tab"></use>
-	    			</svg>
-					<span>Хүүхдийн хувцас</span>
-				</a>
-				<a href="./CSS-Tricks-6.html" class="other">
-					<svg viewBox="0 0 100 25" class="shape-tab-right">
-	      				<use xlink:href="#shape-tab-right"></use>
-	    			</svg>
-					<span>Бусад</span>
-				</a>
-			</nav>
-		</div>
-
+		<?php echo $this->element('category_menu_clothes'); ?>
+		
 		<div id="main">
 
 			<div class="module clearfix">
@@ -96,38 +56,38 @@
 						<div class="input select">
 							<label for="ClothesClothesSex">Sex</label>
 							<div class="checkbox">
-								<input type="checkbox" name="sex[]" value="0" id="sex0" <?php if ( ! isset($options['sex']) || in_array(0, $options['sex'])) echo 'checked';?>>
+								<input type="checkbox" name="sex[]" value="0" id="sex0" <?php if ( isset($options['sex']) && in_array(0, $options['sex'])) echo 'checked';?>>
 								<label for="sex">male</label>
 							</div>
 							<div class="checkbox">
-								<input type="checkbox" name="sex[]" value="1" id="sex1" <?php if ( ! isset($options['sex']) || in_array(1, $options['sex'])) echo 'checked';?>>
+								<input type="checkbox" name="sex[]" value="1" id="sex1" <?php if ( isset($options['sex']) && in_array(1, $options['sex'])) echo 'checked';?>>
 								<label for="sex1">female</label>
 							</div>
 						</div>
 						<div class="input select">
 							<label for="ClothesClothesSex">Төрөл</label>
 							<div class="checkbox">
-								<input type="checkbox" name="type[]" value="0" id="type0" <?php if ( ! isset($options['type']) || in_array(0, $options['type'])) echo 'checked';?>>
+								<input type="checkbox" name="type[]" value="0" id="type0" <?php if ( isset($options['type']) && in_array(0, $options['type'])) echo 'checked';?>>
 								<label for="type0">Хослол</label>
 							</div>
 							<div class="checkbox">
-								<input type="checkbox" name="type[]" value="1" id="type1" <?php if ( ! isset($options['type']) || in_array(1, $options['type'])) echo 'checked';?>>
+								<input type="checkbox" name="type[]" value="1" id="type1" <?php if ( isset($options['type']) && in_array(1, $options['type'])) echo 'checked';?>>
 								<label for="type1">Өмд</label>
 							</div>
 							<div class="checkbox">
-								<input type="checkbox" name="type[]" value="2" id="type2" <?php if ( ! isset($options['type']) || in_array(2, $options['type'])) echo 'checked';?>>
+								<input type="checkbox" name="type[]" value="2" id="type2" <?php if ( isset($options['type']) && in_array(2, $options['type'])) echo 'checked';?>>
 								<label for="type2">Цамц</label>
 							</div>
 							<div class="checkbox">
-								<input type="checkbox" name="type[]" value="3" id="type3" <?php if ( ! isset($options['type']) || in_array(3, $options['type'])) echo 'checked';?>>
+								<input type="checkbox" name="type[]" value="3" id="type3" <?php if ( isset($options['type']) && in_array(3, $options['type'])) echo 'checked';?>>
 								<label for="type3">Гадуур хувцас</label>
 							</div>
 							<div class="checkbox">
-								<input type="checkbox" name="type[]" value="4" id="type4" <?php if ( ! isset($options['type']) || in_array(4, $options['type'])) echo 'checked';?>>
+								<input type="checkbox" name="type[]" value="4" id="type4" <?php if ( isset($options['type']) && in_array(4, $options['type'])) echo 'checked';?>>
 								<label for="type4">Даашинз</label>
 							</div>
 							<div class="checkbox">
-								<input type="checkbox" name="type[]" value="5" id="type5" <?php if ( ! isset($options['type']) || in_array(5, $options['type'])) echo 'checked';?>>
+								<input type="checkbox" name="type[]" value="5" id="type5" <?php if ( isset($options['type']) && in_array(5, $options['type'])) echo 'checked';?>>
 								<label for="type5">Бусад</label>
 							</div>
 						</div>

@@ -1,160 +1,245 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>新規会員登録｜PHOTOFREAKS</title>
-<?php echo $this->Html->charset(); ?>
-<?php
-echo $this->Html->meta ( 'icon' );
-
-echo $this->Html->css ( 'cake.generic' );
-
-echo $this->fetch ( 'css' );
-echo $this->fetch ( 'script' );
-?>
 <script type="text/javascript" src="/js/jquery.js"></script>
 <script type="text/javascript" src="/js/jquery.steps.min.js"></script>
-<link href="/css/css/index.css" rel="stylesheet" type="text/css" />
-<link href="/css/css/exvalidation.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/js/exvalidation.js"></script>
-<script type="text/javascript" src="/js/exchecker-ja.js"></script>
-<script type="text/javascript" src="/js/password_strength.min.js"></script>
-<script type="text/javascript">
+<script type="text/javascript" src="/js/dropdown/jquery.easydropdown.min.js"></script>
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/uploader/blueimg-gallery.min.css">
+<link rel="stylesheet" href="/css/uploader/jquery.fileupload.css">
+<link rel="stylesheet" href="/css/uploader/jquery.fileupload-ui.css">
+<link rel="stylesheet" href="/css/dropdown/demo.css">
+<link rel="stylesheet" href="/css/dropdown/easydropdown.css">
 
-	$(document).ready(function(){
-
-		//パスワード強度表示用要素を追加
-		$("#pass").after('<span class="passwordScore"></span>');
-		$("#pass").password({
-			score: ".passwordScore"
-		});
-
-		//exValidationの初期設定
-		var validation = $("#regist").exValidation({
-
-			//バリデーションルールの設定
-			rules: {
-				id: "chkhankaku chkrequired",
-				pass: "chkhankaku chkrequired chkmin6",
-				passConfirm: "chkhankaku chkrequired chkretype-pass chkmin6",
-				name: "chkrequired",
-				kana: "chkrequired chkkatakana",
-				mailGroup: "chkgroup chkrequired chkhankaku chkemail",
-				mailConfirmGroup: "chkgroup chkrequired chkhankaku chkemail chkretype-mailGroup",
-	   			mediaGroup: "chkgroup chkcheckbox chktoggle_media4_otherValue",
-	      		otherValue: "chkrequired",
-				job: "chkselect"
-	    	},
-
-			//エラーがあった場合にアラートを表示
-			customAddError: function() {
-				if ($("#alert").length < 1) {
-					$("#regist table").before('<div id="alert"><strong>入力内容に誤りがあります。内容を修正して再度［この内容で登録する］ボタンをクリックしてください</strong></div>');
-				}
-			},
-
-			//スクロール位置の調節
-			customScrollAdjust: function() {
-				var offset = $("#regist").offset(); 
-				return offset.top;
-			},
-
-			//その他オプション
-			errFocus: true,
-			errInsertPos: 'before',
-			errPosition: 'fixed',
-			stepValidation: true,
-			scrollToErr: true
-		});
-	});
-
-</script>
-</head>
-
-<body>
-	<div id="contents">
-		<div id="title">
-			<h2>
-				<img src="/images/regist_title.gif" width="160" height="45"
-					alt="新規会員登録" />
-			</h2>
-			<p class="note">
-				<span class="require">※</span>は必須項目です
-			</p>
-		</div>
-
-		<form method="post" action="mail.cgi" name="regist" id="regist">
-			<table>
-				<tbody>
-					<tr>
-						<th>ID<span class="require">※</span></th>
-						<td><input type="text" name="id" id="id" size="20" /></td>
-					</tr>
-					<tr>
-						<th>パスワード<span class="require">※</span></th>
-						<td><input type="password" name="pass" id="pass" size="20" /></td>
-					</tr>
-					<tr>
-						<th>パスワード（確認）<span class="require">※</span></th>
-						<td><input type="password" name="passConfirm" id="passConfirm"
-							size="20" /></td>
-					</tr>
-					<tr>
-						<th>氏名<span class="require">※</span></th>
-						<td><input type="text" name="name" id="name" size="30" /></td>
-					</tr>
-					<tr>
-						<th>フリガナ<span class="require">※</span></th>
-						<td><input type="text" name="kana" id="kana" size="30" /></td>
-					</tr>
-					<tr>
-						<th>メールアドレス<span class="require">※</span></th>
-						<td><span id="mailGroup"><input type="text" name="mail1"
-								id="mail1" value="" size="15" /> @ <input type="text"
-								name="mail2" id="mail2" value="" size="30" /></span></td>
-					</tr>
-					<tr>
-						<th>メールアドレス（確認）<span class="require">※</span></th>
-						<td><span id="mailConfirmGroup"><input type="text"
-								name="mailConfirm1" id="mailConfirm1" value="" size="15" /> @ <input
-								type="text" name="mailConfirm2" id="mailConfirm2" value=""
-								size="30" /></span></td>
-					</tr>
-					<tr>
-						<th>職業<span class="require">※</span></th>
-						<td><select name="job" id="job">
-								<option value="" selected="selected">選択してください</option>
-								<option value="会社員">会社員</option>
-								<option value="役員">役員</option>
-								<option value="経営者">経営者</option>
-								<option value="個人事業主">個人事業主</option>
-								<option value="学生">学生</option>
-								<option value="専業主婦">専業主婦</option>
-								<option value="パート・アルバイト">パート・アルバイト</option>
-						</select></td>
-					</tr>
-					<tr>
-						<th>どこで知りましたか？<span class="require">※</span></th>
-						<td><span id="mediaGroup"> <label for="media1"><input
-									type="checkbox" name="media" id="media1" value="検索" />検索</label>
-								<label for="media2"><input type="checkbox" name="media"
-									id="media2" value="ブログ" />ブログ</label> <label for="media3"><input
-									type="checkbox" name="media" id="media3" value="雑誌" />雑誌</label>
-								<label for="media4"><input type="checkbox" name="media"
-									id="media4" value="その他" />その他</label>
-						</span></td>
-					</tr>
-					<tr>
-						<th>上記が「その他」の場合</th>
-						<td><input type="text" name="otherValue" id="otherValue" size="50" /></td>
-					</tr>
-				</tbody>
-			</table>
-			<div class="btn">
-				<input type="image" src="/images/submit.gif" name="" alt="この内容で登録する" />
+<div class="admin form">
+	<?php
+	echo $this->Form->create ( 'Good', Array (
+			'url' => '/goods/step2/102' 
+	) );
+	echo $this->Form->input ( 'images.dirpath', array (
+			'value' => $token,
+			'type' => 'hidden' 
+	) );
+	echo $this->Form->input ( 'Good.overview', array (
+			'label' => __ ( 'Overview', true ),
+			'placeholder' => __ ( 'Overview', true ),
+			'error' => array (
+					'notEmpty' => __ ( 'Required', true ),
+					'maxLength' => __ ( 'Max length is 100', true ) 
+			),
+			'required' => false 
+	) );
+	echo $this->Form->input ( 'Good.detail', array (
+			'label' => __ ( 'Detail', true ),
+			'placeholder' => __ ( 'Enter detail', true ),
+			'error' => array (
+					'notEmpty' => __ ( 'Enter the detail', true ),
+					'minLength' => __ ( 'min length 10', true ) 
+			),
+			'rows' => 10,
+			'required' => false 
+	) );
+	echo $this->Form->input ( 'Good.price', array (
+			'label' => __ ( 'Price', true ),
+			'placeholder' => __ ( 'Price', true ),
+			'error' => array (
+					'number' => __ ( 'Price must be bigger than 1000', true ) 
+			),
+			'step' => 100,
+			'required' => false 
+	) );
+	echo $this->Form->input ( 'Good.cond', array (
+			'label' => array (
+					'text' => __ ( 'Condition', true ) 
+			),
+			'empty' => __ ( '--Choose condition--' ),
+			'options' => array (
+					CONDITION_1 => __ ( 'very old', true ),
+					CONDITION_2 => __ ( 'old', true ),
+					CONDITION_3 => __ ( 'middle', true ),
+					CONDITION_4 => __ ( 'almost new', true ),
+					CONDITION_5 => __ ( 'new', true ) 
+			),
+			'error' => array (
+					'inList' => __ ( 'Choose the condition', true ) 
+			),
+			'class' => 'dropdown',
+			'required' => false 
+	) );
+	echo $this->Form->input ( 'Good.quantity', array (
+			'label' => __ ( 'Quantity', true ),
+			'placeholder' => __ ( 'Quantity', true ),
+			'error' => array (
+					'number' => __ ( 'Enter the quantity', true ) 
+			),
+			'default' => 1,
+			'required' => false 
+	) );
+	echo $this->Form->input ( 'ClothesBoot.sex', array (
+			'legend' => false,
+			'label' => array (
+					'text' => __ ( 'Sex', true ) 
+			),
+			'type' => 'select',
+			'multiple'=> 'checkbox',
+			'options' => array (
+					0 => __ ( 'male', true ),
+					1 => __ ( 'female', true ),
+			),
+			'error' => array (
+					'inList' => __ ( 'Choose sex', true ) 
+			),
+			'required' => false 
+	) );
+	echo $this->Form->input ( 'ClothesBoot.type', array (
+			'label' => array (
+					'text' => __ ( 'Type', true ) 
+			),
+			'empty' => __ ( '--Choose type--', true ),
+			'options' => array (
+					BOOT_TYPE_puuz => __ ( 'puuz', true ),
+					BOOT_TYPE_uvliin => __ ( 'uvliin gutal', true ),
+					BOOT_TYPE_sandal => __ ( 'sandal', true ),
+					BOOT_TYPE_botink => __ ( 'botink', true ),
+					BOOT_TYPE_tufli => __ ( 'tufli', true ),
+					BOOT_TYPE_turiitei => __ ( 'turiitei gutal', true ),
+					BOOT_TYPE_usgiigui => __ ( 'usgiigui gutal', true ),
+					BOOT_TYPE_busad => __ ( 'busad', true ),
+			),
+			'error' => array (
+					'inList' => __ ( 'Choose the type', true ) 
+			),
+			'class' => 'dropdown',
+			'required' => false
+	) );
+	echo $this->Form->end ( __ ( 'Confirm', true ) );
+	?>
+	<div class="">
+		<form id="fileupload" action="/" method="POST"
+			enctype="multipart/form-data">
+			<input type="hidden" name="dirpath" value="<?php echo $token; ?>" />
+			<!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+			<div class="row fileupload-buttonbar">
+				<div class="col-lg-7">
+					<!-- The fileinput-button span is used to style the file input field as button -->
+					<span class="btn btn-success fileinput-button"> <i
+						class="glyphicon glyphicon-plus"></i> <span>Add files...</span> <input
+						type="file" name="files[]" multiple>
+					</span>
+					<button type="submit" class="btn btn-primary start">
+						<i class="glyphicon glyphicon-upload"></i> <span>Start upload</span>
+					</button>
+					<button type="reset" class="btn btn-warning cancel">
+						<i class="glyphicon glyphicon-ban-circle"></i> <span>Cancel upload</span>
+					</button>
+					<span class="fileupload-process"></span>
+				</div>
+				<!-- The global progress state -->
+				<div class="col-lg-5 fileupload-progress fade">
+					<!-- The global progress bar -->
+					<div class="progress progress-striped active" role="progressbar"
+						aria-valuemin="0" aria-valuemax="100">
+						<div class="progress-bar progress-bar-success" style="width: 0%;"></div>
+					</div>
+				</div>
 			</div>
+			<!-- The table listing the files available for upload/download -->
+			<table role="presentation" class="table table-striped">
+				<tbody class="files"></tbody>
+			</table>
 		</form>
 	</div>
-
-</body>
-</html>
+	<!-- The blueimp Gallery widget -->
+	<div id="blueimp-gallery"
+		class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
+		<div class="slides"></div>
+		<h3 class="title"></h3>
+		<a class="prev">‹</a> <a class="next">›</a> <a class="close">×</a> <a
+			class="play-pause"></a>
+		<ol class="indicator"></ol>
+	</div>
+	<!-- The template to display files available for upload -->
+	<script id="template-upload" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-upload fade">
+        <td>
+            <span class="preview"></span>
+        </td>
+        <td>
+            <p class="name">{%=file.name%}</p>
+            <strong class="error text-danger"></strong>
+        </td>
+        <td>
+            <p class="size">Processing...</p>
+            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:30%"></div></div>
+        </td>
+        <td>
+            {% if (!i && !o.options.autoUpload) { %}
+                <button class="btn btn-primary start" disabled>
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>Start</span>
+                </button>
+            {% } %}
+            {% if (!i) { %}
+                <button class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancel</span>
+                </button>
+            {% } %}
+        </td>
+    </tr>
+{% } %}
+	</script>
+	<!-- The template to display files available for download -->
+	<script id="template-download" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-download fade">
+        <td>
+            <span class="preview">
+                {% if (file.thumbnailUrl) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
+                {% } %}
+            </span>
+        </td>
+        <td>
+            <p class="name">
+                {% if (file.url) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
+                {% } else { %}
+                    <span>{%=file.name%}</span>
+                {% } %}
+            </p>
+            {% if (file.error) { %}
+                <div><span class="label label-danger">Error</span> {%=file.error%}</div>
+            {% } %}
+        </td>
+        <td>
+            <span class="size">{%=o.formatFileSize(file.size)%}</span>
+        </td>
+        <td>
+            {% if (file.deleteUrl) { %}
+                <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+                    <i class="glyphicon glyphicon-trash"></i>
+                    <span>Delete</span>
+                </button>
+            {% } else { %}
+                <button class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancel</span>
+                </button>
+            {% } %}
+        </td>
+    </tr>
+{% } %}
+	</script>
+	<script src="/js/jquery.ui.widget.js"></script>
+	<script src="/js/uploader/tmpl.min.js"></script>
+	<script src="/js/uploader/load-image.min.js"></script>
+	<script src="/js/uploader/canvas-to-blob.min.js"></script>
+	<script src="/js/uploader/jquery.blueimp-gallery.min.js"></script>
+	<script src="/js/uploader/jquery.iframe-transport.js"></script>
+	<script src="/js/uploader/jquery.fileupload.js"></script>
+	<script src="/js/uploader/jquery.fileupload-process.js"></script>
+	<script src="/js/uploader/jquery.fileupload-image.js"></script>
+	<script src="/js/uploader/jquery.fileupload-validate.js"></script>
+	<script src="/js/uploader/jquery.fileupload-ui.js"></script>
+	<script src="/js/uploader/main.js"></script>
+</div>

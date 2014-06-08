@@ -17,14 +17,6 @@ class ClothesClothes extends AppModel {
 	
 	public $userTable  = 'clothes_clothes';
 	public $primaryKey = 'id';
-	public static $types = array(
-			CLOTHES_TYPE_hoslol,
-			CLOTHES_TYPE_umd,
-			CLOTHES_TYPE_tsamts,
-			CLOTHES_TYPE_gaduur,
-			CLOTHES_TYPE_daashinz,
-			CLOTHES_TYPE_busad
-	);
 	
 	public $validate = array(
 		'sex' => array(
@@ -43,7 +35,8 @@ class ClothesClothes extends AppModel {
 						CLOTHES_TYPE_tsamts,
 						CLOTHES_TYPE_gaduur,
 						CLOTHES_TYPE_daashinz,
-						CLOTHES_TYPE_busad)),
+						CLOTHES_TYPE_busad
+				)),
 			)
 		),
 	);

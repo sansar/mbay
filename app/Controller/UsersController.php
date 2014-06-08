@@ -106,4 +106,10 @@ class UsersController extends AppController {
 			}
 		}
 	}
+	
+	public function settings() {
+		if ( ! $this->Auth->loggedIn()) {
+			$this->redirect('/');
+		}
+	}
 }

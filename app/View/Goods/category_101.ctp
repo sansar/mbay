@@ -18,10 +18,6 @@
 			'value' => $token,
 			'type' => 'hidden' 
 	) );
-	echo $this->Form->input ( 'Good.category', array (
-			'value' => '101',
-			'type' => 'hidden' 
-	) );
 	echo $this->Form->input ( 'Good.overview', array (
 			'label' => __ ( 'Overview', true ),
 			'placeholder' => __ ( 'Overview', true ),

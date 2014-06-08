@@ -64,10 +64,10 @@
 				<?php echo $data['Good']['price'];?> Төгрөг
 			</div>
 			<div> <br />Хүйс：<br />
-				<?php echo $data['ClothesClothes']['sex'];?>
+				<?php echo $data['ClothesBoot']['sex'];?>
 			</div>
 			<div> <br />Төрөл：<br />
-				<?php echo $data['ClothesClothes']['type'];?>
+				<?php echo $data['ClothesBoot']['type'];?>
 			</div>
 		</div>
 	</div>

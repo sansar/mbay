@@ -43,49 +43,8 @@
 				<?php echo $this->element('menu-aim'); ?>
 			</div>
 		</div>
-		
-		<div class="page-wrap">
-	
-			<nav class="main-nav" id="main-nav">
-				<a href="./CSS-Tricks.html" class="clothes" style="width:200px">
-					<svg viewBox="0 0 100 25" class="shape-tab">
-						<use xlink:href="#shape-tab"></use>
-					</svg>
-					<span>Бүгд</span>
-				</a>
-				<a href="./CSS-Tricks-2.html" class="furnitures">
-					<svg viewBox="0 0 100 25" class="shape-tab">
-	      				<use xlink:href="#shape-tab"></use>
-	    			</svg>
-					<span>Хувцас</span>
-				</a>
-				<a href="./CSS-Tricks-3.html" class="electronics">
-					<svg viewBox="0 0 100 25" class="shape-tab">
-						<use xlink:href="#shape-tab"></use>
-	    			</svg>
-					<span>Гутал</span>
-				</a>
-				<a href="./CSS-Tricks-4.html" class="collections">
-					<svg viewBox="0 0 100 25" class="shape-tab">
-	      				<use xlink:href="#shape-tab"></use>
-	    			</svg>
-					<span>Аксессуар</span>
-				</a>
-				<a href="./CSS-Tricks-5.html" class="mongolians">
-					<svg viewBox="0 0 100 25" class="shape-tab">
-	      				<use xlink:href="#shape-tab"></use>
-	    			</svg>
-					<span>Хүүхдийн хувцас</span>
-				</a>
-				<a href="./CSS-Tricks-6.html" class="other">
-					<svg viewBox="0 0 100 25" class="shape-tab-right">
-	      				<use xlink:href="#shape-tab-right"></use>
-	    			</svg>
-					<span>Бусад</span>
-				</a>
-			</nav>
-		</div>
 
+		<?php echo $this->element('category_menu_clothes'); ?>
 		<div id="main">
 
 			<div class="module clearfix">

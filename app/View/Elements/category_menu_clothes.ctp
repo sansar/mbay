@@ -8,42 +8,42 @@
   <link rel="stylesheet" href="http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-11/style.css?v1.2">
   <![endif]-->
 <div class="page-wrap">
-
 	<nav class="main-nav" id="main-nav">
-		<a href="/goods/category/10" class="clothes" style="width: 200px">
+		<a href="/goods/category/10" class="clothes" style="width:200px">
 			<svg viewBox="0 0 100 25" class="shape-tab">
 				<use xlink:href="#shape-tab"></use>
-			</svg> <span>Хувцас</span>
+			</svg>
+			<span>Бүгд</span>
 		</a>
-		<a href="/goods/category/20" class="furnitures">
+		<a href="/goods/category/101" class="furnitures">
 			<svg viewBox="0 0 100 25" class="shape-tab">
-				<use xlink:href="#shape-tab"></use>
-			</svg> <span>Тавилга</span>
-		</a> 
-		<a href="/goods/category/30" class="electronics">
-			<svg viewBox="0 0 100 25" class="shape-tab">
-				<use xlink:href="#shape-tab"></use>
-			</svg> <span>Цахилгаан бараа</span>
+  				<use xlink:href="#shape-tab"></use>
+			</svg>
+			<span>Хувцас</span>
 		</a>
-		<a href="/goods/category/40" class="collections">
+		<a href="/goods/category/102" class="electronics">
 			<svg viewBox="0 0 100 25" class="shape-tab">
 				<use xlink:href="#shape-tab"></use>
-			</svg> <span>Цуглуулга</span>
+			</svg>
+			<span>Гутал</span>
 		</a>
-		<a href="/goods/category/50" class="mongolians">
+		<a href="/goods/category/103" class="collections">
 			<svg viewBox="0 0 100 25" class="shape-tab">
-				<use xlink:href="#shape-tab"></use>
-			</svg> <span>Монголд үйлдвэрлэв</span>
+  				<use xlink:href="#shape-tab"></use>
+			</svg>
+			<span>Аксессуар</span>
 		</a>
-		<a href="/goods/category/60" class="gifts">
+		<a href="/goods/category/104" class="mongolians">
 			<svg viewBox="0 0 100 25" class="shape-tab">
-				<use xlink:href="#shape-tab"></use>
-			</svg> <span>бэлэг дурсгал</span>
+  				<use xlink:href="#shape-tab"></use>
+			</svg>
+			<span>Хүүхдийн хувцас</span>
 		</a>
-		<a href="/goods/category/70" class="other">
+		<a href="/goods/category/105" class="other">
 			<svg viewBox="0 0 100 25" class="shape-tab-right">
-				<use xlink:href="#shape-tab-right"></use>
-			</svg> <span>бусад</span>
+  				<use xlink:href="#shape-tab-right"></use>
+			</svg>
+			<span>Бусад</span>
 		</a>
 	</nav>
 </div>

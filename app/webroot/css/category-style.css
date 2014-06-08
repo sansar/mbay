@@ -14,7 +14,6 @@
 		width: 100%;
 		max-width: 1350px;
 		overflow-x: hidden;
-		margin: 0 auto 40px;
 		position: relative;
 		padding-top: 15px
 	}
@@ -23,7 +22,9 @@
 @media screen {
 	.main-nav {
 		font-size: 0;
-		position: relative
+		position: relative;
+		width: 1080px;
+		margin: 0 auto;
 	}
 	.main-nav a {
 		display: inline-block;
@@ -169,7 +170,7 @@
 		content: "";
 		display: block;
 		height: 10px;
-		background: #003d4c
+		background: #aabbcc
 	}
 	.clothes .main-nav:after,.single .main-nav:after {
 		background: #e18728
@@ -194,5 +195,11 @@
 	}
 	.other .main-nav:after {
 		background: #eee
+	}
+	.clothes #main {
+		background-color: #e18728
+	}
+	.furniture #main {
+		background-color: #be4c39
 	}
 }

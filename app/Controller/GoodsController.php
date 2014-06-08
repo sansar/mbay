@@ -1,6 +1,6 @@
 <?php
 
-define('PER_ITEM_COUNT', 6);
+define('PER_ITEM_COUNT', 10);
 App::uses ( 'Controller', 'Controller' );
 class GoodsController extends AppController {
 	
@@ -9,6 +9,7 @@ class GoodsController extends AppController {
 			'Good',
 			'Clothes',
 			'ClothesClothes',
+			'ClothesBoot',
 	);
 	
 	var $helpers = array( 'Image' );
@@ -93,7 +94,7 @@ class GoodsController extends AppController {
 	}
 	
 	public function category($category = null) {
-		$template = "search_$category";
+		$template = "search_" . $category;
 		if ( ! $this->_isExistingView($template) ) {
 			$query_string = isset($_SERVER['REDIRECT_QUERY_STRING']) ? $_SERVER['REDIRECT_QUERY_STRING'] : '';
 			$this->redirect("/goods/search?$query_string");
@@ -160,22 +161,21 @@ class GoodsController extends AppController {
 	}
 	
 	public function step2($category = null) {
-// 		$this->layout = false;
-		
 		$view = "category_" . $category;
 		if ( ! $this->_isExistingView( $view )) {
 			$this->redirect ( "/goods/step1" );
 		}
 
 		if ($this->request->is ( 'post' )) {
+			$this->request->data['Good']['category'] = $category;
 			$this->Good->set ( $this->request->data ['Good'] );
 			$category_validator = '_validate_' . $category;
 			$validate_good = $this->Good->validates ();
 			$validate_category = $this->_validate_option ($category);
 			$good_token = $this->request->data['images']['dirpath'];
 			if ($validate_good && $validate_category && $good_token) {
+				$this->layout = false;
 				$this->Session->write ( 'good_info', $this->request->data );
-				
 				$this->set ( 'data', $this->request->data );
 				$this->set ( 'token', $good_token);
 				$this->render ( 'confirm_' . $category );
@@ -195,7 +195,7 @@ class GoodsController extends AppController {
 		$this->render ( $view );
 	}
 	
-	public function complete($category = null) {
+	public function complete() {
 		if ( ! isset($this->request->data['Good']['token']) ) {
 			$this->redirect ( "/goods/step1" );
 		}
@@ -208,19 +208,18 @@ class GoodsController extends AppController {
 		
 		$this->Good->create();
 		$this->Good->save($good_data['Good'], false);
-		$saver = '_save_' . $good_data['Good']['category'];
-		$this->$saver($this->Good->getID(), $good_data);
+		$this->_save_option($good_data['Good']['category'], $this->Good->getID(), $good_data);
 		debug ( $good_data );
 		exit ();
 	}
 	
 	private function _validate_option ($category) {
-		debug($this->request->data ['ClothesClothes']);
 		switch ($category) {
 			case CATEGORY_CLOTHES_CLOTHES:
 				$option = $this->request->data ['ClothesClothes'];
+				$this->ClothesClothes->set ( $option );
 				if ( ! isset($option['sex']) || ! $option['sex'] ) {
-					$option['sex'] = '2';
+					$option['sex'] = CLOTHES_SEX_BOTH;
 				} else {
 					$option['sex'] = $option['sex'][0];
 				}
@@ -228,16 +227,32 @@ class GoodsController extends AppController {
 				$this->request->data ['ClothesClothes'] = $option;
 				return $this->ClothesClothes->validates ();
 			case CATEGORY_CLOTHES_BOOT:
-				$this->ClothesBoot->set ($this->request->data ['ClothesBoot']);
-				return $this->ClothesBoot->validates();
+				$option = $this->request->data ['ClothesBoot'];
+				$this->ClothesBoot->set ( $option );
+				if ( ! isset($option['sex']) || ! $option['sex'] ) {
+					$option['sex'] = BOOT_SEX_BOTH;
+				} else {
+					$option['sex'] = $option['sex'][0];
+				}
+				$this->ClothesBoot->set ( $option );
+				$this->request->data ['ClothesBoot'] = $option;
+				return $this->ClothesBoot->validates ();
 			default:
 				return false;
 		}
 	}
 	
-	private function _save_101($id, $data) {
-		$data ['ClothesClothes'] ['id'] = $id;
-		$this->ClothesClothes->save ( $data ['ClothesClothes'], false );
+	private function _save_option($category, $id, $data) {
+		switch ($category) {
+		case CATEGORY_CLOTHES_CLOTHES:
+			$data ['ClothesClothes'] ['id'] = $id;
+			$this->ClothesClothes->save ( $data ['ClothesClothes'], false );
+			break;
+		case CATEGORY_CLOTHES_BOOT:
+			$data ['ClothesBoot'] ['id'] = $id;
+			$this->ClothesBoot->save ( $data ['ClothesBoot'], false );
+			break;
+		}
 	}
 	
 	private function _get_option($category) {

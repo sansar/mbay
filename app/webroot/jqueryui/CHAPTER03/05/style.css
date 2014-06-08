@@ -42,14 +42,14 @@ body{
     color: #fff;	
 }
 #container{
-	width:1080px;
 	margin:0 auto;
 	padding: 0 0 20px;
 }
 #main{
 	clear: both;
-	width: 1120px;
-	float: right;
+	background-color: #eff;
+	padding: 20px;
+	margin-top: -10px;
 }
 #sidebar{
 	float: left;
