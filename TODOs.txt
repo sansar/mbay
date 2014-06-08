@@ -4,8 +4,8 @@
 - detail page update - 60% (бараа тэмдэглэх товч нэмэх)
 - Тэмдэглэсэн бараа page хийх - 40%
 - Хувийн тохиргоо page хийх - 0%
-- Бараа оруулах хуудас update - 0% (бүх категорийн хуудас хийх)
+- Бараа оруулах хуудас update - 10% (бүх категорийн хуудас хийх)
 - admin created goods list page - 0%
 - admin good update page - 0%
 - user good update page - 0%
-- бүх категорийн list page with filter - 0%
+- бүх категорийн list page with filter - 10%
