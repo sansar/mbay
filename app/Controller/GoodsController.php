@@ -116,6 +116,7 @@ class GoodsController extends AppController {
 			exit;
 		}
 		
+		$this->set('category', $category);
 		$this->set('items', $items);
 		$this->set('next_link', $next_link);
 		if (isset($options['keywords'])) {

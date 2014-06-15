@@ -25,9 +25,6 @@
 	});
 </script>
 
-<!--[if !IE]><!-->
-<link rel="stylesheet" href="/css/category-style.css">
-<!--<![endif]-->
 <!--[if lt IE 9]>
   <link rel="stylesheet" href="http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-11/css/oldie.css">
   <![endif]-->
@@ -44,7 +41,7 @@
 			</div>
 		</div>
 
-		<?php echo $this->element('category_menu_clothes'); ?>
+		<?php echo $this->element('category_menu_clothes', array('category' => $category)); ?>
 		<div id="main">
 
 			<div class="module clearfix">
