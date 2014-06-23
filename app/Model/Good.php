@@ -19,7 +19,7 @@ class Good extends AppModel {
 	public static $category_table = array(
 			CATEGORY_CLOTHES_CLOTHES   => 'clothes_clothes',
 			CATEGORY_CLOTHES_BOOT      => 'clothes_boots',
-			CATEGORY_CLOTHES_ACCESSORY => 'clothes_accesorries',
+			CATEGORY_CLOTHES_ACCESSORY => 'clothes_accessories',
 			CATEGORY_CLOTHES_KID       => 'clothes_kids',
 			CATEGORY_CLOTHES_OTHER     => 'clothes_others',
 			CATEGORY_MONGOLIAN_ART     => 'clothes_arts',
@@ -82,16 +82,15 @@ class Good extends AppModel {
 	 * @param unknown $count
 	 * @param unknown $options
 	 */
-	public function getList($category, $start = 0, $count = 20, $options = array()) {
+	public function getList($category, $start = 0, $count = 20, $options = array(), $sort = SORT_DATE_DOWN) {
 		$where = array("status = ?");
 		$parameters = array(STATUS_CONFIRMED);
 		$sql = "SELECT
 					goods.id,
 					overview,
 					price,
+					real_price,
 					pickup_flag,
-					sale,
-					sale_price,
 					secret_number
 				FROM
 					goods ";
@@ -122,7 +121,27 @@ class Good extends AppModel {
 		if (count($where) > 0) {
 			$sql .= "WHERE " . implode(" AND ", $where);
 		}
-		$sql .= " ORDER BY created DESC LIMIT {$start}, {$count}";
+		switch ($sort) {
+			case SORT_PRICE_DOWN:
+				$sql .= " ORDER BY price DESC";
+				break;
+			case SORT_PRICE_UP:
+				$sql .= " ORDER BY price ASC";
+				break;
+			case SORT_VIEW_DOWN:
+				$sql .= " ORDER BY view_count DESC";
+				break;
+			case SORT_VIEW_UP:
+				$sql .= " ORDER BY view_count ASC";
+				break;
+			case SORT_DATE_UP:
+				$sql .= " ORDER BY created ASC";
+				break;
+			default:
+				$sql .= " ORDER BY created DESC";
+				break;
+		}
+		$sql .= " LIMIT {$start}, {$count}";
 		return $this->getDataSource()->fetchAll($sql, $parameters);
 	}
 	
@@ -131,9 +150,8 @@ class Good extends AppModel {
 					id,
 					overview,
 					price,
+					real_price,
 					pickup_flag,
-					sale,
-					sale_price,
 					secret_number,
 					status,
 					view_count,
@@ -193,9 +211,8 @@ class Good extends AppModel {
 					goods.id,
 					overview,
 					price,
+					real_price,
 					pickup_flag,
-					sale,
-					sale_price,
 					secret_number
 				FROM
 					goods

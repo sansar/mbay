@@ -12,7 +12,6 @@ class TopController extends AppController {
 	public $helpers = array('Image');
 
 	public function index() {
-		
 		$clothes = $this->Good->getList(CATEGORY_CLOTHES, 0, 5);
 		$this->set('clothes', $clothes);
 		$this->layout = false;

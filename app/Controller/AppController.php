@@ -64,6 +64,13 @@ define("CATEGORY_OTHER_MACHINE",          '701');
 define("CATEGORY_OTHER_PRODUCTION",       '702');
 define("CATEGORY_OTHER_OTHER",            '703');
 
+define('SORT_DATE_UP'   , 0);
+define('SORT_DATE_DOWN' , 1);
+define('SORT_PRICE_UP'  , 2);
+define('SORT_PRICE_DOWN', 3);
+define('SORT_VIEW_UP'   , 4);
+define('SORT_VIEW_DOWN' , 5);
+
 /**
  * Application Controller
  *

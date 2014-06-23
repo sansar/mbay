@@ -25,29 +25,28 @@ modified DATETIME DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS goods;
-CREATE TABLE goods(
-id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-owner INT UNSIGNED NOT NULL,
-category VARCHAR(5) NOT NULL,
-overview VARCHAR(1000) NOT NULL,
-detail TEXT NOT NULL,
-cond TINYINT UNSIGNED NOT NULL,
-price INT UNSIGNED NOT NULL,
-quantity INT UNSIGNED NOT NULL,
-end_date DATE DEFAULT NULL,
-pickup_flag TINYINT UNSIGNED DEFAULT 0,
-sale TINYINT DEFAULT 0,
-sale_price INT UNSIGNED DEFAULT NULL,
-status TINYINT UNSIGNED NOT NULL DEFAULT 0,
-secret_number VARCHAR(40) NOT NULL,
-view_count INT UNSIGNED DEFAULT 0,
-created DATETIME NOT NULL,
-modified DATETIME DEFAULT NULL,
-KEY `category` (category),
-KEY `status` (status),
-KEY `owner` (`owner`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+Create Table: CREATE TABLE `goods` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `owner` int(10) unsigned NOT NULL,
+  `category` varchar(5) NOT NULL,
+  `overview` varchar(1000) NOT NULL,
+  `detail` text NOT NULL,
+  `cond` tinyint(3) unsigned NOT NULL,
+  `price` int(10) unsigned NOT NULL,
+  `real_price` int(10) unsigned DEFAULT NULL,
+  `quantity` int(10) unsigned NOT NULL,
+  `end_date` date DEFAULT NULL,
+  `pickup_flag` tinyint(3) unsigned DEFAULT '0',
+  `status` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `secret_number` varchar(40) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime DEFAULT NULL,
+  `view_count` int(10) unsigned DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `category` (`category`),
+  KEY `status` (`status`),
+  KEY `owner` (`owner`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 DROP TABLE IF EXISTS clothes_clothes;
 CREATE TABLE clothes_clothes(
 id INT UNSIGNED PRIMARY KEY NOT NULL,
@@ -62,8 +61,8 @@ sex TINYINT UNSIGNED NOT NULL DEFAULT 2,
 type TINYINT UNSIGNED NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS clothes_accesorries;
-CREATE TABLE clothes_accesorries(
+DROP TABLE IF EXISTS clothes_accessories;
+CREATE TABLE clothes_accessories(
 id INT UNSIGNED PRIMARY KEY NOT NULL,
 sex TINYINT UNSIGNED NOT NULL DEFAULT 2,
 type TINYINT UNSIGNED NOT NULL

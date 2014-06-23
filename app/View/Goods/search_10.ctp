@@ -44,12 +44,41 @@
 		<?php echo $this->element('category_menu_clothes', array('category' => $category)); ?>
 		<div id="main">
 
+			<div style="margin: 10px 0 30px 100px">
+				Эрэмбэлэх:
+				<?php if ( ! isset($_GET['sort']) || $_GET['sort'] == SORT_DATE_DOWN): ?>
+					<a href="<?php echo $this->URLQuery->change_parameter('sort', SORT_DATE_UP);?>" class="sort_btn_active sort_down">огноо</a>
+					<a href="<?php echo $this->URLQuery->change_parameter('sort', SORT_PRICE_DOWN);?>" class="sort_btn sort_down">үнэ</a>
+					<a href="<?php echo $this->URLQuery->change_parameter('sort', SORT_VIEW_DOWN);?>" class="sort_btn sort_down">үзсэн тоо</a>
+				<?php elseif ($_GET['sort'] == SORT_DATE_UP): ?>
+					<a href="<?php echo $this->URLQuery->change_parameter('sort', SORT_DATE_DOWN);?>" class="sort_btn_active sort_up">огноо</a>
+					<a href="<?php echo $this->URLQuery->change_parameter('sort', SORT_PRICE_DOWN);?>" class="sort_btn sort_down">үнэ</a>
+					<a href="<?php echo $this->URLQuery->change_parameter('sort', SORT_VIEW_DOWN);?>" class="sort_btn sort_down">үзсэн тоо</a>
+				<?php elseif ($_GET['sort'] == SORT_PRICE_DOWN): ?>
+					<a href="<?php echo $this->URLQuery->change_parameter('sort', SORT_DATE_DOWN);?>" class="sort_btn sort_down">огноо</a>
+					<a href="<?php echo $this->URLQuery->change_parameter('sort', SORT_PRICE_UP);?>" class="sort_btn_active sort_down">үнэ</a>
+					<a href="<?php echo $this->URLQuery->change_parameter('sort', SORT_VIEW_DOWN);?>" class="sort_btn sort_down">үзсэн тоо</a>
+				<?php elseif ($_GET['sort'] == SORT_PRICE_UP): ?>
+					<a href="<?php echo $this->URLQuery->change_parameter('sort', SORT_DATE_DOWN);?>" class="sort_btn sort_down">огноо</a>
+					<a href="<?php echo $this->URLQuery->change_parameter('sort', SORT_PRICE_DOWN);?>" class="sort_btn_active sort_up">үнэ</a>
+					<a href="<?php echo $this->URLQuery->change_parameter('sort', SORT_VIEW_DOWN);?>" class="sort_btn sort_down">үзсэн тоо</a>
+				<?php elseif ($_GET['sort'] == SORT_VIEW_DOWN): ?>
+					<a href="<?php echo $this->URLQuery->change_parameter('sort', SORT_DATE_DOWN);?>" class="sort_btn sort_down">огноо</a>
+					<a href="<?php echo $this->URLQuery->change_parameter('sort', SORT_PRICE_DOWN);?>" class="sort_btn sort_down">үнэ</a>
+					<a href="<?php echo $this->URLQuery->change_parameter('sort', SORT_VIEW_UP);?>" class="sort_btn_active sort_down">үзсэн тоо</a>
+				<?php elseif ($_GET['sort'] == SORT_VIEW_UP): ?>
+					<a href="<?php echo $this->URLQuery->change_parameter('sort', SORT_DATE_DOWN);?>" class="sort_btn sort_down">огноо</a>
+					<a href="<?php echo $this->URLQuery->change_parameter('sort', SORT_PRICE_DOWN);?>" class="sort_btn sort_down">үнэ</a>
+					<a href="<?php echo $this->URLQuery->change_parameter('sort', SORT_VIEW_DOWN);?>" class="sort_btn_active sort_up">үзсэн тоо</a>
+				<?php endif;?>
+			</div>
+		
 			<div class="module clearfix">
 				<div class="heading-box odd clearfix">
 					<h3>Хувцас</h3>
 				</div>
 				<div class="scroll" style="display:flex">
-				<?php echo $this->element('items', array('items' => $items, 'next_link' => $next_link)); ?>
+				<?php echo $this->element('items', array('items' => $items, 'item_start' => $item_start)); ?>
 				</div>
 			</div>
 		</div>

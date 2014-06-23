@@ -1,6 +1,7 @@
 <?php
 
-define('PER_ITEM_COUNT', 10);
+define('PER_ITEM_COUNT', 5);
+
 App::uses ( 'Controller', 'Controller' );
 class GoodsController extends AppController {
 	
@@ -10,9 +11,10 @@ class GoodsController extends AppController {
 			'Clothes',
 			'ClothesClothes',
 			'ClothesBoot',
+			'ClothesAccessory'
 	);
 	
-	var $helpers = array( 'Image' );
+	var $helpers = array( 'Image', 'URLQuery' );
 	
 	public function beforeFilter() {
 		parent::beforeFilter();
@@ -77,19 +79,19 @@ class GoodsController extends AppController {
 		}
 		
 		$start = isset($_GET['start']) ? intval($_GET['start']) : 0;
-		$items = $this->Good->getList(null, $start, PER_ITEM_COUNT, $options);
-		$next_link = null;
+		$sort = isset($_GET['sort']) ? $_GET['sort'] : SORT_DATE_DOWN;
+		$items = $this->Good->getList(null, $start, PER_ITEM_COUNT, $options, $sort);
+		$item_start = null;
 		if (count($items) == PER_ITEM_COUNT) {
-			$query_string = $this->_change_start($start + PER_ITEM_COUNT);
-			$next_link = "/goods/search?$query_string";
+			$item_start = $start;
 		}
 		if ($start > 0) {
 			$view = new View($this, false);
-			echo $view->element('items', array('items' => $items, 'next_link' => $next_link));
+			echo $view->element('items', array('items' => $items, 'item_start' => $item_start));
 			exit;
 		}
 		$this->set('items', $items);
-		$this->set('next_link', $next_link);
+		$this->set('item_start', $item_start);
 		$this->layout = false;
 	}
 	
@@ -105,20 +107,21 @@ class GoodsController extends AppController {
 			$options['keywords'] = explode(" ", $keywords);
 		}
 		$start = isset($_GET['start']) ? intval($_GET['start']) : 0;
-		$items = $this->Good->getList($category, $start, PER_ITEM_COUNT, $options);
-		$next_link = null;
+		$sort = isset($_GET['sort']) ? $_GET['sort'] : SORT_DATE_DOWN;
+		$items = $this->Good->getList($category, $start, PER_ITEM_COUNT, $options, $sort);
+		$item_start = null;
 		if (count($items) == PER_ITEM_COUNT) {
-			$next_link = "/goods/category/$category?" . $this->_change_start($start + PER_ITEM_COUNT);
+			$item_start = $start;
 		}
 		if ($start > 0) {
 			$view = new View($this, false);
-			echo $view->element('items', array('items' => $items, 'next_link' => $next_link));
+			echo $view->element('items', array('items' => $items, 'item_start' => $item_start));
 			exit;
 		}
 		
 		$this->set('category', $category);
 		$this->set('items', $items);
-		$this->set('next_link', $next_link);
+		$this->set('item_start', $item_start);
 		if (isset($options['keywords'])) {
 			$options['keywords'] = implode(' ', $options['keywords']);
 		}
@@ -238,6 +241,16 @@ class GoodsController extends AppController {
 				$this->ClothesBoot->set ( $option );
 				$this->request->data ['ClothesBoot'] = $option;
 				return $this->ClothesBoot->validates ();
+			case CATEGORY_CLOTHES_ACCESSORY:
+				$option = $this->request->data['ClothesAccessory'];
+				$this->ClothesAccessory->set( $option );
+				if ( ! isset($option['sex']) || ! $option['sex'] ) {
+					$option['sex'] = ACCESSORY_SEX_BOTH;
+				} else {
+					$option['sex'] = $option['sex'][0];
+				}
+				$this->ClothesAccessory->set($option);
+				return $this->ClothesAccessory->validates();
 			default:
 				return false;
 		}
@@ -264,9 +277,9 @@ class GoodsController extends AppController {
 			case CATEGORY_CLOTHES_CLOTHES:
 				return $this->ClothesClothes->get_option($_GET);
 			case CATEGORY_CLOTHES_BOOT:
-				return $option;
+				return $this->ClothesBoot->get_option($_GET);
 			case CATEGORY_CLOTHES_ACCESSORY:
-				return $option;
+				return $this->ClothesAccessory->get_option($_GET);
 			case CATEGORY_CLOTHES_KID:
 				return $option;
 			case CATEGORY_CLOTHES_OTHER:

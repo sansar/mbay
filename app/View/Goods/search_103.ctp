@@ -92,7 +92,7 @@
 					</form>
 				</div>
 				<div class="scroll" style="display:flex">
-				<?php echo $this->element('items', array('items' => $items, 'next_link' => $next_link)); ?>
+				<?php echo $this->element('items', array('items' => $items, 'item_start' => $item_start)); ?>
 				</div>
 			</div>
 		</div>

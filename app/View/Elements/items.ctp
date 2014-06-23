@@ -26,9 +26,9 @@
 <?php else: ?>
 	<span>Одоогоор бараа байхгүй байна.</span>
 <?php endif; ?>
-<?php if (isset($next_link)): ?>
+<?php if (isset($item_start)): ?>
 	<div class="next" style="display:none">
-		<a href="<?php echo $next_link; ?>">next page</a>
+		<a href="<?php echo $this->URLQuery->change_parameter('start', $item_start + PER_ITEM_COUNT); ?>">next page</a>
 	</div>
 <?php endif; ?>
 <script type="text/javascript">
