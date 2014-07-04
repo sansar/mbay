@@ -25,7 +25,7 @@ modified DATETIME DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS goods;
-Create Table: CREATE TABLE `goods` (
+CREATE TABLE `goods` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `owner` int(10) unsigned NOT NULL,
   `category` varchar(5) NOT NULL,
