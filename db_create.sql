@@ -1,3 +1,4 @@
+
 DROP TABLE IF EXISTS cake_sessions;
 CREATE TABLE cake_sessions (
 id varchar(255) PRIMARY KEY default '',
