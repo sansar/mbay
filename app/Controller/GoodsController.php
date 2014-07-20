@@ -168,7 +168,8 @@ class GoodsController extends AppController {
 			$this->redirect('/');
 		}
 		$good = $this->Good->getById($item_id);
-		if ($good['owner'] != $this->Auth->user()['id']) {
+		$user = $this->Auth->user();
+		if ($good['owner'] != $user['id']) {
 			$this->redirect('/');
 		}
 		
