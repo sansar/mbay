@@ -170,19 +170,12 @@ class Good extends AppModel {
 		return $result[0][0]['count'];
 	}
 	
-	public function getById($id, $user = null) {
+	public function getById($id) {
 		$good = $this->find('first', array(
 			'conditions' => array('id' => $id)
 		));
 		if (empty($good)) {
 			return null;
-		}
-		if ( ! $user || $user['id'] != $good['Good']['owner']) {
-			if ($good['Good']['status'] == STATUS_CREATED) {
-				return null;
-			}
-			$good['Good']['view_count']++;
-			$this->save($good, false);
 		}
 		$good = $good['Good'];
 		if ( ! isset(Good::$category_table[$good['category']])) {
@@ -201,6 +194,17 @@ class Good extends AppModel {
 			return $good;
 		}
 		return array_merge($good, $option[0][$option_table_name]);
+	}
+	
+	public function addViewCount($good, $user) {
+		$good = array('Good' => $good);
+		if ( ! $user || $user['id'] != $good['Good']['owner']) {
+			if ($good['Good']['status'] == STATUS_CREATED) {
+				return null;
+			}
+			$good['Good']['view_count']++;
+			$this->save($good, false);
+		}
 	}
 
 	public function getByIDs($item_ids = array(), $current_id = null, $limit = 5) {

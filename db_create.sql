@@ -47,7 +47,30 @@ CREATE TABLE `goods` (
   KEY `category` (`category`),
   KEY `status` (`status`),
   KEY `owner` (`owner`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS goodedits;
+CREATE TABLE `goodedits` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `good_id` int(10) unsigned NOT NULL,
+  `owner` int(10) unsigned NOT NULL,
+  `category` varchar(5) NOT NULL,
+  `overview` varchar(1000) NOT NULL,
+  `detail` text NOT NULL,
+  `cond` tinyint(3) unsigned NOT NULL,
+  `price` int(10) unsigned NOT NULL,
+  `real_price` int(10) unsigned DEFAULT NULL,
+  `quantity` int(10) unsigned NOT NULL,
+  `pickup_flag` tinyint(3) unsigned DEFAULT '0',
+  `secret_number` varchar(40) NOT NULL,
+  `options` text DEFAULT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `good_id` (`good_id`),
+  KEY `owner` (`owner`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS clothes_clothes;
 CREATE TABLE clothes_clothes(
 id INT UNSIGNED PRIMARY KEY NOT NULL,

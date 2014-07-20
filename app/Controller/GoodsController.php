@@ -8,6 +8,7 @@ class GoodsController extends AppController {
 	var $uses = array (
 			'Favorite',
 			'Good',
+			'Goodedit',
 			'Clothes',
 			'ClothesClothes',
 			'ClothesBoot',
@@ -134,10 +135,11 @@ class GoodsController extends AppController {
 		if ( ! $id ) {
 			$this->redirect('/');
 		}
-		$good = $this->Good->getById($id, $this->Auth->user());
+		$good = $this->Good->getById($id);
 		if ( ! $good ) {
 			$this->redirect('/');
 		}
+		$this->Good->addViewCount($good, $this->Auth->user());
 		$seen_item_ids = $this->Session->read('seen');
 		if ( null == $seen_item_ids ) {
 			$seen_item_ids = array();
@@ -161,11 +163,49 @@ class GoodsController extends AppController {
 		$this->render ( 'detail_' . $good['category'] );
 	}
 	
+	public function edit($item_id = null) {
+		if ($item_id == null) {
+			$this->redirect('/');
+		}
+		$good = $this->Good->getById($item_id);
+		if ($good['owner'] != $this->Auth->user()['id']) {
+			$this->redirect('/');
+		}
+		
+		if ($this->request->is('post')) {
+			$this->request->data['Good']['category'] = $good['category'];
+			$this->Good->set ( $this->request->data ['Good'] );
+			$validate_good = $this->Good->validates ();
+			$validate_category = $this->_validate_option ($good['category']);
+			$good_token = $this->request->data['images']['dirpath'];
+			if ($validate_good && $validate_category && $good_token) {
+				$this->layout = false;
+				$this->request->data['Good']['good_id'] = $good['id'];
+				$this->Session->write ( 'good_info', $this->request->data );
+				$this->set ( 'data', $this->request->data );
+				$this->set ( 'token', $good_token);
+				$this->render ( 'confirm_' . $good['category'] );
+			} else {
+				$this->set('good', $good);
+				$this->set('token', $good_token);
+				$this->render('edit_' . $good['category']);
+				$this->Session->setFlash ( __ ( 'Please, try again.' ) );
+			}
+			return;
+		}
+		$good_token = sha1(time() . rand(0, 10000));
+		$image_dir = getcwd () . '/server/php/files/';
+		$this->_recurse_copy($image_dir . $good['secret_number'], $image_dir . $good_token);
+		$this->set('good', $good);
+		$this->set('token', $good_token);
+		$this->render('edit_' . $good['category']);
+	}
+	
 	public function step1() {
 	}
 	
 	public function step2($category = null) {
-		$view = "category_" . $category;
+		$view = "create_" . $category;
 		if ( ! $this->_isExistingView( $view )) {
 			$this->redirect ( "/goods/step1" );
 		}
@@ -173,7 +213,6 @@ class GoodsController extends AppController {
 		if ($this->request->is ( 'post' )) {
 			$this->request->data['Good']['category'] = $category;
 			$this->Good->set ( $this->request->data ['Good'] );
-			$category_validator = '_validate_' . $category;
 			$validate_good = $this->Good->validates ();
 			$validate_category = $this->_validate_option ($category);
 			$good_token = $this->request->data['images']['dirpath'];
@@ -205,16 +244,33 @@ class GoodsController extends AppController {
 		}
 		$good_data = $this->Session->read ( 'good_info' );
 		$good_data['Good']['secret_number'] = $good_data['images']['dirpath'];
+		if ( ! isset($good_data['Good']['real_price']) ) {
+			$good_data['Good']['real_price'] = $good_data['Good']['price'];
+		}
 		$this->Session->delete ( 'good_info' );
 		
 		$user = $this->Auth->user();
 		$good_data['Good']['owner'] = $user['id'];
 		
-		$this->Good->create();
-		$this->Good->save($good_data['Good'], false);
-		$this->_save_option($good_data['Good']['category'], $this->Good->getID(), $good_data);
+		if (isset($good_data['Good']['good_id'])) {
+			$good = $this->Good->find('first', array('conditions' => array('id' => $good_data['Good']['good_id'])));
+			if ($good['Good']['status'] == STATUS_CREATED) {
+				$good_data['Good']['id'] = $good_data['Good']['good_id'];
+				$this->Good->save($good_data['Good'], false);
+				$this->_save_option($good_data['Good']['category'], $good_data['Good']['id'], $good_data);
+			} else {
+				$this->Goodedit->create();
+				$this->Goodedit->deleteAll(array('good_id' => $good_data['Good']['good_id']));
+				$good_data['Good']['options'] = json_encode($this->_detect_option($good_data['Good']['category'], $good_data));
+				$this->Goodedit->save($good_data['Good'], false);
+			}
+		} else {
+			$this->Good->create();
+			$this->Good->save($good_data['Good'], false);
+			$this->_save_option($good_data['Good']['category'], $this->Good->getID(), $good_data);
+		}
 		debug ( $good_data );
-		exit ();
+		exit;
 	}
 	
 	private function _validate_option ($category) {
@@ -222,7 +278,7 @@ class GoodsController extends AppController {
 			case CATEGORY_CLOTHES_CLOTHES:
 				$option = $this->request->data ['ClothesClothes'];
 				$this->ClothesClothes->set ( $option );
-				if ( ! isset($option['sex']) || ! $option['sex'] ) {
+				if ( ! isset($option['sex']) || ! $option['sex'] || count($option['sex'] > 1)) {
 					$option['sex'] = CLOTHES_SEX_BOTH;
 				} else {
 					$option['sex'] = $option['sex'][0];
@@ -233,7 +289,7 @@ class GoodsController extends AppController {
 			case CATEGORY_CLOTHES_BOOT:
 				$option = $this->request->data ['ClothesBoot'];
 				$this->ClothesBoot->set ( $option );
-				if ( ! isset($option['sex']) || ! $option['sex'] ) {
+				if ( ! isset($option['sex']) || ! $option['sex'] || count($option['sex'] > 1)) {
 					$option['sex'] = BOOT_SEX_BOTH;
 				} else {
 					$option['sex'] = $option['sex'][0];
@@ -244,7 +300,7 @@ class GoodsController extends AppController {
 			case CATEGORY_CLOTHES_ACCESSORY:
 				$option = $this->request->data['ClothesAccessory'];
 				$this->ClothesAccessory->set( $option );
-				if ( ! isset($option['sex']) || ! $option['sex'] ) {
+				if ( ! isset($option['sex']) || ! $option['sex'] || count($option['sex'] > 1)) {
 					$option['sex'] = ACCESSORY_SEX_BOTH;
 				} else {
 					$option['sex'] = $option['sex'][0];
@@ -266,6 +322,15 @@ class GoodsController extends AppController {
 			$data ['ClothesBoot'] ['id'] = $id;
 			$this->ClothesBoot->save ( $data ['ClothesBoot'], false );
 			break;
+		}
+	}
+	
+	private function _detect_option($category, $data) {
+		switch ($category) {
+		case CATEGORY_CLOTHES_CLOTHES:
+			return array('ClothesClothes' => $data['ClothesClothes']);
+		case CATEGORY_CLOTHES_BOOT:
+			return array('ClothesBoot' => $data['ClothesBoot']);
 		}
 	}
 	
@@ -300,5 +365,23 @@ class GoodsController extends AppController {
 			return $query_string . "&start=$start_value";
 		}
 		return preg_replace("/(.*)(start=[^&]*)(.*)/i", '${1}start=' . $start_value . '${3}', $query_string);
+	}
+	
+	private function _recurse_copy ($src, $dst) {
+		if ( ! is_dir($src) ) {
+			return;
+		}
+		$dir = opendir($src);
+		@mkdir($dst);
+		while(false !== ( $file = readdir($dir)) ) {
+			if (( $file != '.' ) && ( $file != '..' )) {
+				if ( is_dir($src . '/' . $file) ) {
+					$this->_recurse_copy($src . '/' . $file,$dst . '/' . $file);
+				} else {
+					copy($src . '/' . $file,$dst . '/' . $file);
+				}
+			}
+		}
+		closedir($dir);
 	}
 }

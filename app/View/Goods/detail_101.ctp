@@ -78,6 +78,9 @@
 	
 	<div id="footer">
 		<input type="submit" value="Back" onClick="history.back(); return false;" />
+		<?php if ($user['id'] == $data['owner']): ?>
+			<input type="submit" value="Edit" onClick="location.href = 'http://<?php echo $_SERVER['HTTP_HOST'] . "/goods/edit/{$data['id']}"; ?>'; return false;" />
+		<?php endif;?>
 	</div>
 	<br/><br/>
 	<div class="module">

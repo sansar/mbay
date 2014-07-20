@@ -7,5 +7,5 @@
 - Бараа оруулах хуудас update - 10% (бүх категорийн хуудас хийх)
 - admin created goods list page - 0%
 - admin good update page - 0%
-- user good update page - 0%
+- user good update page - 80%
 - бүх категорийн list page with filter - 10%
