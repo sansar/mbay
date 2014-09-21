@@ -30,7 +30,7 @@ class UsersController extends AppController {
 			$user = $this->User->register_by_facebook ( $this->data ['auth'] );
 		}
 		$this->Auth->setUser2Session($user['User']);
-		return $this->redirect ('/users/loggedIn');
+		return $this->redirect ('/');
 	}
 
 	public function register() {
@@ -75,6 +75,8 @@ class UsersController extends AppController {
 	public function login() {
 		if ($this->request->is ( 'post' )) {
 			if ($this->Auth->login ()) {
+				echo 'Correct';
+				exit;
 				return $this->redirect ('/users/loggedIn');
 			} else {
 				$this->Session->setFlash ( __ ( 'Username or password is incorrect' ), 'default', array (), 'auth' );
