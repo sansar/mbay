@@ -21,9 +21,9 @@ class Favorite extends AppModel {
 					goods.pickup_flag,
 					goods.sale,
 					goods.sale_price,
-					goods.secret_number,
+					goods.token,
 					goods.status,
-					goods.view_count,
+					goods.viewed,
 					goods.created
 				FROM
 					favorites left join goods on favorites.good = goods.id

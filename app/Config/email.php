@@ -50,7 +50,7 @@ class EmailConfig {
 		'host' => 'ssl://smtp.gmail.com',
 		'port' => 465,
 		'username' => 'sansarjpn',
-		'password' => '***',
+		'password' => 'andalusite',
 		'transport' => 'Smtp',
 		'tls' => false
 	);

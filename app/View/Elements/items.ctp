@@ -3,7 +3,7 @@
 	<div class="box even clearfix">
 		<div class="left">
 			<div>
-			<?php $item['image'] = $this->Image->get_images($item['goods']['secret_number']); ?>
+			<?php $item['image'] = $this->Image->get_images($item['goods']['token']); ?>
 			<?php foreach ($item['image'] as $key => $image):?>
 				<img src="<?php echo $image['medium'];?>" style="width: 140px; max-height: 200px" <?php if ($key > 0) echo 'style="display:none"'; else echo 'class="active"';?>/>
 			<?php endforeach;?>
@@ -23,13 +23,15 @@
 		</div>
 	</div>
 <?php endforeach; ?>
+<div class="next" style="display:none">
+	<?php if (isset($item_start)): ?>
+		<a href="<?php echo $this->URLQuery->change_parameter('start', $item_start + PER_ITEM_COUNT); ?>">next page</a>
+	<?php else: ?>
+		<a href="#">next page</a>
+	<?php endif; ?>
+</div>
 <?php else: ?>
 	<span>Одоогоор бараа байхгүй байна.</span>
-<?php endif; ?>
-<?php if (isset($item_start)): ?>
-	<div class="next" style="display:none">
-		<a href="<?php echo $this->URLQuery->change_parameter('start', $item_start + PER_ITEM_COUNT); ?>">next page</a>
-	</div>
 <?php endif; ?>
 <script type="text/javascript">
 $(function(){

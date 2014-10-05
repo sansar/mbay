@@ -39,6 +39,17 @@
 			'required' => false,
 			'default' => $good['detail']
 	) );
+	echo $this->Form->input ( 'Good.pickup_flag', array (
+			'legend' => false,
+			'label' => false,
+			'type' => 'select',
+			'multiple'=> 'checkbox',
+			'options' => array (
+					1 => __ ( 'онцлох бараа', true ),
+			),
+			'required' => false,
+			'default' => $good['pickup_flag']
+	) );
 	echo $this->Form->input ( 'Good.price', array (
 			'label' => __ ( 'Price', true ),
 			'placeholder' => __ ( 'Price', true ),
@@ -132,6 +143,7 @@
 	) );
 	echo $this->Form->end ( __ ( 'Confirm', true ) );
 	?>
+	<input type="submit" value="Back" onClick="history.back(); return false;" />
 	<script type="text/javascript">
 	var calc_sale = function() {
 		var price = parseInt($('#GoodPrice').val());

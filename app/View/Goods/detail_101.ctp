@@ -32,12 +32,12 @@
 	<div id="main">
 		<div id="thumbnail">
 			<ul>
-			<?php $images = $this->Image->get_images($data['secret_number']); ?>
+			<?php $images = $this->Image->get_images($data['token']); ?>
 			<?php foreach($images as $image):?>
-			<?php if ( isset($image['tumb']) ): ?>
+			<?php if ( isset($image['thumb']) ): ?>
 				<li style="margin-bottom: 5px"><a href='<?php echo $image['big']; ?>' class='cloud-zoom-gallery'
 					rel="useZoom: 'zoom1', smallImage: '<?php echo $image['medium']; ?>' ">
-					<img src="<?php echo $image['tumb']; ?>" style="max-width: 100px"/></a>
+					<img src="<?php echo $image['thumb']; ?>" style="max-width: 100px"/></a>
 				</li>
 			<?php endif; ?>
 			<?php endforeach; ?>
@@ -53,7 +53,7 @@
 			<h1><?php echo $data['overview']; ?></h1>
 			<div>
 			<?php echo $this->FB->createItemLike($data['id']); ?>
-			<span style="vertical-align: top;">Үзсэн: <?php echo $data['view_count']; ?> удаа</span>
+			<span style="vertical-align: top;">Үзсэн: <?php echo $data['viewed']; ?> удаа</span>
 			</div>
 			<div><?php echo $data['detail']; ?></div>
 			<div> <br />Төлөв : <br />
@@ -72,15 +72,20 @@
 	</div>
 
 	<br/><br/>
+	<?php if ($data['status'] == STATUS_PUBLISHED): ?>
 	<div id="fb_comment">
 		<?php echo $this->FB->createCommentBox($data['id']); ?>
 	</div>
+	<?php endif; ?>
 	
 	<div id="footer">
 		<input type="submit" value="Back" onClick="history.back(); return false;" />
-		<?php if ($user['id'] == $data['owner']): ?>
-			<input type="submit" value="Edit" onClick="location.href = 'http://<?php echo $_SERVER['HTTP_HOST'] . "/goods/edit/{$data['id']}"; ?>'; return false;" />
-		<?php endif;?>
+		<?php if ($user['id'] == $data['owner'] || $user['role'] == ROLE_ADMIN): ?>
+			<input type="submit" value="Засах" onClick="location.href = 'http://<?php echo $_SERVER['HTTP_HOST'] . "/goods/edit/{$data['id']}"; ?>'; return false;" />
+		<?php endif; ?>
+		<?php if ($data['status'] == STATUS_CREATED && $user['role'] == ROLE_ADMIN): ?>
+			<input type="submit" value="Publish" onClick="location.href = 'http://<?php echo $_SERVER['HTTP_HOST'] . "/goods/publish/{$data['id']}"; ?>'; return false;" />
+		<?php endif; ?>
 	</div>
 	<br/><br/>
 	<div class="module">

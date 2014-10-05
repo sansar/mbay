@@ -56,7 +56,7 @@
 				</fieldset>
 			</div>
 		</div><!--end userHolder-->
-		<?php else: ?>
+		<?php elseif ($user['role'] == ROLE_USER): ?>
 		<div class="userHolder">
 			<div id="userNameBox"><?php echo $user['first_name']; ?></div> |  <a href="/users/logout">Гарах</a>
 			<div class="userBox">
@@ -64,6 +64,16 @@
 					<li><a href="/goods/step1">Бараа оруулах</a></li>
 					<li><a href="/goods/mygoods">Миний бараа</a></li>
 					<li><a href="#">Хувийн тохиргоо</a></li>
+				</ul>
+			</div>
+		<?php else: ?>
+		<div class="userHolder">
+			<div id="userNameBox"><?php echo $user['first_name']; ?></div> |  <a href="/users/logout">Гарах</a>
+			<div class="userBox">
+				<ul class="userNav">
+					<li><a href="/goods/createdlist">Барааны жагсаалт</a></li>
+					<li><a href="/users/all">Хэрэглэгчийн жагсаалт</a></li>
+					<li><a href="/users/admins">Админы жагсаалт</a></li>
 				</ul>
 			</div>
 		<?php endif; ?>

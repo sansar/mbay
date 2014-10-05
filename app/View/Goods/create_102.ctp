@@ -37,6 +37,16 @@
 			'rows' => 10,
 			'required' => false 
 	) );
+	echo $this->Form->input ( 'Good.pickup_flag', array (
+			'legend' => false,
+			'label' => false,
+			'type' => 'select',
+			'multiple'=> 'checkbox',
+			'options' => array (
+					1 => __ ( 'онцлох бараа', true ),
+			),
+			'required' => false 
+	) );
 	echo $this->Form->input ( 'Good.price', array (
 			'label' => __ ( 'Price', true ),
 			'placeholder' => __ ( 'Price', true ),

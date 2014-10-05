@@ -93,34 +93,36 @@
 				<table>
 					<thead>
 						<tr>
-							<th>Оруулсан</th>
+							<th>Статус</th>
 							<th>Зураг</th>
 							<th>Гарчиг</th>
-							<th>Статус</th>
 							<th>Үзсэн</th>
+							<th>Оруулсан</th>
 						</tr>
 					</thead>
 					<tbody>
 				<?php foreach ($items as $item): ?>
 					<tr>
-						<td><?php echo $item['goods']['created']; ?></td>
 						<td>
-							<div class="box even clearfix" style="width:140px; height: 200px;">
-							<?php $item['image'] = $this->Image->get_images($item['goods']['secret_number']); ?>
+							<?php switch ($item['goods']['status']){
+								case STATUS_CREATED: echo 'шалгаж байна';break;
+								case STATUS_COMFIRMED: echo 'шалгасан.<br/>' . $item['goods']['start_date'] - $item['goods']['end_date'];break;
+								case STATUS_PUBLISHED: echo 'тавигдсан.<br/>' . $item['goods']['start_date'] - $item['goods']['end_date'];break;
+								case STATUS_SOLD: echo 'зарагдсан';break;
+								case STATUS_TIMEUP: echo 'хугацаа дууссан.<br/>' . $item['goods']['start_date'] - $item['goods']['end_date'];break;
+							} ?>
+						</td>
+						<td>
+							<div class="box even clearfix" style="width:200px; height: 179px;">
+							<?php $item['image'] = $this->Image->get_images($item['goods']['token']); ?>
 							<?php foreach ($item['image'] as $key => $image):?>
-								<img src="<?php echo $image['medium'];?>" <?php if ($key > 0) echo 'style="display:none"'; else echo 'class="active"';?>/>
+								<img src="<?php echo $image['thumbtop'];?>" <?php if ($key > 0) echo 'style="display:none"'; else echo 'class="active"';?>/>
 							<?php endforeach;?>
 							</div>
 						</td>
 						<td><a href="/goods/detail/<?php echo $item['goods']['id'];?>"><?php echo $item['goods']['overview']?></a></td>
-						<td>
-							<?php switch ($item['goods']['status']){
-								case STATUS_CREATED: echo 'хүлээгдэж байгаа';break;
-								case STATUS_CONFIRMED: echo 'тавигдсан';break;
-								case STATUS_SOLD: echo 'зарагдсан';break;
-							} ?>
-						</td>
-						<td><?php echo $item['goods']['view_count']; ?></td>
+						<td><?php echo $item['goods']['viewed']; ?></td>
+						<td><?php echo $item['goods']['created']; ?></td>
 					</tr>
 				<?php endforeach;?>
 					</tbody>
@@ -141,11 +143,11 @@
 <script type="text/javascript">
 $(function(){
 	// 設定
-	var $width      = 140;// 横幅
-	var $height     = 200;// 高さ
+	var $width      = 200;// 横幅
+	var $height     = 179;// 高さ
 	var $interval   = 1000;// 切り替わりの間隔(ミリ秒)
 	var $fade_speed = 100;// フェード処理の早さ(ミリ秒)
-	$(".box img").css({"position":"absolute", "max-width":"140px","max-height":"200px"});
+	$(".box img").css({"position":"absolute", "max-width":"200px","max-height":"179px"});
 	// フェードイン処理
 	function show(elem){
 		if (elem.find("img").length < 2) return;

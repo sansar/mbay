@@ -14,7 +14,7 @@
 <script src="/jqueryui/CHAPTER03/05/js/jquery.backgroundPosition.js" type="text/javascript"></script>
 <script src="/jqueryui/CHAPTER03/05/js/jquery.easing.1.3.js" type="text/javascript"></script>
 <script src="/jqueryui/CHAPTER02/01/sample3/javascripts/jquery.megamenu.js" type="text/javascript"></script>
-<script type="text/javascript" src="/js/jquery.jscroll.min.js"></script>
+<script type="text/javascript" src="/js/jquery.jscroll.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('.scroll').jscroll({

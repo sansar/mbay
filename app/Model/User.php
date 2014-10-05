@@ -3,9 +3,6 @@
 App::uses('AppModel', 'Model');
 App::uses( 'CakeEmail', 'Network/Email');
 
-define("ROLE_CUSTOMER",   '0');
-define("ROLE_PROVIDER",   '1');
-
 class User extends AppModel {
 	public $userTable  = 'users';
 	public $primaryKey = 'id';

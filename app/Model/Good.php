@@ -1,15 +1,5 @@
 <?php
 
-define("CONDITION_1",        '1');
-define("CONDITION_2",        '2');
-define("CONDITION_3",        '3');
-define("CONDITION_4",        '4');
-define("CONDITION_5",        '5');
-
-define("STATUS_CREATED",     '0');
-define("STATUS_CONFIRMED",   '1');
-define("STATUS_SOLD",        '2');
-
 App::uses('AppModel', 'Model');
 
 class Good extends AppModel {
@@ -84,14 +74,15 @@ class Good extends AppModel {
 	 */
 	public function getList($category, $start = 0, $count = 20, $options = array(), $sort = SORT_DATE_DOWN) {
 		$where = array("status = ?");
-		$parameters = array(STATUS_CONFIRMED);
+		$parameters = array(STATUS_PUBLISHED);
 		$sql = "SELECT
 					goods.id,
 					overview,
 					price,
 					real_price,
 					pickup_flag,
-					secret_number
+					token,
+					status
 				FROM
 					goods ";
 		
@@ -104,6 +95,7 @@ class Good extends AppModel {
 		}
 		if (isset($options['keywords'])) {
 			foreach ($options['keywords'] as $keyword) {
+				// TODO keyword bolgoj oorchloh
 				$where[] = "(overview like ? OR detail like ?)";
 				$parameters[] = "%$keyword%";
 				$parameters[] = "%$keyword%";
@@ -129,10 +121,10 @@ class Good extends AppModel {
 				$sql .= " ORDER BY price ASC";
 				break;
 			case SORT_VIEW_DOWN:
-				$sql .= " ORDER BY view_count DESC";
+				$sql .= " ORDER BY viewed DESC";
 				break;
 			case SORT_VIEW_UP:
-				$sql .= " ORDER BY view_count ASC";
+				$sql .= " ORDER BY viewed ASC";
 				break;
 			case SORT_DATE_UP:
 				$sql .= " ORDER BY created ASC";
@@ -152,9 +144,9 @@ class Good extends AppModel {
 					price,
 					real_price,
 					pickup_flag,
-					secret_number,
+					token,
 					status,
-					view_count,
+					viewed,
 					created
 				FROM
 					goods
@@ -164,9 +156,37 @@ class Good extends AppModel {
 		return $this->getDataSource()->fetchAll($sql, array($owner_id));
 	}
 	
+	public function getListByStatus($status, $start = 0, $count = 20) {
+		$sql = "SELECT
+					goods.id,
+					goods.overview,
+					goods.price,
+					goods.real_price,
+					goods.pickup_flag,
+					goods.token,
+					goods.status,
+					goods.viewed,
+					goods.created,
+					users.id,
+					users.first_name,
+					users.last_name
+				FROM
+					goods left join users on goods.owner = users.id
+				WHERE
+					status = ?
+				ORDER BY created DESC LIMIT {$start}, {$count}";
+		return $this->getDataSource()->fetchAll($sql, array($status));
+	}
+	
 	public function getItemCountByOwner($owner_id) {
 		$sql = "SELECT COUNT(*) AS count FROM goods WHERE owner = ?";
 		$result = $this->getDataSource()->fetchAll($sql, array($owner_id));
+		return $result[0][0]['count'];
+	}
+	
+	public function getItemCountByStatus($status = STATUS_CREATED) {
+		$sql = "SELECT COUNT(*) AS count FROM goods WHERE status = ?";
+		$result = $this->getDataSource()->fetchAll($sql, array($status));
 		return $result[0][0]['count'];
 	}
 	
@@ -198,12 +218,19 @@ class Good extends AppModel {
 	
 	public function addViewCount($good, $user) {
 		$good = array('Good' => $good);
+		// tavigdaagui bol nemehgui
+		if ($good['Good']['status'] != STATUS_PUBLISHED) {
+			return;
+		}
+		// admin uzvel nemehgui
+		if ($user && $user['role'] == ROLE_ADMIN) {
+			return;
+		}
 		if ( ! $user || $user['id'] != $good['Good']['owner']) {
-			if ($good['Good']['status'] == STATUS_CREATED) {
-				return null;
-			}
-			$good['Good']['view_count']++;
-			$this->save($good, false);
+			$this->updateAll(
+				array('goods.viewed' => 'goods.viewed+1'),
+				array('goods.id' => $good['Good']['id'])
+			);
 		}
 	}
 
@@ -217,7 +244,7 @@ class Good extends AppModel {
 					price,
 					real_price,
 					pickup_flag,
-					secret_number
+					token
 				FROM
 					goods
 				WHERE id in (" . implode(',', array_fill(0, count($item_ids), '?')) . ")";
@@ -238,6 +265,57 @@ class Good extends AppModel {
 			}
 		}
 		return $sorted_items;
+	}
+	
+	public function getPickups($count = 10) {
+		$sql = "SELECT
+					goods.id,
+					overview,
+					price,
+					real_price,
+					pickup_flag,
+					token,
+					status
+				FROM
+					goods
+				WHERE
+					status = ? AND pickup_flag = ? ORDER BY created DESC LIMIT $count";
+		
+		return $this->getDataSource()->fetchAll($sql, array(STATUS_PUBLISHED, PICKUP_ON));
+	}
+	
+	public function getRecents($count = 10) {
+		$sql = "SELECT
+					goods.id,
+					overview,
+					price,
+					real_price,
+					pickup_flag,
+					token,
+					status
+				FROM
+					goods
+				WHERE
+					status = ? AND pickup_flag = ? ORDER BY created DESC LIMIT $count";
+		
+		return $this->getDataSource()->fetchAll($sql, array(STATUS_PUBLISHED, PICKUP_OFF));
+	}
+	
+	public function getMostVieweds($count = 10) {
+		$sql = "SELECT
+					goods.id,
+					overview,
+					price,
+					real_price,
+					pickup_flag,
+					token,
+					status
+				FROM
+					goods
+				WHERE
+					status = ? ORDER BY viewed DESC LIMIT $count";
+		
+		return $this->getDataSource()->fetchAll($sql, array(STATUS_PUBLISHED));
 	}
 	
 	public function beforeSave($options = array()) {

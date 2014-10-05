@@ -157,7 +157,7 @@ class GoodsController extends AppController {
 			$this->Session->write('seen', $seen_item_ids);
 		}
 		$this->set ( 'data', $good );
-		$this->set ( 'token', $good['secret_number'] );
+		$this->set ( 'token', $good['token'] );
 		$this->set ( 'seen_items', $seen_items );
 		$this->layout = false;
 		$this->render ( 'detail_' . $good['category'] );
@@ -194,9 +194,15 @@ class GoodsController extends AppController {
 			}
 			return;
 		}
-		$good_token = sha1(time() . rand(0, 10000));
-		$image_dir = getcwd () . '/server/php/files/';
-		$this->_recurse_copy($image_dir . $good['secret_number'], $image_dir . $good_token);
+		
+		$goodedit = $this->Goodedit->find('first', array('conditions' => array('id' => $item_id)));
+		if (empty($goodedit)) {
+			$good_token = sha1(time() . rand(0, 10000));
+			$image_dir = getcwd () . '/server/php/files/';
+			$this->_recurse_copy($image_dir . $good['token'], $image_dir . $good_token);
+		} else {
+			$good_token = $goodedit['Goodedit']['token'];
+		}
 		$this->set('good', $good);
 		$this->set('token', $good_token);
 		$this->render('edit_' . $good['category']);
@@ -220,6 +226,7 @@ class GoodsController extends AppController {
 			if ($validate_good && $validate_category && $good_token) {
 				$this->layout = false;
 				$this->Session->write ( 'good_info', $this->request->data );
+				debug($this->request->data);
 				$this->set ( 'data', $this->request->data );
 				$this->set ( 'token', $good_token);
 				$this->render ( 'confirm_' . $category );
@@ -244,11 +251,15 @@ class GoodsController extends AppController {
 			$this->redirect ( "/goods/step1" );
 		}
 		$good_data = $this->Session->read ( 'good_info' );
-		$good_data['Good']['secret_number'] = $good_data['images']['dirpath'];
+		$good_data['Good']['token'] = $good_data['images']['dirpath'];
 		if ( ! isset($good_data['Good']['real_price']) ) {
 			$good_data['Good']['real_price'] = $good_data['Good']['price'];
 		}
-		$this->Session->delete ( 'good_info' );
+		if ( is_array($good_data['Good']['pickup_flag'])) {
+			$good_data['Good']['pickup_flag'] = PICKUP_ON;
+		} else {
+			unset($good_data['Good']['pickup_flag']);
+		}
 		
 		$user = $this->Auth->user();
 		$good_data['Good']['owner'] = $user['id'];
@@ -261,7 +272,7 @@ class GoodsController extends AppController {
 				$this->_save_option($good_data['Good']['category'], $good_data['Good']['id'], $good_data);
 			} else {
 				$this->Goodedit->create();
-				$this->Goodedit->deleteAll(array('good_id' => $good_data['Good']['good_id']));
+				$good_data['Good']['id'] = $good_data['Good']['good_id'];
 				$good_data['Good']['options'] = json_encode($this->_detect_option($good_data['Good']['category'], $good_data));
 				$this->Goodedit->save($good_data['Good'], false);
 			}
@@ -270,8 +281,32 @@ class GoodsController extends AppController {
 			$this->Good->save($good_data['Good'], false);
 			$this->_save_option($good_data['Good']['category'], $this->Good->getID(), $good_data);
 		}
+		
+		$this->Session->delete ( 'good_info' );
+		
 		debug ( $good_data );
 		exit;
+	}
+	
+	public function createdlist() {
+		$user = $this->Auth->user();
+		if ($user['role'] != ROLE_ADMIN) {
+			$this->redirect('/');
+		}
+		$item_count = $this->Good->getItemCountByStatus(STATUS_CREATED);
+		$page_count = ceil($item_count / PER_ITEM_COUNT);
+		$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+		if ($current_page < 1 || $current_page > $page_count) {
+			$current_page = 1;
+		}
+		$items = $this->Good->getListByStatus(STATUS_CREATED, ($current_page - 1) * PER_ITEM_COUNT, PER_ITEM_COUNT);
+		$this->set('items', $items);
+		$this->set('item_count', $item_count);
+		$this->set('page_count', $page_count);
+		$this->set('item_per_page', PER_ITEM_COUNT);
+		$this->set('current_page', $current_page);
+		$this->set('page_url', '/goods/newCreated');
+		$this->layout = false;
 	}
 	
 	private function _validate_option ($category) {

@@ -11,9 +11,10 @@ class ImageHelper extends AppHelper {
 		$dir = IMAGE_DIR . $dirpath . '/';
 		if ( ! is_dir($dir) ) {
 			$images[] = array(
-				'big'    => NO_IMAGE_PATH,
-				'medium' => NO_IMAGE_PATH,
-				'tumb'   => NO_IMAGE_PATH 
+				'big'       => NO_IMAGE_PATH,
+				'medium'    => NO_IMAGE_PATH,
+				'thumb'     => NO_IMAGE_PATH,
+				'thumbtop'  => NO_IMAGE_PATH,
 			);
 			return $images;
 		}
@@ -23,16 +24,18 @@ class ImageHelper extends AppHelper {
 				continue;
 			}
 			$images[] = array (
-					'big' =>  '/'. $dir . $file_name,
-					'medium' => '/'. $dir . 'medium/' . $file_name,
-					'tumb' => '/'. $dir . 'thumbnail/' . $file_name 
+					'big'      => '/' . $dir . $file_name,
+					'medium'   => '/' . $dir . 'medium/' . $file_name,
+					'thumb'    => '/' . $dir . 'thumbnail/' . $file_name,
+					'thumbtop' => '/' . $dir . 'thumbtop/' . $file_name,
 			);
 		}
 		if ( empty($images) ) {
 			$images[] = array(
-				'big'    => NO_IMAGE_PATH,
-				'medium' => NO_IMAGE_PATH,
-				'tumb'   => NO_IMAGE_PATH 
+				'big'      => NO_IMAGE_PATH,
+				'medium'   => NO_IMAGE_PATH,
+				'thumb'    => NO_IMAGE_PATH,
+				'thumbtop' => NO_IMAGE_PATH,
 			);
 		}
 		return $images;

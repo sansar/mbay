@@ -27,8 +27,9 @@ modified DATETIME DEFAULT NULL
 
 DROP TABLE IF EXISTS goods;
 CREATE TABLE `goods` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned PRIMARY KEY AUTO_INCREMENT,
   `owner` int(10) unsigned NOT NULL,
+  `token` varchar(40) NOT NULL,
   `category` varchar(5) NOT NULL,
   `overview` varchar(1000) NOT NULL,
   `detail` text NOT NULL,
@@ -36,24 +37,22 @@ CREATE TABLE `goods` (
   `price` int(10) unsigned NOT NULL,
   `real_price` int(10) unsigned DEFAULT NULL,
   `quantity` int(10) unsigned NOT NULL,
+  `start_date` date DEFAULT NULL,
   `end_date` date DEFAULT NULL,
   `pickup_flag` tinyint(3) unsigned DEFAULT '0',
+  `viewed` int(10) unsigned DEFAULT '0',
   `status` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `secret_number` varchar(40) NOT NULL,
+  `keyword` text DEFAULT NULL,
   `created` datetime NOT NULL,
   `modified` datetime DEFAULT NULL,
-  `view_count` int(10) unsigned DEFAULT '0',
-  PRIMARY KEY (`id`),
   KEY `category` (`category`),
   KEY `status` (`status`),
   KEY `owner` (`owner`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS goodedits;
 CREATE TABLE `goodedits` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `good_id` int(10) unsigned NOT NULL,
-  `owner` int(10) unsigned NOT NULL,
+  `id` int(10) unsigned NOT NULL,
   `category` varchar(5) NOT NULL,
   `overview` varchar(1000) NOT NULL,
   `detail` text NOT NULL,
@@ -62,13 +61,11 @@ CREATE TABLE `goodedits` (
   `real_price` int(10) unsigned DEFAULT NULL,
   `quantity` int(10) unsigned NOT NULL,
   `pickup_flag` tinyint(3) unsigned DEFAULT '0',
-  `secret_number` varchar(40) NOT NULL,
+  `token` varchar(40) NOT NULL,
   `options` text DEFAULT NULL,
   `created` datetime NOT NULL,
   `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `good_id` (`good_id`),
-  KEY `owner` (`owner`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS clothes_clothes;
@@ -113,10 +110,22 @@ type TINYINT UNSIGNED NOT NULL
 
 DROP TABLE IF EXISTS favorites;
 CREATE TABLE favorites(
-id INT UNSIGNED NOT NULL,
+id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 user INT UNSIGNED NOT NULL,
 good INT UNSIGNED NOT NULL,
 created DATETIME NOT NULL,
 modified DATETIME DEFAULT NULL,
 KEY `user` (user)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS news;
+CREATE TABLE news(
+id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+token varchar(40) NOT NULL,
+title varchar(100) NOT NULL,
+content text NOT NULL,
+publish_date DATETIME NOT NULL,
+status TINYINT UNSIGNED NOT NULL DEFAULT 0,
+created DATETIME DEFAULT NULL,
+modified DATETIME DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;

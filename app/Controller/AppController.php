@@ -71,6 +71,24 @@ define('SORT_PRICE_DOWN', 3);
 define('SORT_VIEW_UP'   , 4);
 define('SORT_VIEW_DOWN' , 5);
 
+define("CONDITION_1",        '1');
+define("CONDITION_2",        '2');
+define("CONDITION_3",        '3');
+define("CONDITION_4",        '4');
+define("CONDITION_5",        '5');
+
+define("STATUS_CREATED",     '0');
+define("STATUS_COMFIRMED",   '1');
+define("STATUS_PUBLISHED",   '2');
+define("STATUS_SOLD",        '3');
+define("STATUS_TIMEUP",      '4');
+
+define("PICKUP_OFF", '0');
+define("PICKUP_ON",  '1');
+
+define("ROLE_USER",   '0');
+define("ROLE_ADMIN",   '1');
+
 /**
  * Application Controller
  *

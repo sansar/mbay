@@ -60,9 +60,6 @@
 <link rel="stylesheet" type="text/css" href="/css/cake.generic.css">
 
 <script src="/js/jquery.min.js" type="text/javascript"></script>
-<script src="/jqueryui/CHAPTER03/05/js/jquery.backgroundPosition.js" type="text/javascript"></script>
-<script src="/jqueryui/CHAPTER03/05/js/jquery.easing.1.3.js" type="text/javascript"></script>
-<script src="/jqueryui/CHAPTER02/01/sample3/javascripts/jquery.megamenu.js" type="text/javascript"></script>
 
 <!--[if !IE]><!-->
 <link rel="stylesheet" href="/css/category-style.css">
@@ -74,7 +71,7 @@
   <link rel="stylesheet" href="http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-11/style.css?v1.2">
   <![endif]-->
 </head>
-<body id="top" class="clothes">
+<body id="top">
 	<div id="container">
 		<div id="header">
 			<a href="/"><img src="/img/logo.gif" style="margin: 10px 0px 0px -15px;"/></a>
@@ -84,49 +81,53 @@
 		</div>
 
 		<div id="main">
-		<?php if (empty($items)): ?>
-			<div>Тэмдэглэсэн бараа байхгүй байна.</div>
-		<?php else: ?>
 			<?php echo $this->element('pagination', array(
 					'page_count' => $page_count,
 					'item_per_page' => $item_per_page,
 					'current_page' => $current_page,
 					'page_url' => $page_url)); ?>
 			<div class="module clearfix">
+			<?php if (empty($items)): ?>
+			<div>Оруулсан бараа байхгүй байна.</div>
+			<?php else: ?>
 				<table>
 					<thead>
 						<tr>
-							<th></th>
+							<th>Оруулсан</th>
 							<th>Зураг</th>
 							<th>Гарчиг</th>
-							<th>Үзсэн</th>
+							<th>Provider</th>
 						</tr>
 					</thead>
 					<tbody>
 				<?php foreach ($items as $item): ?>
 					<tr>
-						<td></td>
+						<td><?php echo $item['goods']['created']; ?></td>
 						<td>
-							<div class="box even clearfix" style="width:140px; height: 200px;">
+							<div class="box even clearfix" style="width:200px; height: 179px;">
 							<?php $item['image'] = $this->Image->get_images($item['goods']['token']); ?>
 							<?php foreach ($item['image'] as $key => $image):?>
-								<img src="<?php echo $image['medium'];?>" <?php if ($key > 0) echo 'style="display:none"'; else echo 'class="active"';?>/>
+								<img src="<?php echo $image['thumbtop'];?>" <?php if ($key > 0) echo 'style="display:none"'; else echo 'class="active"';?>/>
 							<?php endforeach;?>
 							</div>
 						</td>
-						<td><a href="/goods/detail/<?php echo $item['goods']['id'];?>"><?php echo $item['goods']['overview']?></a></td>
-						<td><?php echo $item['goods']['viewed']; ?></td>
+						<td>
+							<a href="/goods/detail/<?php echo $item['goods']['id'];?>"><?php echo $item['goods']['overview']?></a>
+						</td>
+						<td>
+							<a href="/users/profile/<?php echo $item['users']['id'];?>"><?php echo $item['users']['first_name'] . ' ' . $item['users']['last_name']; ?></a>
+						</td>
 					</tr>
 				<?php endforeach;?>
 					</tbody>
 				</table>
+			<?php endif; ?>
 			</div>
 			<?php echo $this->element('pagination', array(
 					'page_count' => $page_count,
 					'item_per_page' => $item_per_page,
 					'current_page' => $current_page,
 					'page_url' => $page_url)); ?>
-		<?php endif; ?>
 		</div>
 		
 		<div id="footer">
@@ -136,11 +137,11 @@
 <script type="text/javascript">
 $(function(){
 	// 設定
-	var $width      = 140;// 横幅
-	var $height     = 200;// 高さ
+	var $width      = 200;// 横幅
+	var $height     = 179;// 高さ
 	var $interval   = 1000;// 切り替わりの間隔(ミリ秒)
 	var $fade_speed = 100;// フェード処理の早さ(ミリ秒)
-	$(".box img").css({"position":"absolute", "max-width":"140px","max-height":"200px"});
+	$(".box img").css({"position":"absolute", "max-width":"200px","max-height":"179px"});
 	// フェードイン処理
 	function show(elem){
 		if (elem.find("img").length < 2) return;

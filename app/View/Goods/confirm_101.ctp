@@ -33,10 +33,10 @@
 			<ul>
 			<?php $images = $this->Image->get_images($this->request->data['images']['dirpath']); ?>
 			<?php foreach($images as $image):?>
-			<?php if ( isset($image['tumb']) ): ?>
+			<?php if ( isset($image['thumb']) ): ?>
 				<li style="margin-bottom: 5px"><a href='<?php echo $image['big']; ?>' class='cloud-zoom-gallery'
 					rel="useZoom: 'zoom1', smallImage: '<?php echo $image['medium']; ?>' ">
-					<img src="<?php echo $image['tumb']; ?>" style="max-width: 100px"/></a>
+					<img src="<?php echo $image['thumb']; ?>" style="max-width: 100px"/></a>
 				</li>
 			<?php endif; ?>
 			<?php endforeach; ?>
