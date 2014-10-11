@@ -697,7 +697,7 @@ class UploadHandler
 			$max_width / $img_width,
 			$max_height / $img_height
 		);
-		if ($scale >= 1) {
+		if (!empty($options['auto_orient'])) {
 			if ($image_oriented) {
 				return $write_func($src_img, $new_file_path, $image_quality);
 			}
