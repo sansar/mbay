@@ -228,8 +228,8 @@ class Good extends AppModel {
 		}
 		if ( ! $user || $user['id'] != $good['Good']['owner']) {
 			$this->updateAll(
-				array('goods.viewed' => 'goods.viewed+1'),
-				array('goods.id' => $good['Good']['id'])
+				array('Good.viewed' => 'Good.viewed+1'),
+				array('Good.id' => $good['Good']['id'])
 			);
 		}
 	}
@@ -316,6 +316,25 @@ class Good extends AppModel {
 					status = ? ORDER BY viewed DESC LIMIT $count";
 		
 		return $this->getDataSource()->fetchAll($sql, array(STATUS_PUBLISHED));
+	}
+	
+	public function publish($item_id, $start_date, $end_date) {
+		if ($item_id == null) {
+			return false;
+		}
+		$now = time();
+		if ($start_date < strtotime('2014-01-01') || $end_date <= $start_date || $end_date <= $now) {
+			return false;
+		}
+		$status = STATUS_COMFIRMED;
+		if ($start_date <= $now) {
+			$status = STATUS_PUBLISHED;
+		}
+		$this->updateAll(
+				array('start_date' => $start_date, 'end_date' => $end_date, 'status' => $status),
+				array('id' => $item_id)
+		);
+		return true;
 	}
 	
 	public function beforeSave($options = array()) {

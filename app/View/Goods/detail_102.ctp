@@ -79,12 +79,47 @@
 	<?php endif; ?>
 	
 	<div id="footer">
-		<input type="submit" value="Back" onClick="history.back(); return false;" />
-		<?php if ($user['id'] == $data['owner'] || $user['role'] == ROLE_ADMIN): ?>
+		<?php if ($user['role'] == ROLE_ADMIN): ?>
+		<form method="post" action="/goods/publish/<?php echo $data['id'];?>">
+			<?php if ($data['status'] == STATUS_CREATED): ?>
+				<span style="font-size: 20px;color:RED">ТАВИГДААГҮЙ.</span>
+			<?php elseif ($data['status'] == STATUS_COMFIRMED): ?>
+				<span style="font-size: 20px;color:YELLOW">ХҮЛЭЭГДЭЖ БУЙ.</span>
+			<?php elseif ($data['status'] == STATUS_PUBLISHED): ?>
+				<span style="font-size: 20px;color:GREEN">ТАВИГДСАН.</span>
+			<?php elseif ($data['status'] == STATUS_SOLD): ?>
+				<span style="font-size: 20px;color:GREEN">ЗАРАГДСАН.</span>
+			<?php elseif ($data['status'] == STATUS_TIMEUP): ?>
+				<span style="font-size: 20px;color:RED">ХУГАЦАА ДУУССАН.</span>
+			<?php endif; ?>
+			<span id="publish_setting" style="visibility:hidden">
+				Хугацаа:
+				<input type="type" name="publish_from" value="<?php echo date('Y-m-d'); ?>" size="10" maxlength="10"/>
+				 - <input type="type" name="publish_to" value="<?php echo date('Y-m-d', strtotime("+3 months", strtotime(date('Y-m-d')))); ?>" size="10" maxlength="10"/>
+				<input type="submit" value="set"/>
+				<input id="publish_close" type="submit" value="close"/>
+			</span>
+			<input id="publish_open" type="submit" value="Publish Setting"/>
 			<input type="submit" value="Засах" onClick="location.href = 'http://<?php echo $_SERVER['HTTP_HOST'] . "/goods/edit/{$data['id']}"; ?>'; return false;" />
-		<?php endif; ?>
-		<?php if ($data['status'] == STATUS_CREATED && $user['role'] == ROLE_ADMIN): ?>
-			<input type="submit" value="Publish" onClick="location.href = 'http://<?php echo $_SERVER['HTTP_HOST'] . "/goods/publish/{$data['id']}"; ?>'; return false;" />
+			<input type="submit" value="Back" onClick="history.back(); return false;" />
+		</form>
+		<script type="text/javascript">
+			$('#publish_open').click(function(){
+				$('#publish_setting').css('visibility','visible');
+				$('#publish_open').hide();
+				return false;
+				});
+			$('#publish_close').click(function(){
+				$('#publish_setting').css('visibility','hidden');
+				$('#publish_open').show();
+				return false;
+				});
+		</script>
+		<?php elseif ($user['id'] == $data['owner']): ?>
+			<input type="submit" value="Засах" onClick="location.href = 'http://<?php echo $_SERVER['HTTP_HOST'] . "/goods/edit/{$data['id']}"; ?>'; return false;" />
+			<input type="submit" value="Back" onClick="history.back(); return false;" />
+		<?php else: ?>
+			<input type="submit" value="Back" onClick="history.back(); return false;" />
 		<?php endif; ?>
 	</div>
 	<br/><br/>

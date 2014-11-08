@@ -309,6 +309,19 @@ class GoodsController extends AppController {
 		$this->layout = false;
 	}
 	
+	public function publish($item_id = null) {
+		$start_date = strtotime($_POST['publish_from']);
+		$end_date = strtotime($_POST['publish_to']);
+		if ( ! $start_date || ! $end_date ) {
+			$this->redirect('/');
+		}
+		if ($this->Good->publish($item_id, $start_date, $end_date)) {
+			$this->redirect('/goods/detail/' . $item_id);
+		} else {
+			$this->redirect('/');
+		}
+	}
+	
 	private function _validate_option ($category) {
 		switch ($category) {
 			case CATEGORY_CLOTHES_CLOTHES:
